@@ -1,0 +1,8 @@
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\bin\Debug\DataEntities.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\bin\Debug\DataEntities.pdb
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\obj\Debug\DataEntities.csproj.AssemblyReference.cache
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\obj\Debug\DataEntities.csproj.CoreCompileInputs.cache
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\obj\Debug\DataEntities.csproj.CopyComplete
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\obj\Debug\DataEntities.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataEntities\obj\Debug\DataEntities.pdb

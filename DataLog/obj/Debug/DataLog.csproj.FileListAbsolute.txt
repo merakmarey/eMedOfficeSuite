@@ -1,0 +1,5 @@
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataLog\bin\Debug\DataLog.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataLog\bin\Debug\DataLog.pdb
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataLog\obj\Debug\DataLog.csproj.CoreCompileInputs.cache
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataLog\obj\Debug\DataLog.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataLog\obj\Debug\DataLog.pdb

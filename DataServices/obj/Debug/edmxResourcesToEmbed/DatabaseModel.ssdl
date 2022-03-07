@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="gender">
+    <Key>
+      <PropertyRef Name="genderId" />
+    </Key>
+    <Property Name="genderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gender" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tax_types">
+    <Key>
+      <PropertyRef Name="taxtypeid" />
+    </Key>
+    <Property Name="taxtypeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="taxtype" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="therapist">
+    <Key>
+      <PropertyRef Name="therapistId" />
+    </Key>
+    <Property Name="therapistId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="middleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="companyName" Type="nvarchar" MaxLength="150" />
+    <Property Name="therapistLevel" Type="nvarchar" MaxLength="10" />
+    <Property Name="therapistTaxType" Type="int" />
+    <Property Name="therapistType" Type="int" />
+    <Property Name="birthdate" Type="date" />
+    <Property Name="education" Type="nvarchar" MaxLength="50" />
+    <Property Name="gender" Type="int" />
+    <Property Name="ssn" Type="nvarchar" MaxLength="10" />
+    <Property Name="languages" Type="nvarchar" MaxLength="10" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" />
+    <Property Name="phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="address1" Type="nvarchar" MaxLength="100" />
+    <Property Name="address2" Type="nvarchar" MaxLength="100" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+    <Property Name="state" Type="nvarchar" MaxLength="10" />
+    <Property Name="zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="country" Type="nvarchar" MaxLength="100" />
+    <Property Name="hiredate" Type="date" />
+    <Property Name="status" Type="bit" />
+    <Property Name="supervisorId" Type="int" />
+    <Property Name="terminationdate" Type="date" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="therapist_types">
+    <Key>
+      <PropertyRef Name="therapisttypeId" />
+    </Key>
+    <Property Name="therapisttypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="therapisttype" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="user_roles">
+    <Key>
+      <PropertyRef Name="user_role_id" />
+    </Key>
+    <Property Name="user_role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_role_name" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="role" Type="int" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

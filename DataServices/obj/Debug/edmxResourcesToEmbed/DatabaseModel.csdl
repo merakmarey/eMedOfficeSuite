@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="user_roles">
+    <Key>
+      <PropertyRef Name="user_role_id" />
+    </Key>
+    <Property Name="user_role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_role_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="Int32" Nullable="false" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="user_roles" EntityType="Self.user_roles" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
+    <EntitySet Name="genders" EntityType="DatabaseModel.gender" />
+    <EntitySet Name="tax_types" EntityType="DatabaseModel.tax_types" />
+    <EntitySet Name="therapist_types" EntityType="DatabaseModel.therapist_types" />
+  </EntityContainer>
+  <EntityType Name="therapist">
+    <Key>
+      <PropertyRef Name="therapistId" />
+    </Key>
+    <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="therapistTaxType" Type="Int32" />
+    <Property Name="therapistType" Type="Int32" />
+    <Property Name="birthdate" Type="DateTime" Precision="0" />
+    <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Int32" />
+    <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="hiredate" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="supervisorId" Type="Int32" />
+    <Property Name="terminationdate" Type="DateTime" Precision="0" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="gender">
+    <Key>
+      <PropertyRef Name="genderId" />
+    </Key>
+    <Property Name="genderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tax_types">
+    <Key>
+      <PropertyRef Name="taxtypeid" />
+    </Key>
+    <Property Name="taxtypeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taxtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="therapist_types">
+    <Key>
+      <PropertyRef Name="therapisttypeId" />
+    </Key>
+    <Property Name="therapisttypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="therapisttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

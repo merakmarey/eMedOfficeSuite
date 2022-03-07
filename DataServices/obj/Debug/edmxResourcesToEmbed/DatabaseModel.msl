@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="user_roles">
+      <EntityTypeMapping TypeName="DatabaseModel.user_roles">
+        <MappingFragment StoreEntitySet="user_roles">
+          <ScalarProperty Name="user_role_id" ColumnName="user_role_id" />
+          <ScalarProperty Name="user_role_name" ColumnName="user_role_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="DatabaseModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapists">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist">
+        <MappingFragment StoreEntitySet="therapist">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
+          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="languages" ColumnName="languages" />
+          <ScalarProperty Name="ssn" ColumnName="ssn" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="education" ColumnName="education" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="therapistType" ColumnName="therapistType" />
+          <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
+          <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genders">
+      <EntityTypeMapping TypeName="DatabaseModel.gender">
+        <MappingFragment StoreEntitySet="gender">
+          <ScalarProperty Name="gender1" ColumnName="gender" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tax_types">
+      <EntityTypeMapping TypeName="DatabaseModel.tax_types">
+        <MappingFragment StoreEntitySet="tax_types">
+          <ScalarProperty Name="taxtype" ColumnName="taxtype" />
+          <ScalarProperty Name="taxtypeid" ColumnName="taxtypeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_types">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_types">
+        <MappingFragment StoreEntitySet="therapist_types">
+          <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
+          <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,23 @@
+﻿@model dynamic
+<div class="row form-body">
+    <div class="row">
+        <div class="col">
+            <label for="taxtype">Tax type</label>
+            <select class="form-select form-select-sm" id="taxtype">
+            @foreach (var tt in Model.taxTypes)
+            {
+                <option value="@tt.Key">@tt.Value</option>
+            }
+            </select>
+        </div>
+        <div class="col"></div>
+    </div>
+
+        <div class="col-md-6">
+            <label for="taxtype">Company name</label>
+            <input type="text" class="form-control" id="companyname" />
+        </div>
+        <div class="col-md-6">
+            
+        </div>
+    </div>
