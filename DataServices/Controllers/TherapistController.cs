@@ -12,7 +12,7 @@ namespace DataServices.Controllers
     [Authorize(Roles=(DataEntities.Users.UserRolesNames.Super))]
     public class TherapistController : ApiController
     {
-        public IEnumerable<Therapist> GetTherapists()
+        public IEnumerable<therapist> GetTherapists()
         {
             try
             {
@@ -20,7 +20,7 @@ namespace DataServices.Controllers
                 {
 
                     var query = from t in db.therapists
-                                select new Therapist() {
+                                select new therapist() {
                                     therapistId = t.therapistId,
                                     email = t.email,
                                     firstName = t.firstName,
@@ -48,7 +48,7 @@ namespace DataServices.Controllers
                                     therapistType= t.therapistType
                                 };
 
-                    var therapists = query.ToList<Therapist>();
+                    var therapists = query.ToList<therapist>();
                     if (therapists != null)
                         return therapists;
                 }
@@ -59,8 +59,27 @@ namespace DataServices.Controllers
             }
             return null;
         }
-        public bool addTherapist(Therapist therapist)
+        public bool AddTherapist(therapist therapist)
         {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+                    var t = db.therapists;
+
+                    t.Add(therapist);
+
+                    var rows = db.SaveChanges();
+
+                    return (rows>0?true:false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            
             return false;
         }
     }

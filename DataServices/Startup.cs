@@ -4,7 +4,7 @@ using Owin;
 using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
 
-[assembly: OwinStartup(typeof(DataServices.Startup))]
+[assembly: OwinStartup("DataServicesStartup", typeof(DataServices.Startup))]
 
 namespace DataServices
 {

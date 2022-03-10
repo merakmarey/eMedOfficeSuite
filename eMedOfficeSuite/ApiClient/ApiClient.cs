@@ -23,7 +23,11 @@ namespace eMedOfficeSuite.ApiClient
 
         public readonly string TaxTypestUrl = "/api/types/gettaxtypes";
         public readonly string GenderTypestUrl = "/api/types/getgendertypes";
-        public readonly string TherapistTypestUrl = "/api/types/gettherapisttypes";
+        public readonly string TherapistTypesUrl = "/api/types/gettherapisttypes";
+        public readonly string TherapistStatusTypestUrl = "/api/types/gettherapiststatustypes";
+        public readonly string StatestUrl = "/api/types/getstatestypes";
+
+        public readonly string TherapistAddUrl = "/api/therapist/addtherapist";
         public RestClient client;
         public ApiClient()
         {

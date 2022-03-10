@@ -40,5 +40,8 @@ namespace DataServices
         public Nullable<int> supervisorId { get; set; }
         public Nullable<System.DateTime> terminationdate { get; set; }
         public string password { get; set; }
+        public string fein { get; set; }
+        public string license { get; set; }
+        public string provider { get; set; }
     }
 }

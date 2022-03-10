@@ -23,6 +23,9 @@
     <EntitySetMapping Name="therapists">
       <EntityTypeMapping TypeName="DatabaseModel.therapist">
         <MappingFragment StoreEntitySet="therapist">
+          <ScalarProperty Name="provider" ColumnName="provider" />
+          <ScalarProperty Name="license" ColumnName="license" />
+          <ScalarProperty Name="fein" ColumnName="fein" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
           <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
@@ -73,6 +76,24 @@
         <MappingFragment StoreEntitySet="therapist_types">
           <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
           <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="DatabaseModel.state">
+        <MappingFragment StoreEntitySet="states">
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="statenamelong" ColumnName="statenamelong" />
+          <ScalarProperty Name="statenameshort" ColumnName="statenameshort" />
+          <ScalarProperty Name="geostateid" ColumnName="geostateid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_status">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_status">
+        <MappingFragment StoreEntitySet="therapist_status">
+          <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
+          <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -12,6 +12,15 @@
           <Property Name="genderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="gender" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="states">
+          <Key>
+            <PropertyRef Name="geostateid" />
+          </Key>
+          <Property Name="geostateid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statenameshort" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="statenamelong" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tax_types">
           <Key>
             <PropertyRef Name="taxtypeid" />
@@ -49,6 +58,16 @@
           <Property Name="supervisorId" Type="int" />
           <Property Name="terminationdate" Type="date" />
           <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fein" Type="nvarchar" MaxLength="50" />
+          <Property Name="license" Type="nvarchar" MaxLength="50" />
+          <Property Name="provider" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="therapist_status">
+          <Key>
+            <PropertyRef Name="therapist_statusId" />
+          </Key>
+          <Property Name="therapist_statusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="therapiststatus" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="therapist_types">
           <Key>
@@ -76,8 +95,10 @@
         </EntityType>
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="therapist_status" EntityType="Self.therapist_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -110,6 +131,8 @@
           <EntitySet Name="genders" EntityType="DatabaseModel.gender" />
           <EntitySet Name="tax_types" EntityType="DatabaseModel.tax_types" />
           <EntitySet Name="therapist_types" EntityType="DatabaseModel.therapist_types" />
+          <EntitySet Name="states" EntityType="DatabaseModel.state" />
+          <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
         </EntityContainer>
         <EntityType Name="therapist">
           <Key>
@@ -141,6 +164,9 @@
           <Property Name="supervisorId" Type="Int32" />
           <Property Name="terminationdate" Type="DateTime" Precision="0" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="gender">
           <Key>
@@ -162,6 +188,22 @@
           </Key>
           <Property Name="therapisttypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="therapisttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="geostateid" />
+          </Key>
+          <Property Name="geostateid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statenameshort" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="statenamelong" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="therapist_status">
+          <Key>
+            <PropertyRef Name="therapist_statusId" />
+          </Key>
+          <Property Name="therapist_statusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="therapiststatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -191,6 +233,9 @@
           <EntitySetMapping Name="therapists">
             <EntityTypeMapping TypeName="DatabaseModel.therapist">
               <MappingFragment StoreEntitySet="therapist">
+                <ScalarProperty Name="provider" ColumnName="provider" />
+                <ScalarProperty Name="license" ColumnName="license" />
+                <ScalarProperty Name="fein" ColumnName="fein" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
                 <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
@@ -241,6 +286,24 @@
               <MappingFragment StoreEntitySet="therapist_types">
                 <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
                 <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="DatabaseModel.state">
+              <MappingFragment StoreEntitySet="states">
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="statenamelong" ColumnName="statenamelong" />
+                <ScalarProperty Name="statenameshort" ColumnName="statenameshort" />
+                <ScalarProperty Name="geostateid" ColumnName="geostateid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_status">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_status">
+              <MappingFragment StoreEntitySet="therapist_status">
+                <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
+                <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

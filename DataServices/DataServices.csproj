@@ -207,10 +207,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\UserAuthentication.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="state.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tax_types.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="therapist.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="therapist_status.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="therapist_types.cs">

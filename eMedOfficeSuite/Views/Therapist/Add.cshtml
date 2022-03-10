@@ -1,23 +1,221 @@
 ﻿@model dynamic
-<div class="row form-body">
-    <div class="row">
-        <div class="col">
-            <label for="taxtype">Tax type</label>
-            <select class="form-select form-select-sm" id="taxtype">
-            @foreach (var tt in Model.taxTypes)
-            {
-                <option value="@tt.Key">@tt.Value</option>
-            }
-            </select>
-        </div>
-        <div class="col"></div>
-    </div>
 
-        <div class="col-md-6">
-            <label for="taxtype">Company name</label>
-            <input type="text" class="form-control" id="companyname" />
+<script>
+    $(function () {
+        $('[data-toggle="datepicker"]').datepicker();
+    })
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row form-body">
+        <div class="row">
+            <div class="col">
+                <label for="taxtype">Tax type</label>
+                <select class="form-select" id="taxtype" name="taxtype">
+                    @foreach (var tt in Model.taxTypes)
+                    {
+                        <option value="@tt.Key">@tt.Value</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label for="therapisttype">Therapist type</label>
+                <select class="form-select form-select-sm" id="therapisttype" name="therapisttype">
+                    @foreach (var tt in Model.therapistTypes)
+                    {
+                        <option value="@tt.Key">@tt.Value</option>
+                    }
+                </select>
+            </div>
         </div>
-        <div class="col-md-6">
-            
+
+        <div class="row">
+            <div class="col">
+                <label for="taxtype">Company name</label>
+                <input type="text" class="form-control" id="companyname" />
+            </div>
+            <div class="col">
+                <label for="therapistlevel">Therapist level</label>
+                <input type="text" class="form-control" id="therapistlevel" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="fein">FEIN</label>
+                <input type="text" class="form-control" id="fein" />
+            </div>
+            <div class="col">
+                <label for="npi">NPI</label>
+                <input type="text" class="form-control" id="npi" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="license">State License Number</label>
+                <input type="text" class="form-control" id="license" />
+            </div>
+            <div class="col">
+                <label for="provider">Provider Id</label>
+                <input type="text" class="form-control" id="provider" />
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" />
+            </div>
+            <div class="col">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="middleName">Middle Name</label>
+                <input type="text" class="form-control" id="middleName" />
+            </div>
+            <div class="col">
+                <label for="birthdate">Birth date</label>
+                <input type="text" class="form-control" data-toggle="datepicker" id="birthdate" name="birthdate">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <label for="education">Education</label>
+                <input type="text" class="form-control" id="education" />
+            </div>
+            <div class="col">
+                <label for="gender">Gender</label>
+                <select class="form-select" id="gender">
+                    @foreach (var tt in Model.genderTypes)
+                    {
+                        <option value="@tt.Key">@tt.Value</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="ssn">SSN</label>
+                <input type="text" class="form-control" id="ssn" />
+            </div>
+            <div class="col">
+                <label for="language">Languages</label>
+                <div class="checkbox-inline">
+                    <input type="checkbox" class="form-check-input" name="languages" value="en">
+                    <label class="form-check-label" for="en">English</label>
+
+                    <input type="checkbox" class="form-check-input" name="languages" value="es">
+                    <label class="form-check-label" for="sp">Spanish</label>
+
+                    <input type="checkbox" class="form-check-input" name="languages" value="ch">
+                    <label class="form-check-label" for="ch">Chinese</label>
+
+                    <input type="checkbox" class="form-check-input" name="languages" value="fr">
+                    <label class="form-check-label" for="fr">French</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" />
+            </div>
+            <div class="col">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="address1">Address 1</label>
+                <input type="text" class="form-control" id="address1" />
+            </div>
+            <div class="col">
+                <label for="address2">Address 2</label>
+                <input type="text" class="form-control" id="address2" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" />
+            </div>
+            <div class="col">
+                <label for="state">State</label>
+                <select class="form-select" id="state">
+                    @foreach (var tt in Model.stateTypes)
+                    {
+                        <option value="@tt.Key">@tt.Value</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" />
+            </div>
+            <div class="col">
+                <label for="hiredate">Hire date</label>
+                <input type="text" class="form-control" data-toggle="datepicker" id="hiredate" name="hiredate">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="status">Status</label>
+                <select class="form-select" id="status">
+                    @foreach (var tt in Model.therapistStatusTypes)
+                    {
+                        <option value="@tt.Key">@tt.Value</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label for="supervisor">Supervisor</label>
+                <select class="form-select" id="supervisor">
+                    @if (Model.supervisor != null)
+                    {
+                        foreach (var tt in Model.supervisor)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="terminationdate">Termination date</label>
+                <input type="text" class="form-control" data-toggle="datepicker" id="terminationdate" name="terminationdate">
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <input type="submit" name="save" class="btn btn-success" value="Save Therapist" />
+            </div>
         </div>
     </div>
+}

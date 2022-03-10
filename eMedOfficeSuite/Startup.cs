@@ -4,7 +4,7 @@ using Owin;
 using System;
 using System.Threading.Tasks;
 
-[assembly: OwinStartup(typeof(eMedOfficeSuite.Startup))]
+[assembly: OwinStartup("eMedOfficeStartup", typeof(eMedOfficeSuite.Startup))]
 
 namespace eMedOfficeSuite
 {

@@ -57,5 +57,39 @@ namespace DataServices.Controllers
             }
             return null;
         }
+
+        public Dictionary<int, string> GetStatesTypes()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var query = db.states.Select(t => new { t.geostateid, t.statenamelong }).ToDictionary(t => t.geostateid, t => t.statenamelong.Trim());
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                DataLog.Log.AddEntry(ex);
+            }
+            return null;
+        }
+
+        public Dictionary<int, string> GetTherapistStatusTypes()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var query = db.therapist_status.Select(t => new { t.therapist_statusId, t.therapiststatus }).ToDictionary(t => t.therapist_statusId, t => t.therapiststatus.Trim());
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                DataLog.Log.AddEntry(ex);
+            }
+            return null;
+        }
     }
 }

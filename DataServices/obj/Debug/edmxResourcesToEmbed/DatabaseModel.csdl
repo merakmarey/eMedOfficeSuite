@@ -24,6 +24,8 @@
     <EntitySet Name="genders" EntityType="DatabaseModel.gender" />
     <EntitySet Name="tax_types" EntityType="DatabaseModel.tax_types" />
     <EntitySet Name="therapist_types" EntityType="DatabaseModel.therapist_types" />
+    <EntitySet Name="states" EntityType="DatabaseModel.state" />
+    <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
   </EntityContainer>
   <EntityType Name="therapist">
     <Key>
@@ -55,6 +57,9 @@
     <Property Name="supervisorId" Type="Int32" />
     <Property Name="terminationdate" Type="DateTime" Precision="0" />
     <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="gender">
     <Key>
@@ -76,5 +81,21 @@
     </Key>
     <Property Name="therapisttypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="therapisttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="geostateid" />
+    </Key>
+    <Property Name="geostateid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="statenameshort" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="statenamelong" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="countryid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="therapist_status">
+    <Key>
+      <PropertyRef Name="therapist_statusId" />
+    </Key>
+    <Property Name="therapist_statusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="therapiststatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

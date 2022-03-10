@@ -31,5 +31,7 @@ namespace DataServices
         public virtual DbSet<gender> genders { get; set; }
         public virtual DbSet<tax_types> tax_types { get; set; }
         public virtual DbSet<therapist_types> therapist_types { get; set; }
+        public virtual DbSet<state> states { get; set; }
+        public virtual DbSet<therapist_status> therapist_status { get; set; }
     }
 }

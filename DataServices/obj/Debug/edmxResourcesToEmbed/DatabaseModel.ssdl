@@ -7,6 +7,15 @@
     <Property Name="genderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="gender" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="states">
+    <Key>
+      <PropertyRef Name="geostateid" />
+    </Key>
+    <Property Name="geostateid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="statenameshort" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="statenamelong" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="countryid" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="tax_types">
     <Key>
       <PropertyRef Name="taxtypeid" />
@@ -44,6 +53,16 @@
     <Property Name="supervisorId" Type="int" />
     <Property Name="terminationdate" Type="date" />
     <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fein" Type="nvarchar" MaxLength="50" />
+    <Property Name="license" Type="nvarchar" MaxLength="50" />
+    <Property Name="provider" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="therapist_status">
+    <Key>
+      <PropertyRef Name="therapist_statusId" />
+    </Key>
+    <Property Name="therapist_statusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="therapiststatus" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="therapist_types">
     <Key>
@@ -71,8 +90,10 @@
   </EntityType>
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="therapist_status" EntityType="Self.therapist_status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
