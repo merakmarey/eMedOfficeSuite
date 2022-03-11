@@ -18,6 +18,9 @@ namespace eMedOfficeSuite.ApiClient
 {
     public class ApiClient<T>
     {
+        private System.Net.HttpStatusCode _lastStatus;
+        public System.Net.HttpStatusCode lastStatus { get { return _lastStatus; } }
+
         public readonly string TokenUrl = "/token";
         public readonly string UserUrl = "/api/user";
 
@@ -35,7 +38,8 @@ namespace eMedOfficeSuite.ApiClient
 
             var options = new RestClientOptions(url)
             {
-                ThrowOnAnyError = true
+                Timeout = 1000
+                //ThrowOnAnyError = true
             };
 
             client = new RestClient(options);
@@ -67,19 +71,32 @@ namespace eMedOfficeSuite.ApiClient
 
         public T Post(string url, string token)
         {
+
+            var userRequest = new RestRequest(url);
+
             try
             {
-               
-                var userRequest = new RestRequest(url);
 
                 userRequest.AddHeader("Authorization", "Bearer " + token);
 
-                var userTask = Task.Run(async () => await client.PostAsync(userRequest, cancellationToken: System.Threading.CancellationToken.None));
+                var userTask = Task.Run(async () => await client.ExecutePostAsync(userRequest, cancellationToken: System.Threading.CancellationToken.None));
                 var userResponse = userTask.GetAwaiter().GetResult();
+                
+                _lastStatus = userResponse.StatusCode;
 
-                var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
-                var user = JsonConvert.DeserializeObject<T>(userResponseToString);
-                return user;
+                if (userResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
+                    var user = JsonConvert.DeserializeObject<T>(userResponseToString);
+                    return user;
+                }
+
+                
+                
+            }
+            catch (System.Net.Http.HttpRequestException ex)
+            {
+                DataLog.Log.AddEntry(ex);
             }
             catch (Exception ex)
             {
@@ -91,17 +108,20 @@ namespace eMedOfficeSuite.ApiClient
         {
             try
             {
-
                 var userRequest = new RestRequest(url);
 
                 userRequest.AddHeader("Authorization", "Bearer " + token);
 
-                var userTask = Task.Run(async () => await client.GetAsync(userRequest, cancellationToken: System.Threading.CancellationToken.None));
+                var userTask = Task.Run(async () => await client.ExecuteGetAsync(userRequest, cancellationToken: System.Threading.CancellationToken.None));
                 var userResponse = userTask.GetAwaiter().GetResult();
 
-                var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
-                var user = JsonConvert.DeserializeObject<T>(userResponseToString);
-                return user;
+                _lastStatus = userResponse.StatusCode;
+                if (userResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
+                    var user = JsonConvert.DeserializeObject<T>(userResponseToString);
+                    return user;
+                }
             }
             catch (Exception ex)
             {
