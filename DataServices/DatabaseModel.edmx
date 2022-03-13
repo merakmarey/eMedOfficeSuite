@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="cityId" />
+          </Key>
+          <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="countryId" Type="int" />
+          <Property Name="stateId" Type="int" />
+        </EntityType>
         <EntityType Name="gender">
           <Key>
             <PropertyRef Name="genderId" />
@@ -49,16 +58,17 @@
           <Property Name="phone" Type="nvarchar" MaxLength="15" />
           <Property Name="address1" Type="nvarchar" MaxLength="100" />
           <Property Name="address2" Type="nvarchar" MaxLength="100" />
-          <Property Name="city" Type="nvarchar" MaxLength="50" />
-          <Property Name="state" Type="nvarchar" MaxLength="10" />
+          <Property Name="city" Type="int" />
+          <Property Name="state" Type="int" />
           <Property Name="zip" Type="nvarchar" MaxLength="10" />
-          <Property Name="country" Type="nvarchar" MaxLength="100" />
+          <Property Name="country" Type="int" />
           <Property Name="hiredate" Type="date" />
-          <Property Name="status" Type="bit" />
+          <Property Name="status" Type="int" />
           <Property Name="supervisorId" Type="int" />
           <Property Name="terminationdate" Type="date" />
           <Property Name="password" Type="nvarchar(max)" Nullable="false" />
           <Property Name="fein" Type="nvarchar" MaxLength="50" />
+          <Property Name="npi" Type="nvarchar" MaxLength="50" />
           <Property Name="license" Type="nvarchar" MaxLength="50" />
           <Property Name="provider" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -94,6 +104,7 @@
           <Property Name="active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
@@ -127,47 +138,14 @@
         <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="user_roles" EntityType="Self.user_roles" />
           <EntitySet Name="users" EntityType="Self.user" />
-          <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
           <EntitySet Name="genders" EntityType="DatabaseModel.gender" />
           <EntitySet Name="tax_types" EntityType="DatabaseModel.tax_types" />
           <EntitySet Name="therapist_types" EntityType="DatabaseModel.therapist_types" />
           <EntitySet Name="states" EntityType="DatabaseModel.state" />
           <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
+          <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
+          <EntitySet Name="cities" EntityType="DatabaseModel.city" />
         </EntityContainer>
-        <EntityType Name="therapist">
-          <Key>
-            <PropertyRef Name="therapistId" />
-          </Key>
-          <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="therapistTaxType" Type="Int32" />
-          <Property Name="therapistType" Type="Int32" />
-          <Property Name="birthdate" Type="DateTime" Precision="0" />
-          <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="gender" Type="Int32" />
-          <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="hiredate" Type="DateTime" Precision="0" />
-          <Property Name="status" Type="Boolean" />
-          <Property Name="supervisorId" Type="Int32" />
-          <Property Name="terminationdate" Type="DateTime" Precision="0" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="gender">
           <Key>
             <PropertyRef Name="genderId" />
@@ -205,6 +183,50 @@
           <Property Name="therapist_statusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="therapiststatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="therapist">
+          <Key>
+            <PropertyRef Name="therapistId" />
+          </Key>
+          <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="therapistTaxType" Type="Int32" />
+          <Property Name="therapistType" Type="Int32" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="Int32" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="hiredate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="supervisorId" Type="Int32" />
+          <Property Name="terminationdate" Type="DateTime" Precision="0" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="npi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="city">
+          <Key>
+            <PropertyRef Name="cityId" />
+          </Key>
+          <Property Name="cityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="countryId" Type="Int32" />
+          <Property Name="stateId" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -227,41 +249,6 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="active" ColumnName="active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapists">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist">
-              <MappingFragment StoreEntitySet="therapist">
-                <ScalarProperty Name="provider" ColumnName="provider" />
-                <ScalarProperty Name="license" ColumnName="license" />
-                <ScalarProperty Name="fein" ColumnName="fein" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
-                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="zip" ColumnName="zip" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="address1" ColumnName="address1" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="languages" ColumnName="languages" />
-                <ScalarProperty Name="ssn" ColumnName="ssn" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="education" ColumnName="education" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="therapistType" ColumnName="therapistType" />
-                <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
-                <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
-                <ScalarProperty Name="companyName" ColumnName="companyName" />
-                <ScalarProperty Name="middleName" ColumnName="middleName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -304,6 +291,52 @@
               <MappingFragment StoreEntitySet="therapist_status">
                 <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
                 <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapists">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist">
+              <MappingFragment StoreEntitySet="therapist">
+                <ScalarProperty Name="provider" ColumnName="provider" />
+                <ScalarProperty Name="license" ColumnName="license" />
+                <ScalarProperty Name="npi" ColumnName="npi" />
+                <ScalarProperty Name="fein" ColumnName="fein" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
+                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="languages" ColumnName="languages" />
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="therapistType" ColumnName="therapistType" />
+                <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
+                <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="DatabaseModel.city">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

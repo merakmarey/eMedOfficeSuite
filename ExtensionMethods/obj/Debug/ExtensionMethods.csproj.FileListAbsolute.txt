@@ -1,0 +1,5 @@
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\ExtensionMethods\bin\Debug\ExtensionMethods.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\ExtensionMethods\bin\Debug\ExtensionMethods.pdb
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\ExtensionMethods\obj\Debug\ExtensionMethods.csproj.CoreCompileInputs.cache
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\ExtensionMethods\obj\Debug\ExtensionMethods.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\ExtensionMethods\obj\Debug\ExtensionMethods.pdb

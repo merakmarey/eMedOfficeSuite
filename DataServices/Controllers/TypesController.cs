@@ -57,7 +57,6 @@ namespace DataServices.Controllers
             }
             return null;
         }
-
         public Dictionary<int, string> GetStatesTypes()
         {
             try
@@ -74,7 +73,22 @@ namespace DataServices.Controllers
             }
             return null;
         }
-
+        public Dictionary<int, string> GetCityTypes(int id)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var query = db.cities.Where(k=>k.stateId==id).Select(t => new { t.cityId, t.cityName, t.stateId }).ToDictionary(t => t.cityId, t => t.cityName.Trim());
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                DataLog.Log.AddEntry(ex);
+            }
+            return null;
+        }
         public Dictionary<int, string> GetTherapistStatusTypes()
         {
             try

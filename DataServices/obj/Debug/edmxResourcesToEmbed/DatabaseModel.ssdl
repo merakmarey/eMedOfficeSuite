@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cities">
+    <Key>
+      <PropertyRef Name="cityId" />
+    </Key>
+    <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="countryId" Type="int" />
+    <Property Name="stateId" Type="int" />
+  </EntityType>
   <EntityType Name="gender">
     <Key>
       <PropertyRef Name="genderId" />
@@ -44,16 +53,17 @@
     <Property Name="phone" Type="nvarchar" MaxLength="15" />
     <Property Name="address1" Type="nvarchar" MaxLength="100" />
     <Property Name="address2" Type="nvarchar" MaxLength="100" />
-    <Property Name="city" Type="nvarchar" MaxLength="50" />
-    <Property Name="state" Type="nvarchar" MaxLength="10" />
+    <Property Name="city" Type="int" />
+    <Property Name="state" Type="int" />
     <Property Name="zip" Type="nvarchar" MaxLength="10" />
-    <Property Name="country" Type="nvarchar" MaxLength="100" />
+    <Property Name="country" Type="int" />
     <Property Name="hiredate" Type="date" />
-    <Property Name="status" Type="bit" />
+    <Property Name="status" Type="int" />
     <Property Name="supervisorId" Type="int" />
     <Property Name="terminationdate" Type="date" />
     <Property Name="password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="fein" Type="nvarchar" MaxLength="50" />
+    <Property Name="npi" Type="nvarchar" MaxLength="50" />
     <Property Name="license" Type="nvarchar" MaxLength="50" />
     <Property Name="provider" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -89,6 +99,7 @@
     <Property Name="active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />

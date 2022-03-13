@@ -31,16 +31,17 @@ namespace DataServices
         public string phone { get; set; }
         public string address1 { get; set; }
         public string address2 { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
+        public Nullable<int> city { get; set; }
+        public Nullable<int> state { get; set; }
         public string zip { get; set; }
-        public string country { get; set; }
+        public Nullable<int> country { get; set; }
         public Nullable<System.DateTime> hiredate { get; set; }
-        public Nullable<bool> status { get; set; }
+        public Nullable<int> status { get; set; }
         public Nullable<int> supervisorId { get; set; }
         public Nullable<System.DateTime> terminationdate { get; set; }
         public string password { get; set; }
         public string fein { get; set; }
+        public string npi { get; set; }
         public string license { get; set; }
         public string provider { get; set; }
     }

@@ -27,11 +27,12 @@ namespace DataServices
     
         public virtual DbSet<user_roles> user_roles { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<therapist> therapists { get; set; }
         public virtual DbSet<gender> genders { get; set; }
         public virtual DbSet<tax_types> tax_types { get; set; }
         public virtual DbSet<therapist_types> therapist_types { get; set; }
         public virtual DbSet<state> states { get; set; }
         public virtual DbSet<therapist_status> therapist_status { get; set; }
+        public virtual DbSet<therapist> therapists { get; set; }
+        public virtual DbSet<city> cities { get; set; }
     }
 }

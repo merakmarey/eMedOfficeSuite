@@ -18,19 +18,28 @@ namespace eMedOfficeSuite.ApiClient
 {
     public class ApiClient<T>
     {
+        private object _body;
+
         private System.Net.HttpStatusCode _lastStatus;
         public System.Net.HttpStatusCode lastStatus { get { return _lastStatus; } }
 
-        public readonly string TokenUrl = "/token";
-        public readonly string UserUrl = "/api/user";
+        public readonly string TokenUrl =                   "/token";
+        public readonly string UserUrl =                    "/api/user";
 
-        public readonly string TaxTypestUrl = "/api/types/gettaxtypes";
-        public readonly string GenderTypestUrl = "/api/types/getgendertypes";
-        public readonly string TherapistTypesUrl = "/api/types/gettherapisttypes";
-        public readonly string TherapistStatusTypestUrl = "/api/types/gettherapiststatustypes";
-        public readonly string StatestUrl = "/api/types/getstatestypes";
+        /*MISC*/
+        public readonly string TaxTypestUrl =               "/api/types/gettaxtypes";
+        public readonly string GenderTypestUrl =            "/api/types/getgendertypes";
+        public readonly string TherapistTypesUrl =          "/api/types/gettherapisttypes";
+        public readonly string TherapistStatusTypestUrl =   "/api/types/gettherapiststatustypes";
+        public readonly string StatestUrl =                 "/api/types/getstatestypes";
+        public readonly string CitiesUrl =                  "/api/types/getcitytypes";
 
-        public readonly string TherapistAddUrl = "/api/therapist/addtherapist";
+        /* THERAPISTS */
+        public readonly string TherapistAddUrl =            "/api/therapist/addtherapist";
+        public readonly string TherapistListUrl =           "/api/therapist/gettherapists";
+        public readonly string TherapistGetUrl =            "/api/therapist/gettherapist";
+        public readonly string TherapistGetSupervisorsUrl = "/api/therapist/getsupervisors";
+
         public RestClient client;
         public ApiClient()
         {
@@ -38,11 +47,16 @@ namespace eMedOfficeSuite.ApiClient
 
             var options = new RestClientOptions(url)
             {
-                Timeout = 1000
+                Timeout = 10000
                 //ThrowOnAnyError = true
             };
 
             client = new RestClient(options);
+        }
+
+        public void addBody(object body)
+        {
+            _body = body;
         }
 
         public Dictionary<string, object> Auth(string username, string password)
@@ -73,6 +87,12 @@ namespace eMedOfficeSuite.ApiClient
         {
 
             var userRequest = new RestRequest(url);
+
+            if (_body != null)
+            {
+                userRequest.AddBody(_body);
+            }
+
 
             try
             {
@@ -109,6 +129,11 @@ namespace eMedOfficeSuite.ApiClient
             try
             {
                 var userRequest = new RestRequest(url);
+
+                if (_body != null)
+                {
+                    userRequest.AddBody(_body);
+                }
 
                 userRequest.AddHeader("Authorization", "Bearer " + token);
 

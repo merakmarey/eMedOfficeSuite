@@ -20,47 +20,14 @@
   <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="user_roles" EntityType="Self.user_roles" />
     <EntitySet Name="users" EntityType="Self.user" />
-    <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
     <EntitySet Name="genders" EntityType="DatabaseModel.gender" />
     <EntitySet Name="tax_types" EntityType="DatabaseModel.tax_types" />
     <EntitySet Name="therapist_types" EntityType="DatabaseModel.therapist_types" />
     <EntitySet Name="states" EntityType="DatabaseModel.state" />
     <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
+    <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
+    <EntitySet Name="cities" EntityType="DatabaseModel.city" />
   </EntityContainer>
-  <EntityType Name="therapist">
-    <Key>
-      <PropertyRef Name="therapistId" />
-    </Key>
-    <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="therapistTaxType" Type="Int32" />
-    <Property Name="therapistType" Type="Int32" />
-    <Property Name="birthdate" Type="DateTime" Precision="0" />
-    <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="gender" Type="Int32" />
-    <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="state" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="hiredate" Type="DateTime" Precision="0" />
-    <Property Name="status" Type="Boolean" />
-    <Property Name="supervisorId" Type="Int32" />
-    <Property Name="terminationdate" Type="DateTime" Precision="0" />
-    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="gender">
     <Key>
       <PropertyRef Name="genderId" />
@@ -97,5 +64,49 @@
     </Key>
     <Property Name="therapist_statusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="therapiststatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="therapist">
+    <Key>
+      <PropertyRef Name="therapistId" />
+    </Key>
+    <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="therapistTaxType" Type="Int32" />
+    <Property Name="therapistType" Type="Int32" />
+    <Property Name="birthdate" Type="DateTime" Precision="0" />
+    <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Int32" />
+    <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="city" Type="Int32" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="country" Type="Int32" />
+    <Property Name="hiredate" Type="DateTime" Precision="0" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="supervisorId" Type="Int32" />
+    <Property Name="terminationdate" Type="DateTime" Precision="0" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="npi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="cityId" />
+    </Key>
+    <Property Name="cityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="countryId" Type="Int32" />
+    <Property Name="stateId" Type="Int32" />
   </EntityType>
 </Schema>

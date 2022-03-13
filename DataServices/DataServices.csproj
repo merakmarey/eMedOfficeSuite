@@ -178,6 +178,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="city.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="DatabaseModel.Context.cs">
@@ -198,6 +201,7 @@
     <Compile Include="gender.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\therapist.cs" />
     <Compile Include="Providers\AuthorizationServerProvider .cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -326,6 +330,10 @@
     <ProjectReference Include="..\DataLog\DataLog.csproj">
       <Project>{b5115e01-e6a0-498a-9384-7d1547a9d2ec}</Project>
       <Name>DataLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ExtensionMethods\ExtensionMethods.csproj">
+      <Project>{ab3cd333-8019-461d-9bab-b98882d67159}</Project>
+      <Name>ExtensionMethods</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,8 +3,6 @@ using DataLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace DataServices.Controllers
@@ -12,43 +10,63 @@ namespace DataServices.Controllers
     [Authorize(Roles=(DataEntities.Users.UserRolesNames.Super))]
     public class TherapistController : ApiController
     {
-        public IEnumerable<therapist> GetTherapists()
+        public DataEntities.TherapistEntity.Therapist GetTherapist(int id)
         {
             try
             {
                 using (var db = new DatabaseEntities())
                 {
 
-                    var query = from t in db.therapists
-                                select new therapist() {
-                                    therapistId = t.therapistId,
-                                    email = t.email,
-                                    firstName = t.firstName,
-                                    middleName = t.middleName,
-                                    lastName = t.lastName,
-                                    birthdate = t.birthdate,
-                                    gender = t.gender,
-                                    ssn = t.ssn,
-                                    address1 = t.address1,
-                                    address2 = t.address2,
-                                    country = t.country,
-                                    city = t.city,
-                                    state = t.state,
-                                    zip = t.zip,
-                                    phone = t.phone,
-                                    companyName = t.companyName,
-                                    education = t.education,
-                                    languages = t.languages,
-                                    status = t.status,
-                                    hiredate = t.hiredate,
-                                    terminationdate = t.terminationdate,
-                                    supervisorId = t.supervisorId,
-                                    therapistLevel = t.therapistLevel,
-                                    therapistTaxType = t.therapistTaxType,
-                                    therapistType= t.therapistType
-                                };
+                    var query = (from t in db.therapists
+                                where t.therapistId == id
+                                select t).AsEnumerable()
+                                .Select(o=> o.ToTherapist());
 
-                    var therapists = query.ToList<therapist>();
+                    var therapist = query.FirstOrDefault();
+
+                    return therapist;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return null;
+        }
+
+        public Dictionary<int, string> GetSuperVisors()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+                    var query = db.therapists.Select(t => new { t.therapistId, t.firstName, t.lastName, t.middleName })
+                        .ToDictionary(t => t.therapistId, t => t.firstName.Trim() + t.lastName.Trim());
+
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return null;
+        }
+        public IEnumerable<DataEntities.TherapistEntity.Therapist> GetTherapists()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+
+                    var query = (from t in db.therapists
+                                 select t).AsEnumerable()
+                                .Select(o => o.ToTherapist());
+
+
+                    var therapists = query.ToList<DataEntities.TherapistEntity.Therapist>();
                     if (therapists != null)
                         return therapists;
                 }
@@ -65,6 +83,12 @@ namespace DataServices.Controllers
             {
                 using (var db = new DatabaseEntities())
                 {
+
+                    /* pwd encryption */
+
+                    byte[] data = System.Text.Encoding.ASCII.GetBytes(therapist.password);
+                    data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                    therapist.password = System.Text.Encoding.ASCII.GetString(data);
 
                     var t = db.therapists;
 

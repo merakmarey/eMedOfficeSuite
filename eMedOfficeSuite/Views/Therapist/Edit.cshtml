@@ -1,0 +1,251 @@
+﻿@model dynamic
+
+<script>
+    $(function () {
+
+        function updateCities(index) {
+            $.ajax({
+                url: "/api/pass/cities/" + index,
+                method: "POST"
+            })
+                .done(function (data) {
+                    var city = $("#city");
+                    city.children().remove();
+                    $.each(data, function (item, element) {
+                        city.append($("<option/>").val(item).text(element));
+                    });
+                });
+
+            console.log(this.value);
+        }
+
+        $("#state").change(function () {
+            updateCities(this.value);
+        });
+
+        updateCities($("#state").val());
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row form-body">
+        <div class="row">
+            <div class="col">
+                <label for="taxtype">Tax type</label>
+                <select class="form-select" id="taxtype" name="taxtype">
+                    @foreach (var tt in Model.taxTypes)
+                    {
+                        <option value="@tt.Key" @(Model.therapist.therapistTaxType==tt.Key?"selected":"")>@tt.Value</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label for="therapisttype">Therapist type</label>
+                <select class="form-select form-select-sm" id="therapisttype" name="therapisttype" required>
+                    @foreach (var tt in Model.therapistTypes)
+                    {
+                        <option value="@tt.Key" @(Model.therapist.therapistType==tt.Key?"selected":"")>@tt.Value</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="taxtype">Company name</label>
+                <input type="text" class="form-control" id="companyname" name="companyname" value="@Model.therapist.companyName"/>
+            </div>
+            <div class="col">
+                <label for="therapistlevel">Therapist level</label>
+                <input type="text" class="form-control" id="therapistlevel" name="therapistlevel" value="@Model.therapist.therapistLevel" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="fein">FEIN</label>
+                <input type="text" class="form-control" id="fein" name="fein" value="@Model.therapist.fein"/>
+            </div>
+            <div class="col">
+                <label for="npi">NPI</label>
+                <input type="text" class="form-control" id="npi" name="npi" value="@Model.therapist.npi" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="license">State License Number</label>
+                <input type="text" class="form-control" id="license" name="license" value="@Model.therapist.license" />
+            </div>
+            <div class="col">
+                <label for="provider">Provider Id</label>
+                <input type="text" class="form-control" id="provider" name="provider" value="@Model.therapist.provider" />
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" value="@Model.therapist.firstName" />
+            </div>
+            <div class="col">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" value="@Model.therapist.lastName" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="middleName">Middle Name</label>
+                <input type="text" class="form-control" id="middleName" name="middleName" value="@Model.therapist.middleName" />
+            </div>
+            <div class="col">
+                <label for="birthdate">Birth date</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" value="@Model._birthdate" >
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <label for="education">Education</label>
+                <input type="text" class="form-control" id="education" name="education" value="@Model.therapist.education" />
+            </div>
+            <div class="col">
+                <label for="gender">Gender</label>
+                <select class="form-select" id="gender" name="gender">
+                    @foreach (var tt in Model.genderTypes)
+                    {
+                        <option value="@tt.Key" @(Model.therapist.gender==tt.Key?"selected":"")>@tt.Value</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="ssn">SSN</label>
+                <input type="text" class="form-control" id="ssn" name="ssn" value="@Model.therapist.ssn"  />
+            </div>
+            <div class="col">
+                <label for="language">Languages</label>
+                <div class="checkbox-inline">
+                    <input type="checkbox" class="form-check-input" name="languages" value="en" @(String.IsNullOrEmpty(Model.therapist.languages)?"":(Model.therapist.languages.Contains("en")?"checked":""))>
+                    <label class="form-check-label" for="en">English</label>
+
+                    <input type="checkbox" class="form-check-input" name="languages" value="es" @(String.IsNullOrEmpty(Model.therapist.languages)?"":(Model.therapist.languages.Contains("es")?"checked":""))>
+                    <label class="form-check-label" for="sp">Spanish</label>
+
+                    <input type="checkbox" class="form-check-input" name="languages" value="ch" @(String.IsNullOrEmpty(Model.therapist.languages)?"":(Model.therapist.languages.Contains("ch")?"checked":""))>
+                    <label class="form-check-label" for="ch">Chinese</label>
+
+                    <input type="checkbox" class="form-check-input" name="languages" value="fr" @(String.IsNullOrEmpty(Model.therapist.languages)?"":(Model.therapist.languages.Contains("fr")?"checked":""))>
+                    <label class="form-check-label" for="fr">French</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required value="@Model.therapist.email" />
+            </div>
+            <div class="col">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" required value="@Model.therapist.phone"  />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="address1">Address 1</label>
+                <input type="text" class="form-control" id="address1" name="address1" value="@Model.therapist.address1"  />
+            </div>
+            <div class="col">
+                <label for="address2">Address 2</label>
+                <input type="text" class="form-control" id="address2" name="address2" value="@Model.therapist.address2" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="city">City</label>
+                <select class="form-select" id="city" name="city">
+                    @if (Model.cities != null)
+                    {
+                        foreach (var tt in Model.cities)
+                        {
+                            <option value="@tt.Key" @(Model.therapist.city == tt.Key ? "selected" : "")>@tt.Value</option>
+                        }
+                    }
+                 </select>
+            </div>
+            <div class="col">
+                <label for="state">State</label>
+                <select class="form-select" id="state" name="state">
+                    @foreach (var tt in Model.stateTypes)
+                    {
+                        <option value="@tt.Key" @(Model.therapist.state==tt.Key?"selected":"")>@tt.Value</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip" name="zip"  value="@Model.therapist.zip" />
+            </div>
+            <div class="col">
+                <label for="hiredate">Hire date</label>
+                <input type="date" class="form-control" id="hiredate" name="hiredate"  value="@Model._hiredate" >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="status">Status</label>
+                <select class="form-select" id="status" name="status">
+                    @foreach (var tt in Model.therapistStatusTypes)
+                    {
+                        <option value="@tt.Key" @(Model.therapist.status==tt.Key?"selected":"")>@tt.Value</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label for="supervisor">Supervisor</label>
+                <select class="form-select" id="supervisor" name="supervisor">
+                    <option value="0" selected>No supervisor</option>
+                    @if (Model.supervisors != null)
+                    {
+                        foreach (var tt in Model.supervisors)
+                        {
+                            <option value="@tt.Key" @(Model.therapist.supervisorId==tt.Key?"selected":"")>@tt.Value</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="terminationdate">Termination date</label>
+                <input type="date" class="form-control" id="terminationdate" name="terminationdate"  value="@Model._terminationdate">
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <input type="submit" name="save" class="btn btn-success" value="Save Therapist" />
+            </div>
+        </div>
+    </div>
+}

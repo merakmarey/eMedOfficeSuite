@@ -2,8 +2,29 @@
 
 <script>
     $(function () {
-        $('[data-toggle="datepicker"]').datepicker();
-    })
+
+        function updateCities(index) {
+            $.ajax({
+                url: "/api/pass/cities/" + index,
+                method: "POST"
+            })
+                .done(function (data) {
+                    var city = $("#city");
+                    city.children().remove();
+                    $.each(data, function (item, element) {
+                        city.append($("<option/>").val(item).text(element));
+                    });
+                });
+
+            console.log(this.value);
+        }
+
+        $("#state").change(function () {
+            updateCities(this.value);
+        });
+
+        updateCities($("#state").val());
+    });
 </script>
 
 @using (Html.BeginForm())
@@ -22,7 +43,7 @@
             </div>
             <div class="col">
                 <label for="therapisttype">Therapist type</label>
-                <select class="form-select form-select-sm" id="therapisttype" name="therapisttype">
+                <select class="form-select form-select-sm" id="therapisttype" name="therapisttype" required>
                     @foreach (var tt in Model.therapistTypes)
                     {
                         <option value="@tt.Key">@tt.Value</option>
@@ -83,7 +104,7 @@
             </div>
             <div class="col">
                 <label for="birthdate">Birth date</label>
-                <input type="text" class="form-control" data-toggle="datepicker" id="birthdate" name="birthdate">
+                <input type="date" class="form-control" id="birthdate" name="birthdate">
             </div>
         </div>
 
@@ -152,7 +173,15 @@
         <div class="row">
             <div class="col">
                 <label for="city">City</label>
-                <input type="text" class="form-control" id="city" name="city" />
+                <select class="form-select" id="city" name="city">
+                    @if (Model.cities != null)
+                    {
+                        foreach (var tt in Model.cities)
+                        {
+                        <option value="@tt.Key">@tt.Value</option>
+                        }
+                    }
+                </select>
             </div>
             <div class="col">
                 <label for="state">State</label>
@@ -172,7 +201,7 @@
             </div>
             <div class="col">
                 <label for="hiredate">Hire date</label>
-                <input type="text" class="form-control" data-toggle="datepicker" id="hiredate" name="hiredate">
+                <input type="date" class="form-control" id="hiredate" name="hiredate">
             </div>
         </div>
 
@@ -190,9 +219,9 @@
                 <label for="supervisor">Supervisor</label>
                 <select class="form-select" id="supervisor" name="supervisor">
                     <option value="0" selected>No supervisor</option>
-                    @if (Model.supervisor != null)
+                    @if (Model.supervisors != null)
                     {
-                        foreach (var tt in Model.supervisor)
+                        foreach (var tt in Model.supervisors)
                         {
                             <option value="@tt.Key">@tt.Value</option>
                         }
@@ -204,7 +233,7 @@
         <div class="row">
             <div class="col">
                 <label for="terminationdate">Termination date</label>
-                <input type="text" class="form-control" data-toggle="datepicker" id="terminationdate" name="terminationdate">
+                <input type="date" class="form-control" id="terminationdate" name="terminationdate">
             </div>
             <div class="col">
 
