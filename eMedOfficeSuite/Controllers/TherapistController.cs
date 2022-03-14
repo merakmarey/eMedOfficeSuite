@@ -14,18 +14,21 @@ using System.Configuration;
 
 namespace eMedOfficeSuite.Controllers
 {
-   
+
     [Authorize(Roles = (DataEntities.Users.UserRolesNames.Super))]
     public class TherapistController : Controller
     {
         public IAuthenticationManager Authentication => HttpContext.GetOwinContext().Authentication;
+
+        public Action UnauthorizedAction = (() => { UserController t = new UserController(); t.Logout(); });
+    
         // GET: Therapist
         public ActionResult Index()
         {
 
             try
             {
-                var _apiClient = new ApiClient<List<Therapist>>();
+                var _apiClient = new ApiClient<List<Therapist>>(UnauthorizedAction);
 
                 var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
@@ -47,7 +50,9 @@ namespace eMedOfficeSuite.Controllers
             {
                 dynamic model = new ExpandoObject();
 
-                var _apiClient = new ApiClient<Dictionary<int, string>>();
+                var _apiClient = new ApiClient<Dictionary<int, string>>(UnauthorizedAction);
+
+                _apiClient.UnauthorizedEvent = () => { var t = new UserController(); t.Logout(); };
 
                 var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
@@ -62,8 +67,6 @@ namespace eMedOfficeSuite.Controllers
                 var therapistStatusTypes = _apiClient.Get(_apiClient.TherapistStatusTypestUrl, token);
 
                 var therapistSupervisors = _apiClient.Get(_apiClient.TherapistGetSupervisorsUrl, token);
-
-                ViewBag.apiUrl = ConfigurationManager.AppSettings.Get("DataServicesBaseUrl");
 
                 model.taxTypes = taxTypes;
                 model.therapistTypes = therapistTypes;
@@ -91,8 +94,6 @@ namespace eMedOfficeSuite.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ViewBag.apiUrl = ConfigurationManager.AppSettings.Get("DataServicesBaseUrl");
-
 
                     var _therapist = new therapist();
 
@@ -111,7 +112,7 @@ namespace eMedOfficeSuite.Controllers
 
                     _therapist.password = new string(chars);
 
-                    var _apiClient = new ApiClient<Boolean>();
+                    var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
 
                     _apiClient.addBody(_therapist);
 
@@ -127,14 +128,15 @@ namespace eMedOfficeSuite.Controllers
 
             return Redirect("/therapist");
         }
-
         public ActionResult Edit(int id)
         {
             try
             {
                 dynamic model = new ExpandoObject();
 
-                var _apiClient = new ApiClient<Dictionary<int, string>>();
+                var _apiClient = new ApiClient<Dictionary<int, string>>(UnauthorizedAction);
+
+                _apiClient.UnauthorizedEvent = () => { var t = new UserController(); t.Logout(); };
 
                 var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
@@ -146,7 +148,7 @@ namespace eMedOfficeSuite.Controllers
                 var therapistSupervisors = _apiClient.Get(_apiClient.TherapistGetSupervisorsUrl, token);
                
 
-                var __apiClient = new ApiClient<Therapist>();
+                var __apiClient = new ApiClient<Therapist>(UnauthorizedAction);
 
                 var therapist = __apiClient.Get(__apiClient.TherapistGetUrl + "/" + id.ToString(), token);
 
@@ -180,6 +182,39 @@ namespace eMedOfficeSuite.Controllers
             }
             
             return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(int id, FormCollection model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
+
+                    var _therapist = new therapist();
+
+                    _apiClient.UnauthorizedEvent = () => { var t = new UserController(); t.Logout(); };
+
+                    _therapist.FromForm(model);
+
+                    _therapist.therapistId = id;
+
+                    _apiClient.addBody(_therapist);
+
+                    var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                    var result = _apiClient.Post(_apiClient.TherapistUpdateUrl, token);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return Redirect("/therapist");
         }
     }
 }

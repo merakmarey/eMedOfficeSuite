@@ -106,5 +106,36 @@ namespace DataServices.Controllers
             
             return false;
         }
+
+        public bool UpdateTherapist(therapist therapist)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+                    var t = db.therapists.Find(therapist.therapistId);
+
+                    if (t!=null)
+                    {
+                        therapist.password = t.password;
+                        db.Entry(t).CurrentValues.SetValues(therapist);
+                    } else
+                    {
+                        return false;
+                    }
+
+                    var rows = db.SaveChanges();
+
+                    return (rows > 0 ? true : false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return false;
+        }
     }
 }

@@ -1,9 +1,13 @@
 ﻿@model List<DataEntities.TherapistEntity.Therapist>
+    <style>
+        th:last-child,td:last-child {text-align:right}
+    </style>
 @if ((Model!=null) && (Model.Count>0)) {
 <table class="table">
     <thead>
         <tr>
             <th scope="col">Therapist</th>
+            <th><a href="/therapist/add"><button type="button" class="btn btn-info"><i class="bi bi-person-plus-fill"></i> Add therapist</button></a></th>
         </tr>
     </thead>
     <tbody>
@@ -11,8 +15,9 @@
         {
         <tr>
             <td>@t.firstName @t.lastName @t.middleName</td>
+            <td><a href="/therapist/edit/@t.therapistId"><i class="glyphicon-bishop bi-pencil-square"></i></a></td>
         </tr>
         }
         </tbody>
     </table>
-    }
+  }

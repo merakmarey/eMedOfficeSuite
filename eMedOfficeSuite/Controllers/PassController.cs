@@ -8,7 +8,7 @@ namespace eMedOfficeSuite.Controllers
     {
         public Dictionary<int, string> cities(int id)
         {
-            var _apiClient = new ApiClient<Dictionary<int, string>>();
+            var _apiClient = new ApiClient<Dictionary<int, string>>(null);
 
             var cities = _apiClient.Get(_apiClient.CitiesUrl+"/"+id.ToString(), "");
 

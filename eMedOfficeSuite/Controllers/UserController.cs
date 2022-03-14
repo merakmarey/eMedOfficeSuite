@@ -27,7 +27,7 @@ namespace eMedOfficeSuite.Controllers
             if (ModelState.IsValid)
             try
             {
-                var _apiClient = new ApiClient<UserIdentity>();
+                var _apiClient = new ApiClient<UserIdentity>(null);
 
                 var login = _apiClient.Auth(model.username, model.password);
 
@@ -66,7 +66,7 @@ namespace eMedOfficeSuite.Controllers
             var context = System.Web.HttpContext.Current.GetOwinContext();
             context.Authentication.SignOut();
 
-            return null;
+            return Redirect("/user/login");
         }
 
         [Authorize(Roles = (DataEntities.Users.UserRolesNames.Therapist))]

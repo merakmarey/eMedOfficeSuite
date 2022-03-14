@@ -14,34 +14,38 @@ namespace DataServices
 
         public void FromForm(FormCollection model)
         {
+         
             therapistTaxType = Int32.Parse(model["taxtype"]);
+            therapistLevel = model["therapistlevel"];
+            therapistType = Int32.Parse(model["therapistType"]);
+
             address1 = model["address1"];
             address2 = model["address2"];
             city = Int32.Parse(model["city"]);
             state = Int32.Parse(model["state"]);
             zip = model["zip"];
             country = 0;
-
             companyName = model["companyName"];
             education = model["education"];
-            email = model["email"];
             fein = model["fein"];
+            npi = model["npi"];
+            license = model["license"];
+            provider = model["provider"];
             firstName = model["firstName"];
             lastName = model["lastName"];
+            middleName = model["middleName"];
             gender = Int32.Parse(model["gender"]);
             birthdate = model["birthdate"].MutedDateTime();
-            hiredate = model["hiredate"].MutedDateTime();
-            therapistLevel = model["therapistlevel"];
             languages = model["languages"];
-            license = model["license"];
-            middleName = model["middleName"];
-            phone = model["phone"];
-            provider = model["provider"];
             ssn = model["ssn"];
+            hiredate = model["hiredate"].MutedDateTime();
+            email = model["email"];
+            phone = model["phone"];
             status = Int32.Parse(model["status"]);
             supervisorId = Int32.Parse(model["supervisor"]);
             terminationdate = model["terminationdate"].MutedDateTime();
-            therapistType = Int32.Parse(model["therapistType"]);
+
+
         }
     }
 }

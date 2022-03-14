@@ -20,6 +20,8 @@ namespace eMedOfficeSuite.ApiClient
     {
         private object _body;
 
+        public Action UnauthorizedEvent;
+
         private System.Net.HttpStatusCode _lastStatus;
         public System.Net.HttpStatusCode lastStatus { get { return _lastStatus; } }
 
@@ -39,10 +41,14 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string TherapistListUrl =           "/api/therapist/gettherapists";
         public readonly string TherapistGetUrl =            "/api/therapist/gettherapist";
         public readonly string TherapistGetSupervisorsUrl = "/api/therapist/getsupervisors";
+        public readonly string TherapistUpdateUrl         = "/api/therapist/updateTherapist";
+        
 
         public RestClient client;
-        public ApiClient()
+        public ApiClient(Action UnauthorizedAction)
         {
+            UnauthorizedEvent = UnauthorizedAction;
+
             var url = ConfigurationManager.AppSettings.Get("DataServicesBaseUrl");
 
             var options = new RestClientOptions(url)
@@ -103,16 +109,19 @@ namespace eMedOfficeSuite.ApiClient
                 var userResponse = userTask.GetAwaiter().GetResult();
                 
                 _lastStatus = userResponse.StatusCode;
-
+               
                 if (userResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
                     var user = JsonConvert.DeserializeObject<T>(userResponseToString);
                     return user;
                 }
+                if ((UnauthorizedEvent != null) && (_lastStatus == System.Net.HttpStatusCode.Unauthorized))
+                {
+                    UnauthorizedEvent();
+                }
 
-                
-                
+
             }
             catch (System.Net.Http.HttpRequestException ex)
             {
@@ -141,11 +150,16 @@ namespace eMedOfficeSuite.ApiClient
                 var userResponse = userTask.GetAwaiter().GetResult();
 
                 _lastStatus = userResponse.StatusCode;
+
                 if (userResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
                     var user = JsonConvert.DeserializeObject<T>(userResponseToString);
                     return user;
+                }
+                if ((UnauthorizedEvent != null)  && (_lastStatus == System.Net.HttpStatusCode.Unauthorized))
+                {
+                    UnauthorizedEvent();
                 }
             }
             catch (Exception ex)
