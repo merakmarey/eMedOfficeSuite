@@ -13,7 +13,9 @@
         <EntityTypeShape EntityType="DatabaseModel.state" Width="1.5" PointX="8.125" PointY="0.75" />
         <EntityTypeShape EntityType="DatabaseModel.therapist_status" Width="1.5" PointX="8.125" PointY="2.75" />
         <EntityTypeShape EntityType="DatabaseModel.therapist" Width="1.5" PointX="4.625" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.city" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DatabaseModel.city" Width="1.5" PointX="10" PointY="0.75" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_requirements" Width="1.5" PointX="6.375" PointY="5.5" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_requirements_types" Width="1.5" PointX="4.625" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,4 +1,5 @@
 ﻿using DataEntities;
+using DataEntities.Therapist;
 using DataLog;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,6 @@ namespace DataServices.Controllers
             }
             return null;
         }
-
         public Dictionary<int, string> GetSuperVisors()
         {
             try
@@ -106,7 +106,6 @@ namespace DataServices.Controllers
             
             return false;
         }
-
         public bool UpdateTherapist(therapist therapist)
         {
             try
@@ -136,6 +135,63 @@ namespace DataServices.Controllers
             }
 
             return false;
+        }
+
+        public List<TherapistListItem> GetTherapistList()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var therapists = (from t in db.therapists
+                                 select new { t.therapistId, t.firstName, t.middleName, t.lastName, t.phone}).AsEnumerable().ToList();
+                    var requirementsTypes = (from rt in db.therapist_requirements_types
+                                             where rt.requirementValidPeriodMonths>0
+                                      select rt).AsEnumerable().ToList();
+                    var requirements = (from tr in db.therapist_requirements
+                                        select tr).AsEnumerable().ToList();
+
+                    List<TherapistListItem>  tl = new List<TherapistListItem>();
+
+                    foreach (var t in therapists) { 
+
+                        var requirementsCount = 0;
+
+                        foreach (var rt in requirementsTypes)
+                        {
+                            var req = requirements.Where(r => r.requirementTypeId == rt.requirementId && r.therapistId==t.therapistId).FirstOrDefault();
+                            if (req!=null)
+                            {
+                                if (req.expiresOn<DateTime.Now)
+                                {
+                                    requirementsCount++;
+                                }
+                            } else
+                            {
+                                requirementsCount++;
+                            }
+
+                        }
+                        
+
+                        tl.Add(new TherapistListItem()
+                        {
+                            therapistId = t.therapistId,
+                            firstName = t.firstName,
+                            middleName = t.middleName,
+                            lastName = t.lastName,
+                            phone = t.phone,
+                            pendingRequirements = requirementsCount
+                        });
+                    }
+                    return tl;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return null;
         }
     }
 }

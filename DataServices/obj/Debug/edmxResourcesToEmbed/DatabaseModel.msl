@@ -108,5 +108,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="therapist_requirements">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements">
+        <MappingFragment StoreEntitySet="therapist_requirements">
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="requirementTypeId" ColumnName="requirementTypeId" />
+          <ScalarProperty Name="expiresOn" ColumnName="expiresOn" />
+          <ScalarProperty Name="fileformat" ColumnName="fileformat" />
+          <ScalarProperty Name="datafile" ColumnName="datafile" />
+          <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+          <ScalarProperty Name="received" ColumnName="received" />
+          <ScalarProperty Name="exempt" ColumnName="exempt" />
+          <ScalarProperty Name="therapistRequirementId" ColumnName="therapistRequirementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_requirements_types">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements_types">
+        <MappingFragment StoreEntitySet="therapist_requirements_types">
+          <ScalarProperty Name="requirementValidPeriodMonths" ColumnName="requirementValidPeriodMonths" />
+          <ScalarProperty Name="requirementName" ColumnName="requirementName" />
+          <ScalarProperty Name="requirementId" ColumnName="requirementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -220,6 +220,12 @@
     <Compile Include="therapist.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="therapist_requirements.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="therapist_requirements_types.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="therapist_status.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>

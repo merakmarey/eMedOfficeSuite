@@ -72,6 +72,28 @@
           <Property Name="license" Type="nvarchar" MaxLength="50" />
           <Property Name="provider" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="therapist_requirements">
+          <Key>
+            <PropertyRef Name="therapistRequirementId" />
+          </Key>
+          <Property Name="therapistRequirementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="exempt" Type="bit" />
+          <Property Name="received" Type="bit" />
+          <Property Name="dateUpdated" Type="datetime" />
+          <Property Name="datafile" Type="varbinary(max)" />
+          <Property Name="fileformat" Type="nchar" MaxLength="10" />
+          <Property Name="expiresOn" Type="datetime" />
+          <Property Name="requirementTypeId" Type="int" Nullable="false" />
+          <Property Name="therapistId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="therapist_requirements_types">
+          <Key>
+            <PropertyRef Name="requirementId" />
+          </Key>
+          <Property Name="requirementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="requirementName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="requirementValidPeriodMonths" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="therapist_status">
           <Key>
             <PropertyRef Name="therapist_statusId" />
@@ -109,6 +131,8 @@
           <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="therapist_requirements" EntityType="Self.therapist_requirements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="therapist_requirements_types" EntityType="Self.therapist_requirements_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_status" EntityType="Self.therapist_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
@@ -145,6 +169,8 @@
           <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
           <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
           <EntitySet Name="cities" EntityType="DatabaseModel.city" />
+          <EntitySet Name="therapist_requirements" EntityType="DatabaseModel.therapist_requirements" />
+          <EntitySet Name="therapist_requirements_types" EntityType="DatabaseModel.therapist_requirements_types" />
         </EntityContainer>
         <EntityType Name="gender">
           <Key>
@@ -226,6 +252,28 @@
           <Property Name="cityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="countryId" Type="Int32" />
           <Property Name="stateId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="therapist_requirements">
+          <Key>
+            <PropertyRef Name="therapistRequirementId" />
+          </Key>
+          <Property Name="therapistRequirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exempt" Type="Boolean" />
+          <Property Name="received" Type="Boolean" />
+          <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="datafile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fileformat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="expiresOn" Type="DateTime" Precision="3" />
+          <Property Name="requirementTypeId" Type="Int32" Nullable="false" />
+          <Property Name="therapistId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="therapist_requirements_types">
+          <Key>
+            <PropertyRef Name="requirementId" />
+          </Key>
+          <Property Name="requirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requirementName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="requirementValidPeriodMonths" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -337,6 +385,30 @@
                 <ScalarProperty Name="countryId" ColumnName="countryId" />
                 <ScalarProperty Name="cityName" ColumnName="cityName" />
                 <ScalarProperty Name="cityId" ColumnName="cityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_requirements">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements">
+              <MappingFragment StoreEntitySet="therapist_requirements">
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="requirementTypeId" ColumnName="requirementTypeId" />
+                <ScalarProperty Name="expiresOn" ColumnName="expiresOn" />
+                <ScalarProperty Name="fileformat" ColumnName="fileformat" />
+                <ScalarProperty Name="datafile" ColumnName="datafile" />
+                <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+                <ScalarProperty Name="received" ColumnName="received" />
+                <ScalarProperty Name="exempt" ColumnName="exempt" />
+                <ScalarProperty Name="therapistRequirementId" ColumnName="therapistRequirementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_requirements_types">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements_types">
+              <MappingFragment StoreEntitySet="therapist_requirements_types">
+                <ScalarProperty Name="requirementValidPeriodMonths" ColumnName="requirementValidPeriodMonths" />
+                <ScalarProperty Name="requirementName" ColumnName="requirementName" />
+                <ScalarProperty Name="requirementId" ColumnName="requirementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

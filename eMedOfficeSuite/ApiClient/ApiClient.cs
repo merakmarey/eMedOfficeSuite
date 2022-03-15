@@ -38,7 +38,7 @@ namespace eMedOfficeSuite.ApiClient
 
         /* THERAPISTS */
         public readonly string TherapistAddUrl =            "/api/therapist/addtherapist";
-        public readonly string TherapistListUrl =           "/api/therapist/gettherapists";
+        public readonly string TherapistListUrl =           "/api/therapist/gettherapistlist";
         public readonly string TherapistGetUrl =            "/api/therapist/gettherapist";
         public readonly string TherapistGetSupervisorsUrl = "/api/therapist/getsupervisors";
         public readonly string TherapistUpdateUrl         = "/api/therapist/updateTherapist";

@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataEntities.TherapistEntity;
 using System.Configuration;
+using DataEntities.Therapist;
 
 namespace eMedOfficeSuite.Controllers
 {
@@ -28,7 +29,7 @@ namespace eMedOfficeSuite.Controllers
 
             try
             {
-                var _apiClient = new ApiClient<List<Therapist>>(UnauthorizedAction);
+                var _apiClient = new ApiClient<List<TherapistListItem>>(UnauthorizedAction);
 
                 var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 

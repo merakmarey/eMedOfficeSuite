@@ -27,6 +27,8 @@
     <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
     <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
     <EntitySet Name="cities" EntityType="DatabaseModel.city" />
+    <EntitySet Name="therapist_requirements" EntityType="DatabaseModel.therapist_requirements" />
+    <EntitySet Name="therapist_requirements_types" EntityType="DatabaseModel.therapist_requirements_types" />
   </EntityContainer>
   <EntityType Name="gender">
     <Key>
@@ -108,5 +110,27 @@
     <Property Name="cityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="countryId" Type="Int32" />
     <Property Name="stateId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="therapist_requirements">
+    <Key>
+      <PropertyRef Name="therapistRequirementId" />
+    </Key>
+    <Property Name="therapistRequirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="exempt" Type="Boolean" />
+    <Property Name="received" Type="Boolean" />
+    <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="datafile" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="fileformat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="expiresOn" Type="DateTime" Precision="3" />
+    <Property Name="requirementTypeId" Type="Int32" Nullable="false" />
+    <Property Name="therapistId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="therapist_requirements_types">
+    <Key>
+      <PropertyRef Name="requirementId" />
+    </Key>
+    <Property Name="requirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="requirementName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="requirementValidPeriodMonths" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>

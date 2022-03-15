@@ -1,4 +1,4 @@
-﻿@model List<DataEntities.TherapistEntity.Therapist>
+﻿@model List<DataEntities.Therapist.TherapistListItem>
     <style>
         th:last-child,td:last-child {text-align:right}
     </style>
@@ -7,6 +7,8 @@
     <thead>
         <tr>
             <th scope="col">Therapist</th>
+            <th scope="col">Requirements</th>
+            <th scope="col">Phone</th>
             <th><a href="/therapist/add"><button type="button" class="btn btn-info"><i class="bi bi-person-plus-fill"></i> Add therapist</button></a></th>
         </tr>
     </thead>
@@ -14,7 +16,11 @@
         @foreach (var t in Model)
         {
         <tr>
-            <td>@t.firstName @t.lastName @t.middleName</td>
+            <td class="position-relative">
+                @t.firstName @t.lastName @t.middleName
+            </td>
+            <td><span class="badge rounded-pill bg-danger">@t.pendingRequirements</span></td>
+            <td>@t.phone</td>
             <td><a href="/therapist/edit/@t.therapistId"><i class="glyphicon-bishop bi-pencil-square"></i></a></td>
         </tr>
         }
