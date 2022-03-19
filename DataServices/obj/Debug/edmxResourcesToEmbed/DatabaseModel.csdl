@@ -29,6 +29,10 @@
     <EntitySet Name="cities" EntityType="DatabaseModel.city" />
     <EntitySet Name="therapist_requirements" EntityType="DatabaseModel.therapist_requirements" />
     <EntitySet Name="therapist_requirements_types" EntityType="DatabaseModel.therapist_requirements_types" />
+    <EntitySet Name="clients" EntityType="DatabaseModel.client" />
+    <EntitySet Name="payerTypes" EntityType="DatabaseModel.payerType" />
+    <EntitySet Name="relationshipTypes" EntityType="DatabaseModel.relationshipType" />
+    <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
   </EntityContainer>
   <EntityType Name="gender">
     <Key>
@@ -132,5 +136,97 @@
     <Property Name="requirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="requirementName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="requirementValidPeriodMonths" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="clientId" />
+    </Key>
+    <Property Name="clientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="directorId" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="birthdate" Type="DateTime" Precision="0" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="genderId" Type="Int32" />
+    <Property Name="ssn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="address1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cityId" Type="Int32" />
+    <Property Name="stateId" Type="Int32" />
+    <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="primaryPayerId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="InsuraceCopayment" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="relationshipToPatientId" Type="Int32" />
+    <Property Name="insuranceId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="insuredFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="insuredMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="insuredLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="primaryInsuredGender" Type="Int32" />
+    <Property Name="insuredAddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="insuredAddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="insuredCityId" Type="Int32" />
+    <Property Name="insuredStateId" Type="Int32" />
+    <Property Name="insuredZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="primaryInsuredBirthdate" Type="DateTime" Precision="0" />
+    <Property Name="insuredPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryPayerId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryInsuranceId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="secondaryCopayment" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="secondaryRelatioshipToPatient" Type="Int32" />
+    <Property Name="secondaryFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secondayLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryInsuredGender" Type="Int32" />
+    <Property Name="secondaryInsuredAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryInsuredAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryInsuredCityId" Type="Int32" />
+    <Property Name="secondaryInsuredStateId" Type="Int32" />
+    <Property Name="secondaryInsuredZip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="secondaryInsuredBirthdate" Type="DateTime" Precision="0" />
+    <Property Name="secondaryInsuredPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="clientDiagnosedCodes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="referringPhysicianNPI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="referringProviderMedicaid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="referringPhysicianFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="referringPhysicianMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="referringPhysicianLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="referringPhysicianPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="referringPhysicianEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="referalExpirationDate" Type="DateTime" Precision="0" />
+    <Property Name="mdLicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="serviceLocationId" Type="Int32" />
+    <Property Name="startOfServiceDate" Type="DateTime" Precision="0" />
+    <Property Name="initialAssesmentDate" Type="DateTime" Precision="0" />
+    <Property Name="initialBASPDate" Type="DateTime" Precision="0" />
+    <Property Name="coordinatorApprovalDate" Type="DateTime" Precision="0" />
+    <Property Name="cordinatorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="coordinatorPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="supportPlanDate" Type="DateTime" Precision="0" />
+    <Property Name="weeklyAnalystHours" Type="Decimal" Precision="2" Scale="2" />
+    <Property Name="weeklyTechnicianHours" Type="Decimal" Precision="2" Scale="2" />
+    <Property Name="terminationDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="payerType">
+    <Key>
+      <PropertyRef Name="payerId" />
+    </Key>
+    <Property Name="payerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="payerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="relationshipType">
+    <Key>
+      <PropertyRef Name="relationshipId" />
+    </Key>
+    <Property Name="relationshipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="service_locationTypes">
+    <Key>
+      <PropertyRef Name="serviceLocationId" />
+    </Key>
+    <Property Name="serviceLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="serviceLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

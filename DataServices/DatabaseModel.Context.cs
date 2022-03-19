@@ -36,5 +36,9 @@ namespace DataServices
         public virtual DbSet<city> cities { get; set; }
         public virtual DbSet<therapist_requirements> therapist_requirements { get; set; }
         public virtual DbSet<therapist_requirements_types> therapist_requirements_types { get; set; }
+        public virtual DbSet<client> clients { get; set; }
+        public virtual DbSet<payerType> payerTypes { get; set; }
+        public virtual DbSet<relationshipType> relationshipTypes { get; set; }
+        public virtual DbSet<service_locationTypes> service_locationTypes { get; set; }
     }
 }

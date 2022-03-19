@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLog", "..\DataLog\DataL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "..\ExtensionMethods\ExtensionMethods.csproj", "{AB3CD333-8019-461D-9BAB-B98882D67159}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "..\Helpers\Helpers.csproj", "{D22E99F1-107D-4C28-AE23-143B7A9C4471}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AB3CD333-8019-461D-9BAB-B98882D67159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB3CD333-8019-461D-9BAB-B98882D67159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB3CD333-8019-461D-9BAB-B98882D67159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D22E99F1-107D-4C28-AE23-143B7A9C4471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D22E99F1-107D-4C28-AE23-143B7A9C4471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D22E99F1-107D-4C28-AE23-143B7A9C4471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D22E99F1-107D-4C28-AE23-143B7A9C4471}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -136,7 +136,6 @@ namespace DataServices.Controllers
 
             return false;
         }
-
         public List<TherapistListItem> GetTherapistList()
         {
             try

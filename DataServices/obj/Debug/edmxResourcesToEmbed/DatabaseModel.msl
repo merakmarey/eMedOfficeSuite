@@ -132,5 +132,101 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="DatabaseModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="terminationDate" ColumnName="terminationDate" />
+          <ScalarProperty Name="weeklyTechnicianHours" ColumnName="weeklyTechnicianHours" />
+          <ScalarProperty Name="weeklyAnalystHours" ColumnName="weeklyAnalystHours" />
+          <ScalarProperty Name="supportPlanDate" ColumnName="supportPlanDate" />
+          <ScalarProperty Name="coordinatorPhone" ColumnName="coordinatorPhone" />
+          <ScalarProperty Name="cordinatorEmail" ColumnName="cordinatorEmail" />
+          <ScalarProperty Name="coordinatorApprovalDate" ColumnName="coordinatorApprovalDate" />
+          <ScalarProperty Name="initialBASPDate" ColumnName="initialBASPDate" />
+          <ScalarProperty Name="initialAssesmentDate" ColumnName="initialAssesmentDate" />
+          <ScalarProperty Name="startOfServiceDate" ColumnName="startOfServiceDate" />
+          <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+          <ScalarProperty Name="mdLicenseNumber" ColumnName="mdLicenseNumber" />
+          <ScalarProperty Name="referalExpirationDate" ColumnName="referalExpirationDate" />
+          <ScalarProperty Name="referringPhysicianEmail" ColumnName="referringPhysicianEmail" />
+          <ScalarProperty Name="referringPhysicianPhone" ColumnName="referringPhysicianPhone" />
+          <ScalarProperty Name="referringPhysicianLastName" ColumnName="referringPhysicianLastName" />
+          <ScalarProperty Name="referringPhysicianMiddleName" ColumnName="referringPhysicianMiddleName" />
+          <ScalarProperty Name="referringPhysicianFirstName" ColumnName="referringPhysicianFirstName" />
+          <ScalarProperty Name="referringProviderMedicaid" ColumnName="referringProviderMedicaid" />
+          <ScalarProperty Name="referringPhysicianNPI" ColumnName="referringPhysicianNPI" />
+          <ScalarProperty Name="clientDiagnosedCodes" ColumnName="clientDiagnosedCodes" />
+          <ScalarProperty Name="secondaryInsuredPhone" ColumnName="secondaryInsuredPhone" />
+          <ScalarProperty Name="secondaryInsuredBirthdate" ColumnName="secondaryInsuredBirthdate" />
+          <ScalarProperty Name="secondaryInsuredZip" ColumnName="secondaryInsuredZip" />
+          <ScalarProperty Name="secondaryInsuredStateId" ColumnName="secondaryInsuredStateId" />
+          <ScalarProperty Name="secondaryInsuredCityId" ColumnName="secondaryInsuredCityId" />
+          <ScalarProperty Name="secondaryInsuredAddress2" ColumnName="secondaryInsuredAddress2" />
+          <ScalarProperty Name="secondaryInsuredAddress1" ColumnName="secondaryInsuredAddress1" />
+          <ScalarProperty Name="secondaryInsuredGender" ColumnName="secondaryInsuredGender" />
+          <ScalarProperty Name="secondayLastName" ColumnName="secondayLastName" />
+          <ScalarProperty Name="secondaryMiddleName" ColumnName="secondaryMiddleName" />
+          <ScalarProperty Name="secondaryFirstName" ColumnName="secondaryFirstName" />
+          <ScalarProperty Name="secondaryRelatioshipToPatient" ColumnName="secondaryRelatioshipToPatient" />
+          <ScalarProperty Name="secondaryCopayment" ColumnName="secondaryCopayment" />
+          <ScalarProperty Name="secondaryInsuranceId" ColumnName="secondaryInsuranceId" />
+          <ScalarProperty Name="secondaryPayerId" ColumnName="secondaryPayerId" />
+          <ScalarProperty Name="insuredPhone" ColumnName="insuredPhone" />
+          <ScalarProperty Name="primaryInsuredBirthdate" ColumnName="primaryInsuredBirthdate" />
+          <ScalarProperty Name="insuredZip" ColumnName="insuredZip" />
+          <ScalarProperty Name="insuredStateId" ColumnName="insuredStateId" />
+          <ScalarProperty Name="insuredCityId" ColumnName="insuredCityId" />
+          <ScalarProperty Name="insuredAddress2" ColumnName="insuredAddress2" />
+          <ScalarProperty Name="insuredAddress1" ColumnName="insuredAddress1" />
+          <ScalarProperty Name="primaryInsuredGender" ColumnName="primaryInsuredGender" />
+          <ScalarProperty Name="insuredLastName" ColumnName="insuredLastName" />
+          <ScalarProperty Name="insuredMiddleName" ColumnName="insuredMiddleName" />
+          <ScalarProperty Name="insuredFirstName" ColumnName="insuredFirstName" />
+          <ScalarProperty Name="insuranceId" ColumnName="insuranceId" />
+          <ScalarProperty Name="relationshipToPatientId" ColumnName="relationshipToPatientId" />
+          <ScalarProperty Name="InsuraceCopayment" ColumnName="InsuraceCopayment" />
+          <ScalarProperty Name="primaryPayerId" ColumnName="primaryPayerId" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="ssn" ColumnName="ssn" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="directorId" ColumnName="directorId" />
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payerTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.payerType">
+        <MappingFragment StoreEntitySet="payerTypes">
+          <ScalarProperty Name="payerName" ColumnName="payerName" />
+          <ScalarProperty Name="payerId" ColumnName="payerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relationshipTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.relationshipType">
+        <MappingFragment StoreEntitySet="relationshipType">
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+          <ScalarProperty Name="relationshipId" ColumnName="relationshipId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="service_locationTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.service_locationTypes">
+        <MappingFragment StoreEntitySet="service_locationTypes">
+          <ScalarProperty Name="serviceLocation" ColumnName="serviceLocation" />
+          <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

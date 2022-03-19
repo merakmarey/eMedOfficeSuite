@@ -9,12 +9,104 @@
     <Property Name="countryId" Type="int" />
     <Property Name="stateId" Type="int" />
   </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="clientId" />
+    </Key>
+    <Property Name="clientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="directorId" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="150" />
+    <Property Name="phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="birthdate" Type="date" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="middleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="genderId" Type="int" />
+    <Property Name="ssn" Type="nchar" MaxLength="10" />
+    <Property Name="address1" Type="nvarchar" MaxLength="150" />
+    <Property Name="address2" Type="nvarchar" MaxLength="50" />
+    <Property Name="cityId" Type="int" />
+    <Property Name="stateId" Type="int" />
+    <Property Name="zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="primaryPayerId" Type="nvarchar" MaxLength="20" />
+    <Property Name="InsuraceCopayment" Type="money" />
+    <Property Name="relationshipToPatientId" Type="int" />
+    <Property Name="insuranceId" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredMiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="primaryInsuredGender" Type="int" />
+    <Property Name="insuredAddress1" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredAddress2" Type="nvarchar" MaxLength="50" />
+    <Property Name="insuredCityId" Type="int" />
+    <Property Name="insuredStateId" Type="int" />
+    <Property Name="insuredZip" Type="nvarchar" MaxLength="10" />
+    <Property Name="primaryInsuredBirthdate" Type="date" />
+    <Property Name="insuredPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="secondaryPayerId" Type="nvarchar" MaxLength="20" />
+    <Property Name="secondaryInsuranceId" Type="nchar" MaxLength="10" />
+    <Property Name="secondaryCopayment" Type="money" />
+    <Property Name="secondaryRelatioshipToPatient" Type="int" />
+    <Property Name="secondaryFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="secondaryMiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="secondayLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="secondaryInsuredGender" Type="int" />
+    <Property Name="secondaryInsuredAddress1" Type="nvarchar" MaxLength="100" />
+    <Property Name="secondaryInsuredAddress2" Type="nvarchar" MaxLength="100" />
+    <Property Name="secondaryInsuredCityId" Type="int" />
+    <Property Name="secondaryInsuredStateId" Type="int" />
+    <Property Name="secondaryInsuredZip" Type="nvarchar" MaxLength="20" />
+    <Property Name="secondaryInsuredBirthdate" Type="date" />
+    <Property Name="secondaryInsuredPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="clientDiagnosedCodes" Type="nvarchar" MaxLength="100" />
+    <Property Name="referringPhysicianNPI" Type="nvarchar" MaxLength="50" />
+    <Property Name="referringProviderMedicaid" Type="nvarchar" MaxLength="100" />
+    <Property Name="referringPhysicianFirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="referringPhysicianMiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="referringPhysicianLastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="referringPhysicianPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="referringPhysicianEmail" Type="nvarchar" MaxLength="150" />
+    <Property Name="referalExpirationDate" Type="date" />
+    <Property Name="mdLicenseNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="serviceLocationId" Type="int" />
+    <Property Name="startOfServiceDate" Type="date" />
+    <Property Name="initialAssesmentDate" Type="date" />
+    <Property Name="initialBASPDate" Type="date" />
+    <Property Name="coordinatorApprovalDate" Type="date" />
+    <Property Name="cordinatorEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="coordinatorPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="supportPlanDate" Type="date" />
+    <Property Name="weeklyAnalystHours" Type="numeric" Precision="2" Scale="2" />
+    <Property Name="weeklyTechnicianHours" Type="numeric" Precision="2" Scale="2" />
+    <Property Name="terminationDate" Type="date" />
+  </EntityType>
   <EntityType Name="gender">
     <Key>
       <PropertyRef Name="genderId" />
     </Key>
     <Property Name="genderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="gender" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="payerTypes">
+    <Key>
+      <PropertyRef Name="payerId" />
+    </Key>
+    <Property Name="payerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="payerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="relationshipType">
+    <Key>
+      <PropertyRef Name="relationshipId" />
+    </Key>
+    <Property Name="relationshipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="relationship" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="service_locationTypes">
+    <Key>
+      <PropertyRef Name="serviceLocationId" />
+    </Key>
+    <Property Name="serviceLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serviceLocation" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="states">
     <Key>
@@ -122,7 +214,11 @@
   </EntityType>
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payerTypes" EntityType="Self.payerTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="relationshipType" EntityType="Self.relationshipType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="service_locationTypes" EntityType="Self.service_locationTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />

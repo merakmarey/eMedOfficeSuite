@@ -1,0 +1,6 @@
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\Helpers\obj\Debug\Helpers.csproj.CoreCompileInputs.cache
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\Helpers\bin\Debug\Helpers.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\Helpers\bin\Debug\Helpers.pdb
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\Helpers\obj\Debug\Helpers.csproj.AssemblyReference.cache
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\Helpers\obj\Debug\Helpers.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\Helpers\obj\Debug\Helpers.pdb

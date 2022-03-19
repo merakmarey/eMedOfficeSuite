@@ -127,3 +127,5 @@ C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\obj\Debug\eMedOff
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\obj\Debug\eMedOfficeSuite.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\System.Web.Http.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\System.Web.Http.xml
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\Helpers.dll
+C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\Helpers.pdb

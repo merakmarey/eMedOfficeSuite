@@ -181,6 +181,9 @@
     <Compile Include="city.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="client.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="DatabaseModel.Context.cs">
@@ -202,6 +205,9 @@
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\therapist.cs" />
+    <Compile Include="payerType.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Providers\AuthorizationServerProvider .cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -210,6 +216,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\UserAuthentication.cs" />
+    <Compile Include="relationshipType.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="service_locationTypes.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="state.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
