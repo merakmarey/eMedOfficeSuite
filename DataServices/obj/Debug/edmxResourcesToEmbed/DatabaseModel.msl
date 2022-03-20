@@ -228,5 +228,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="directors">
+      <EntityTypeMapping TypeName="DatabaseModel.director">
+        <MappingFragment StoreEntitySet="director">
+          <ScalarProperty Name="directorLastName" ColumnName="directorLastName" />
+          <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
+          <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
+          <ScalarProperty Name="directorId" ColumnName="directorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -85,6 +85,15 @@
           <Property Name="weeklyTechnicianHours" Type="numeric" Precision="2" Scale="2" />
           <Property Name="terminationDate" Type="date" />
         </EntityType>
+        <EntityType Name="director">
+          <Key>
+            <PropertyRef Name="directorId" />
+          </Key>
+          <Property Name="directorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="directorFirstName" Type="nvarchar" MaxLength="20" />
+          <Property Name="directorMiddleName" Type="nvarchar" MaxLength="20" />
+          <Property Name="directorLastName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="gender">
           <Key>
             <PropertyRef Name="genderId" />
@@ -220,6 +229,7 @@
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="director" EntityType="Self.director" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payerTypes" EntityType="Self.payerTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="relationshipType" EntityType="Self.relationshipType" Schema="dbo" store:Type="Tables" />
@@ -271,6 +281,7 @@
           <EntitySet Name="payerTypes" EntityType="DatabaseModel.payerType" />
           <EntitySet Name="relationshipTypes" EntityType="DatabaseModel.relationshipType" />
           <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
+          <EntitySet Name="directors" EntityType="DatabaseModel.director" />
         </EntityContainer>
         <EntityType Name="gender">
           <Key>
@@ -466,6 +477,15 @@
           </Key>
           <Property Name="serviceLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="serviceLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="director">
+          <Key>
+            <PropertyRef Name="directorId" />
+          </Key>
+          <Property Name="directorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="directorFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="directorMiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="directorLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -697,6 +717,16 @@
               <MappingFragment StoreEntitySet="service_locationTypes">
                 <ScalarProperty Name="serviceLocation" ColumnName="serviceLocation" />
                 <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="directors">
+            <EntityTypeMapping TypeName="DatabaseModel.director">
+              <MappingFragment StoreEntitySet="director">
+                <ScalarProperty Name="directorLastName" ColumnName="directorLastName" />
+                <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
+                <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
+                <ScalarProperty Name="directorId" ColumnName="directorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

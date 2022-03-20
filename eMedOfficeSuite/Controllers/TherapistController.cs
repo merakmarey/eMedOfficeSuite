@@ -53,13 +53,11 @@ namespace eMedOfficeSuite.Controllers
 
                 var _apiClient = new ApiClient<Dictionary<int, string>>(UnauthorizedAction);
 
-                _apiClient.UnauthorizedEvent = () => { var t = new UserController(); t.Logout(); };
-
                 var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
                 var taxTypes = _apiClient.Get(_apiClient.TaxTypestUrl, token);
 
-                var genderTypes = _apiClient.Get(_apiClient.GenderTypestUrl, token);
+                var genderTypes = _apiClient.Get(_apiClient.GenderTypesUrl, token);
 
                 var stateTypes = _apiClient.Get(_apiClient.StatestUrl, token);
 
@@ -126,7 +124,6 @@ namespace eMedOfficeSuite.Controllers
                 Log.AddEntry(ex);
             }
 
-
             return Redirect("/therapist");
         }
         public ActionResult Edit(int id)
@@ -137,12 +134,10 @@ namespace eMedOfficeSuite.Controllers
 
                 var _apiClient = new ApiClient<Dictionary<int, string>>(UnauthorizedAction);
 
-                _apiClient.UnauthorizedEvent = () => { var t = new UserController(); t.Logout(); };
-
                 var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
                 var taxTypes = _apiClient.Get(_apiClient.TaxTypestUrl, token);
-                var genderTypes = _apiClient.Get(_apiClient.GenderTypestUrl, token);
+                var genderTypes = _apiClient.Get(_apiClient.GenderTypesUrl, token);
                 var stateTypes = _apiClient.Get(_apiClient.StatestUrl, token);
                 var therapistTypes = _apiClient.Get(_apiClient.TherapistTypesUrl, token);
                 var therapistStatusTypes = _apiClient.Get(_apiClient.TherapistStatusTypestUrl, token);
@@ -196,9 +191,7 @@ namespace eMedOfficeSuite.Controllers
                     var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
 
                     var _therapist = new therapist();
-
-                    _apiClient.UnauthorizedEvent = () => { var t = new UserController(); t.Logout(); };
-
+                    
                     _therapist.FromForm(model);
 
                     _therapist.therapistId = id;

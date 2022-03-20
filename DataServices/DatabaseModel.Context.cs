@@ -40,5 +40,6 @@ namespace DataServices
         public virtual DbSet<payerType> payerTypes { get; set; }
         public virtual DbSet<relationshipType> relationshipTypes { get; set; }
         public virtual DbSet<service_locationTypes> service_locationTypes { get; set; }
+        public virtual DbSet<director> directors { get; set; }
     }
 }

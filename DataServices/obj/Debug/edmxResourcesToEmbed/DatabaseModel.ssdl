@@ -80,6 +80,15 @@
     <Property Name="weeklyTechnicianHours" Type="numeric" Precision="2" Scale="2" />
     <Property Name="terminationDate" Type="date" />
   </EntityType>
+  <EntityType Name="director">
+    <Key>
+      <PropertyRef Name="directorId" />
+    </Key>
+    <Property Name="directorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="directorFirstName" Type="nvarchar" MaxLength="20" />
+    <Property Name="directorMiddleName" Type="nvarchar" MaxLength="20" />
+    <Property Name="directorLastName" Type="nvarchar" MaxLength="20" />
+  </EntityType>
   <EntityType Name="gender">
     <Key>
       <PropertyRef Name="genderId" />
@@ -215,6 +224,7 @@
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="director" EntityType="Self.director" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="payerTypes" EntityType="Self.payerTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="relationshipType" EntityType="Self.relationshipType" Schema="dbo" store:Type="Tables" />

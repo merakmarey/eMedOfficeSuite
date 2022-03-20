@@ -36,15 +36,15 @@
             padding: 5px;
         }
 
-            .side-bar ul li:hover {
-                background-color: gray;
-            }
+        .side-bar ul li:hover {
+            background-color: gray;
+        }
 
-            .side-bar ul li a {
-                text-decoration: none;
-                color: white;
-                margin-left: 5px;
-            }
+        .side-bar ul li a {
+            text-decoration: none;
+            color: white;
+            margin-left: 5px;
+        }
 
         .side-bar {
             float: left;
@@ -63,6 +63,24 @@
             width: 85%;
             overflow: auto;
         }
+        #myTab li button {
+           color:black;
+        }
+
+        #myTab li button.active {
+            border-top-color:chartreuse;
+            border-top-style:solid;
+            border-top-width:3px;
+            font-weight:bold;
+        }
+
+        .row .col label {
+            padding-top:15px;
+            font-size:13px;
+            color:dimgrey;
+        }
+
+
     </style>
     <script>
         $(function () {
@@ -85,8 +103,17 @@
             $("#state").change(function () {
                 updateSelect("/api/pass/cities/" + this.value, '#city');
             });
-
             updateSelect("/api/pass/cities/" + $("#state").val(), '#city');
+
+            $("#stateId").change(function () {
+                updateSelect("/api/pass/cities/" + this.value, '#cityId');
+            });
+            updateSelect("/api/pass/cities/" + $("#stateId").val(), '#cityId');
+
+            $("#secondaryInsuredStateId").change(function () {
+                updateSelect("/api/pass/cities/" + this.value, '#secondaryInsuredCityId');
+            });
+            updateSelect("/api/pass/cities/" + $("#secondaryInsuredStateId").val(), '#secondaryInsuredCityId');
         });
     </script>
 </head>

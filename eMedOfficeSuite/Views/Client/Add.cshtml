@@ -1,1 +1,440 @@
-﻿@Html.Raw(ViewBag.GeneratedForm)
+﻿@model dynamic
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="Client-tab" data-bs-toggle="tab" data-bs-target="#Client" type="button" role="tab" aria-controls="Client" aria-selected="true">Client</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Primary-tab" data-bs-toggle="tab" data-bs-target="#Primary" type="button" role="tab" aria-controls="Primary" aria-selected="false">Primary Insured</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Secondary-tab" data-bs-toggle="tab" data-bs-target="#Secondary" type="button" role="tab" aria-controls="Secondary" aria-selected="false">Secondary Insured</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="DiagRef-tab" data-bs-toggle="tab" data-bs-target="#DiagRef" type="button" role="tab" aria-controls="DiagRef" aria-selected="false">Diagnostic and Referal</button>
+    </li>
+    <li class="nav-item" role="presentation">
+        <button class="nav-link" id="SerCo-tab" data-bs-toggle="tab" data-bs-target="#SerCo" type="button" role="tab" aria-controls="SerCo" aria-selected="false">Service and Coordination</button>
+    </li>
+</ul>
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane show active" id="Client" role="tabpanel" aria-labelledby="Client-tab">
+            <div class="row">
+                <div class="col">
+                    <label for="directorId">Director</label>
+                    <select class="form-select" id="directorId" name="directorId">
+                        @foreach (var tt in Model.directorTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" name="phone">
+                </div>
+                <div class="col">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName">
+                </div>
+                <div class="col">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" class="form-control" id="middleName" name="middleName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName">
+                </div>
+                <div class="col">
+                    <label for="genderId">Gender</label>
+                    <select class="form-select" id="genderId" name="genderId">
+                        @foreach (var tt in Model.genderTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="ssn">Ssn</label>
+                    <input type="text" class="form-control" id="ssn" name="ssn">
+                </div>
+                <div class="col">
+                    <label for="address1">Address1</label>
+                    <input type="text" class="form-control" id="address1" name="address1">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="address2">Address2</label>
+                    <input type="text" class="form-control" id="address2" name="address2">
+                </div>
+                <div class="col">
+                    <label for="cityId">City</label>
+                    <select class="form-select" id="cityId" name="cityId">
+                        @foreach (var tt in Model.cityTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="stateId">State</label>
+                    <select class="form-select" id="stateId" name="stateId">
+                        @foreach (var tt in Model.stateTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="zip">Zip</label>
+                    <input type="text" class="form-control" id="zip" name="zip">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="Primary" role="tabpanel" aria-labelledby="Primary-tab">
+            <div class="row">
+                <div class="col">
+                    <label for="primaryPayerId">Primary Payer</label>
+                    <div class="checkbox-inline">
+                        @foreach (var payer in Model.payerTypes)
+                        {
+                            <input type="checkbox" class="form-check-input" name="primaryPayerId" value="@payer.Key">
+                            <label class="form-check-label" for="en">@payer.Value</label>
+                        }
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="InsuraceCopayment">Insurace Copayment</label>
+                    <input type="number" min="0" step="0.01" class="form-control" id="InsuraceCopayment" name="InsuraceCopayment">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="relationshipToPatientId">Relationship To Patient</label>
+                    <select class="form-select" id="relationshipToPatientId" name="relationshipToPatientId">
+                        @foreach (var tt in Model.relationshipToPatientTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="insuranceId">Insurance</label>
+                    <input type="text" class="form-control" id="insuranceId" name="insuranceId">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="insuredFirstName">Insured First Name</label>
+                    <input type="text" class="form-control" id="insuredFirstName" name="insuredFirstName">
+                </div>
+                <div class="col">
+                    <label for="insuredMiddleName">Insured Middle Name</label>
+                    <input type="text" class="form-control" id="insuredMiddleName" name="insuredMiddleName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="insuredLastName">Insured Last Name</label>
+                    <input type="text" class="form-control" id="insuredLastName" name="insuredLastName">
+                </div>
+                <div class="col">
+                    <label for="primaryInsuredGender">Primary Insured Gender</label>
+                    <input type="text" class="form-control" id="primaryInsuredGender" name="primaryInsuredGender">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="insuredAddress1">Insured Address1</label>
+                    <input type="text" class="form-control" id="insuredAddress1" name="insuredAddress1">
+                </div>
+                <div class="col">
+                    <label for="insuredAddress2">Insured Address2</label>
+                    <input type="text" class="form-control" id="insuredAddress2" name="insuredAddress2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="insuredCityId">Insured City</label>
+                    <select class="form-select" id="insuredCityId" name="insuredCityId">
+                        @foreach (var tt in Model.cityTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="insuredStateId">Insured State</label>
+                    <select class="form-select" id="insuredStateId" name="insuredStateId">
+                        @foreach (var tt in Model.stateTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="insuredZip">Insured Zip</label>
+                    <input type="text" class="form-control" id="insuredZip" name="insuredZip">
+                </div>
+                <div class="col">
+                    <label for="primaryInsuredBirthdate">Primary Insured Birthdate</label>
+                    <input type="date" class="form-control" id="primaryInsuredBirthdate" name="primaryInsuredBirthdate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="insuredPhone">Insured Phone</label>
+                    <input type="text" class="form-control" id="insuredPhone" name="insuredPhone">
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="Secondary" role="tabpanel" aria-labelledby="Secondary-tab">
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryPayerId">Secondary Payer</label>
+                    <div class="checkbox-inline">
+                        @foreach (var payer in Model.payerTypes)
+                        {
+                            <input type="checkbox" class="form-check-input" name="secondaryPayerId" value="@payer.Key">
+                            <label class="form-check-label" for="en">@payer.Value</label>
+                        }
+                    </div>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryInsuranceId">Secondary Insurance</label>
+                    <input type="text" class="form-control" id="secondaryInsuranceId" name="secondaryInsuranceId">
+                </div>
+                <div class="col">
+                    <label for="secondaryCopayment">Secondary Copayment</label>
+                    <input type="number" min="0" step="0.01" class="form-control" id="secondaryCopayment" name="secondaryCopayment">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryRelatioshipToPatient">Secondary Relatioship To Patient</label>
+                    <input type="text" class="form-control" id="secondaryRelatioshipToPatient" name="secondaryRelatioshipToPatient">
+                </div>
+                <div class="col">
+                    <label for="secondaryFirstName">Secondary First Name</label>
+                    <input type="text" class="form-control" id="secondaryFirstName" name="secondaryFirstName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryMiddleName">Secondary Middle Name</label>
+                    <input type="text" class="form-control" id="secondaryMiddleName" name="secondaryMiddleName">
+                </div>
+                <div class="col">
+                    <label for="secondayLastName">Seconday Last Name</label>
+                    <input type="text" class="form-control" id="secondayLastName" name="secondayLastName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryInsuredGender">Secondary Insured Gender</label>
+                    <input type="text" class="form-control" id="secondaryInsuredGender" name="secondaryInsuredGender">
+                </div>
+                <div class="col">
+                    <label for="secondaryInsuredAddress1">Secondary Insured Address1</label>
+                    <input type="text" class="form-control" id="secondaryInsuredAddress1" name="secondaryInsuredAddress1">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryInsuredAddress2">Secondary Insured Address2</label>
+                    <input type="text" class="form-control" id="secondaryInsuredAddress2" name="secondaryInsuredAddress2">
+                </div>
+                <div class="col">
+                    <label for="secondaryInsuredCityId">Secondary Insured City</label>
+                    <select class="form-select" id="secondaryInsuredCityId" name="secondaryInsuredCityId">
+                        @foreach (var tt in Model.cityTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryInsuredStateId">Secondary Insured State</label>
+                    <select class="form-select" id="secondaryInsuredStateId" name="secondaryInsuredStateId">
+                        @foreach (var tt in Model.stateTypes)
+                        {
+                            <option value="@tt.Key">@tt.Value</option>
+                        }
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="secondaryInsuredZip">Secondary Insured Zip</label>
+                    <input type="text" class="form-control" id="secondaryInsuredZip" name="secondaryInsuredZip">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="secondaryInsuredBirthdate">Secondary Insured Birthdate</label>
+                    <input type="date" class="form-control" id="secondaryInsuredBirthdate" name="secondaryInsuredBirthdate">
+                </div>
+                <div class="col">
+                    <label for="secondaryInsuredPhone">Secondary Insured Phone</label>
+                    <input type="text" class="form-control" id="secondaryInsuredPhone" name="secondaryInsuredPhone">
+                </div>
+            </div>
+        </div>
+        <div id="DiagRef" class="tab-pane">
+        <div class="row">
+            <div class="col">
+                <label for="clientDiagnosedCodes">Client Diagnosed Codes</label>
+                <input type="text" class="form-control" id="clientDiagnosedCodes" name="clientDiagnosedCodes">
+            </div>
+            <div class="col">
+                <label for="referringPhysicianNPI">Referring Physician NPI</label>
+                <input type="text" class="form-control" id="referringPhysicianNPI" name="referringPhysicianNPI">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="referringProviderMedicaid">Referring Provider Medicaid</label>
+                <input type="text" class="form-control" id="referringProviderMedicaid" name="referringProviderMedicaid">
+            </div>
+            <div class="col">
+                <label for="referringPhysicianFirstName">Referring Physician First Name</label>
+                <input type="text" class="form-control" id="referringPhysicianFirstName" name="referringPhysicianFirstName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="referringPhysicianMiddleName">Referring Physician Middle Name</label>
+                <input type="text" class="form-control" id="referringPhysicianMiddleName" name="referringPhysicianMiddleName">
+            </div>
+            <div class="col">
+                <label for="referringPhysicianLastName">Referring Physician Last Name</label>
+                <input type="text" class="form-control" id="referringPhysicianLastName" name="referringPhysicianLastName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="referringPhysicianPhone">Referring Physician Phone</label>
+                <input type="text" class="form-control" id="referringPhysicianPhone" name="referringPhysicianPhone">
+            </div>
+            <div class="col">
+                <label for="referringPhysicianEmail">Referring Physician Email</label>
+                <input type="email" class="form-control" id="referringPhysicianEmail" name="referringPhysicianEmail">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="referalExpirationDate">Referal Expiration Date</label>
+                <input type="date" class="form-control" id="referalExpirationDate" name="referalExpirationDate">
+            </div>
+            <div class="col">
+                <label for="mdLicenseNumber">MD License Number</label>
+                <input type="text" class="form-control" id="mdLicenseNumber" name="mdLicenseNumber">
+            </div>
+        </div>
+        </div>
+        <div id="SerCo" class="tab-pane">
+        <div class="row">
+            <div class="col">
+                <label for="serviceLocationId">Service Location</label>
+                <select class="form-select" id="serviceLocationId" name="serviceLocationId">
+                    @foreach (var tt in Model.serviceLocationTypes)
+                    {
+                        <option value="@tt.Key">@tt.Value</option>
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label for="startOfServiceDate">Start Of Service Date</label>
+                <input type="date" class="form-control" id="startOfServiceDate" name="startOfServiceDate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="initialAssesmentDate">Initial Assesment Date</label>
+                <input type="date" class="form-control" id="initialAssesmentDate" name="initialAssesmentDate">
+            </div>
+            <div class="col">
+                <label for="initialBASPDate">Initial B A S P Date</label>
+                <input type="date" class="form-control" id="initialBASPDate" name="initialBASPDate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="coordinatorApprovalDate">Coordinator Approval Date</label>
+                <input type="date" class="form-control" id="coordinatorApprovalDate" name="coordinatorApprovalDate">
+            </div>
+            <div class="col">
+                <label for="cordinatorEmail">Cordinator Email</label>
+                <input type="email" class="form-control" id="cordinatorEmail" name="cordinatorEmail">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="coordinatorPhone">Coordinator Phone</label>
+                <input type="text" class="form-control" id="coordinatorPhone" name="coordinatorPhone">
+            </div>
+            <div class="col">
+                <label for="supportPlanDate">Support Plan Date</label>
+                <input type="date" class="form-control" id="supportPlanDate" name="supportPlanDate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="weeklyAnalystHours">Weekly Analyst Hours</label>
+                <input type="number" min="0" step="0.01" class="form-control" id="weeklyAnalystHours" name="weeklyAnalystHours">
+            </div>
+            <div class="col">
+                <label for="weeklyTechnicianHours">Weekly Technician Hours</label>
+                <input type="number" min="0" step="0.01" class="form-control" id="weeklyTechnicianHours" name="weeklyTechnicianHours">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="terminationDate">Termination Date</label>
+                <input type="date" class="form-control" id="terminationDate" name="terminationDate">
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <input type="submit" name="save" class="btn btn-success" style="float:right" value="Save Client" />
+        </div>
+    </div>
+}

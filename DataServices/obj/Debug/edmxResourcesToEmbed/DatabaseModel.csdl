@@ -33,6 +33,7 @@
     <EntitySet Name="payerTypes" EntityType="DatabaseModel.payerType" />
     <EntitySet Name="relationshipTypes" EntityType="DatabaseModel.relationshipType" />
     <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
+    <EntitySet Name="directors" EntityType="DatabaseModel.director" />
   </EntityContainer>
   <EntityType Name="gender">
     <Key>
@@ -228,5 +229,14 @@
     </Key>
     <Property Name="serviceLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="serviceLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="director">
+    <Key>
+      <PropertyRef Name="directorId" />
+    </Key>
+    <Property Name="directorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="directorFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="directorMiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="directorLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

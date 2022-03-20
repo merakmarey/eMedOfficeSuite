@@ -201,6 +201,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="director.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="gender.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
