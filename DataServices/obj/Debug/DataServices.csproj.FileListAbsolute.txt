@@ -51,7 +51,6 @@ C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\roslyn\vbc.rsp
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\roslyn\VBCSCompiler.exe
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\Antlr3.Runtime.dll
-C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\DataEntities.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\DataLog.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\EntityFramework.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\EntityFramework.SqlServer.dll
@@ -75,7 +74,6 @@ C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\System.Web.WebPa
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\System.Web.WebPages.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\System.Web.WebPages.Razor.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\WebGrease.dll
-C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\DataEntities.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\DataLog.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\ExtensionMethods.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\DataServices\bin\EntityFramework.xml

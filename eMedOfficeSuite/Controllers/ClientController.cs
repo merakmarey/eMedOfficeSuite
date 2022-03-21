@@ -1,4 +1,5 @@
-﻿using DataLog;
+﻿using DataEntities.Client;
+using DataLog;
 using DataServices;
 using eMedOfficeSuite.ApiClient;
 using Helpers;
@@ -22,6 +23,23 @@ namespace eMedOfficeSuite.Controllers
 
         public ActionResult Index()
         {
+            try
+            {
+                dynamic model = new ExpandoObject();
+
+                var _apiClient = new ApiClient<List<ClientListItem>>(UnauthorizedAction);
+
+                var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                var clientList = _apiClient.Get(_apiClient.ClientListUrl, token);
+
+                return View(clientList);
+
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
             return View();
         }
 
@@ -67,9 +85,39 @@ namespace eMedOfficeSuite.Controllers
             {
                 Log.AddEntry(ex);
             }
-            return View();
+            return View("/client");
         }
 
+
+        [HttpPost]
+        public ActionResult Add(FormCollection model)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var _client = new DataEntities.Client.Client();
+
+                    var success = TryUpdateModel<client>(_client,model);
+
+                    var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
+
+                    _apiClient.addBody(_client);
+
+                    var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                    var result = _apiClient.Post(_apiClient.ClientAddUrl, token);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return Redirect("/client");
+        }
         public ActionResult Edit()
         {
             var fb = new FormBuilder();

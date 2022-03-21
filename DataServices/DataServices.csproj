@@ -184,6 +184,7 @@
     <Compile Include="client.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\TypesController.cs" />
     <Compile Include="DatabaseModel.Context.cs">
@@ -207,6 +208,14 @@
     <Compile Include="gender.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Client\Client.cs" />
+    <Compile Include="Models\Client\ClientListItem.cs" />
+    <Compile Include="Models\Therapist\Therapist.cs" />
+    <Compile Include="Models\Therapist\TherapistListItem.cs" />
+    <Compile Include="Models\Users\UserIdentity.cs" />
+    <Compile Include="Models\Users\UserLogin.cs" />
+    <Compile Include="Models\Users\userRoleNames.cs" />
+    <Compile Include="Partials\client.cs" />
     <Compile Include="Partials\therapist.cs" />
     <Compile Include="payerType.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
@@ -324,7 +333,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Client\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
@@ -344,10 +353,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataEntities\DataEntities.csproj">
-      <Project>{106b4d3d-fe20-42e8-8a78-0b545502285c}</Project>
-      <Name>DataEntities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataLog\DataLog.csproj">
       <Project>{b5115e01-e6a0-498a-9384-7d1547a9d2ec}</Project>
       <Name>DataLog</Name>

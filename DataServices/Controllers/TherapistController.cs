@@ -1,5 +1,4 @@
-﻿using DataEntities;
-using DataEntities.Therapist;
+﻿using DataEntities.Therapist;
 using DataLog;
 using System;
 using System.Collections.Generic;

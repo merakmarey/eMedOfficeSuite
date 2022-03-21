@@ -48,7 +48,13 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string TherapistGetUrl =            "/api/therapist/gettherapist";
         public readonly string TherapistGetSupervisorsUrl = "/api/therapist/getsupervisors";
         public readonly string TherapistUpdateUrl         = "/api/therapist/updateTherapist";
-        
+
+
+        /* CLIENTS */
+
+        public readonly string ClientAddUrl = "/api/client/addclient";
+        public readonly string ClientListUrl = "/api/client/getclientlist";
+
 
         public RestClient client;
         public ApiClient(Action UnauthorizedAction)
@@ -118,9 +124,17 @@ namespace eMedOfficeSuite.ApiClient
                
                 if (userResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    var userResponseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
-                    var user = JsonConvert.DeserializeObject<T>(userResponseToString);
-                    return user;
+                    var responseToString = JsonConvert.DeserializeObject(userResponse.Content).ToString();
+                    switch (responseToString.ToLower())
+                    {
+                        case "true":
+                            return (T)(object)true;
+                        case "false":
+                            return (T)(object)false;
+                    }                     
+                    var response = JsonConvert.DeserializeObject<T>(responseToString);
+
+                    return response;
                 }
                 if ((UnauthorizedEvent != null) && (_lastStatus == System.Net.HttpStatusCode.Unauthorized))
                 {

@@ -51,7 +51,6 @@ C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\roslyn\vbc.rs
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\roslyn\VBCSCompiler.exe
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\Antlr3.Runtime.dll
-C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataEntities.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataLog.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataServices.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\ExtensionMethods.dll
@@ -86,7 +85,6 @@ C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\EntityFramewo
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\System.Net.Http.Formatting.dll
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\System.Web.Http.WebHost.dll
-C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataEntities.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataLog.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataServices.pdb
 C:\Users\Root\OneDrive\Desktop\eMedOfficeSuite\eMedOfficeSuite\bin\DataServices.dll.config
