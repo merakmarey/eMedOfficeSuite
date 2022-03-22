@@ -39,6 +39,30 @@ namespace DataServices.Controllers
             return false;
         }
 
+        public Client GetClient(int id)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+                    var query = (from t in db.clients
+                                 where t.clientId == id
+                                 select t).AsEnumerable()
+                                .Select(o =>o.ToClient());
+
+                    var client = query.FirstOrDefault();
+
+                    return client;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return null;
+        }
+
         public List<ClientListItem> GetClientList()
         {
             try
@@ -54,6 +78,37 @@ namespace DataServices.Controllers
                 Log.AddEntry(ex);
             }
             return null;
+        }
+
+        public bool UpdateClient(Client Client)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+                    var t = db.clients.Find(Client.clientId);
+
+                    if (t != null)
+                    {
+                        db.Entry(t).CurrentValues.SetValues(Client);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    var rows = db.SaveChanges();
+
+                    return (rows > 0 ? true : false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return false;
         }
     }
 }

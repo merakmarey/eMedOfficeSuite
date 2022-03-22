@@ -30,46 +30,46 @@
                     <select class="form-select" id="directorId" name="directorId">
                         @foreach (var tt in Model.directorTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.directorId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
                 <div class="col">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" value="@Model.client.email">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone">
+                    <input type="text" class="form-control" id="phone" name="phone" value="@Model.client.phone">
                 </div>
                 <div class="col">
                     <label for="birthdate">Birthdate</label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate">
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" value="@Model.client.birthdate">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" name="firstName">
+                    <input type="text" class="form-control" id="firstName" name="firstName" value="@Model.client.firstName">
                 </div>
                 <div class="col">
                     <label for="middleName">Middle Name</label>
-                    <input type="text" class="form-control" id="middleName" name="middleName">
+                    <input type="text" class="form-control" id="middleName" name="middleName" value="@Model.client.middleName">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="lastName">Last Name</label>
-                    <input type="text" class="form-control" id="lastName" name="lastName">
+                    <input type="text" class="form-control" id="lastName" name="lastName" value="@Model.client.lastName">
                 </div>
                 <div class="col">
                     <label for="genderId">Gender</label>
                     <select class="form-select" id="genderId" name="genderId">
                         @foreach (var tt in Model.genderTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.genderId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
@@ -77,24 +77,24 @@
             <div class="row">
                 <div class="col">
                     <label for="ssn">Ssn</label>
-                    <input type="text" class="form-control" id="ssn" name="ssn">
+                    <input type="text" class="form-control" id="ssn" name="ssn" value="@Model.client.ssn">
                 </div>
                 <div class="col">
                     <label for="address1">Address1</label>
-                    <input type="text" class="form-control" id="address1" name="address1">
+                    <input type="text" class="form-control" id="address1" name="address1" value="@Model.client.address1">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="address2">Address2</label>
-                    <input type="text" class="form-control" id="address2" name="address2">
+                    <input type="text" class="form-control" id="address2" name="address2" value="@Model.client.address2">
                 </div>
                 <div class="col">
                     <label for="cityId">City</label>
                     <select class="form-select" id="cityId" name="cityId">
                         @foreach (var tt in Model.cityTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.cityId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
@@ -105,13 +105,13 @@
                     <select class="form-select" id="stateId" name="stateId">
                         @foreach (var tt in Model.stateTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.stateId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
                 <div class="col">
                     <label for="zip">Zip</label>
-                    <input type="text" class="form-control" id="zip" name="zip">
+                    <input type="text" class="form-control" id="zip" name="zip"  value="@Model.client.zip">
                 </div>
             </div>
         </div>
@@ -122,14 +122,14 @@
                     <div class="checkbox-inline">
                         @foreach (var payer in Model.payerTypes)
                         {
-                            <input type="checkbox" class="form-check-input" name="primaryPayerId" value="@payer.Key">
-                            <label class="form-check-label" for="en">@payer.Value</label>
+                            <input type="checkbox" class="form-check-input" name="primaryPayerId" @(!String.IsNullOrEmpty(Model.client.primaryPayerId) && Model.client.primaryPayerId.ToString().Contains(payer.Key.ToString())? "checked" : "") value="@payer.Key">
+                            <label class="form-check-label" for="@payer.Key">@payer.Value</label>
                         }
                     </div>
                 </div>
                 <div class="col">
                     <label for="InsuraceCopayment">Insurace Copayment</label>
-                    <input type="number" min="0" step="0.01" class="form-control" id="InsuraceCopayment" name="InsuraceCopayment">
+                    <input type="number" min="0" step="0.01" class="form-control" id="InsuraceCopayment" name="InsuraceCopayment" value="@Model.client.InsuraceCopayment">
                 </div>
             </div>
             <div class="row">
@@ -138,36 +138,36 @@
                     <select class="form-select" id="relationshipToPatientId" name="relationshipToPatientId">
                         @foreach (var tt in Model.relationshipToPatientTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.relationshipToPatientId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
                 <div class="col">
                     <label for="insuranceId">Insurance</label>
-                    <input type="text" class="form-control" id="insuranceId" name="insuranceId">
+                    <input type="text" class="form-control" id="insuranceId" name="insuranceId"  value="@Model.client.insuranceId">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="insuredFirstName">Insured First Name</label>
-                    <input type="text" class="form-control" id="insuredFirstName" name="insuredFirstName">
+                    <input type="text" class="form-control" id="insuredFirstName" name="insuredFirstName"  value="@Model.client.insuredFirstName">
                 </div>
                 <div class="col">
                     <label for="insuredMiddleName">Insured Middle Name</label>
-                    <input type="text" class="form-control" id="insuredMiddleName" name="insuredMiddleName">
+                    <input type="text" class="form-control" id="insuredMiddleName" name="insuredMiddleName"  value="@Model.client.insuredMiddleName">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="insuredLastName">Insured Last Name</label>
-                    <input type="text" class="form-control" id="insuredLastName" name="insuredLastName">
+                    <input type="text" class="form-control" id="insuredLastName" name="insuredLastName" value="@Model.client.insuredLastName">
                 </div>
                 <div class="col">
                     <label for="primaryInsuredGender">Primary Insured Gender</label>
                     <select class="form-select" id="primaryInsuredGender" name="primaryInsuredGender">
                         @foreach (var tt in Model.genderTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.primaryInsuredGender == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
@@ -175,11 +175,11 @@
             <div class="row">
                 <div class="col">
                     <label for="insuredAddress1">Insured Address1</label>
-                    <input type="text" class="form-control" id="insuredAddress1" name="insuredAddress1">
+                    <input type="text" class="form-control" id="insuredAddress1" name="insuredAddress1" value="@Model.client.insuredAddress1">
                 </div>
                 <div class="col">
                     <label for="insuredAddress2">Insured Address2</label>
-                    <input type="text" class="form-control" id="insuredAddress2" name="insuredAddress2">
+                    <input type="text" class="form-control" id="insuredAddress2" name="insuredAddress2" value="@Model.client.insuredAddress2">
                 </div>
             </div>
             <div class="row">
@@ -188,7 +188,7 @@
                     <select class="form-select" id="insuredCityId" name="insuredCityId">
                         @foreach (var tt in Model.cityTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.insuredCityId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
@@ -197,7 +197,7 @@
                     <select class="form-select" id="insuredStateId" name="insuredStateId">
                         @foreach (var tt in Model.stateTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key"  @(Model.client.insuredStateId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
@@ -205,17 +205,17 @@
             <div class="row">
                 <div class="col">
                     <label for="insuredZip">Insured Zip</label>
-                    <input type="text" class="form-control" id="insuredZip" name="insuredZip">
+                    <input type="text" class="form-control" id="insuredZip" name="insuredZip"  value="@Model.client.insuredZip">
                 </div>
                 <div class="col">
                     <label for="primaryInsuredBirthdate">Primary Insured Birthdate</label>
-                    <input type="date" class="form-control" id="primaryInsuredBirthdate" name="primaryInsuredBirthdate">
+                    <input type="date" class="form-control" id="primaryInsuredBirthdate" name="primaryInsuredBirthdate"  value="@Model.client.primaryInsuredBirthdate">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="insuredPhone">Insured Phone</label>
-                    <input type="text" class="form-control" id="insuredPhone" name="insuredPhone">
+                    <input type="text" class="form-control" id="insuredPhone" name="insuredPhone"  value="@Model.client.insuredPhone">
                 </div>
                 <div class="col">
                 </div>
@@ -228,8 +228,8 @@
                     <div class="checkbox-inline">
                         @foreach (var payer in Model.payerTypes)
                         {
-                            <input type="checkbox" class="form-check-input" name="secondaryPayerId" value="@payer.Key">
-                            <label class="form-check-label" for="en">@payer.Value</label>
+                            <input type="checkbox" class="form-check-input" name="secondaryPayerId" @(!String.IsNullOrEmpty(Model.client.secondaryPayerId) && Model.client.secondaryPayerId.ToString().Contains(payer.Key)?"checked":"") value="@payer.Key">
+                            <label class="form-check-label" for="@payer.Key">@payer.Value</label>
                         }
                     </div>
                 </div>
@@ -239,31 +239,31 @@
             <div class="row">
                 <div class="col">
                     <label for="secondaryInsuranceId">Secondary Insurance</label>
-                    <input type="text" class="form-control" id="secondaryInsuranceId" name="secondaryInsuranceId">
+                    <input type="text" class="form-control" id="secondaryInsuranceId" name="secondaryInsuranceId" value="@Model.client.secondaryInsuranceId">
                 </div>
                 <div class="col">
                     <label for="secondaryCopayment">Secondary Copayment</label>
-                    <input type="number" min="0" step="0.01" class="form-control" id="secondaryCopayment" name="secondaryCopayment">
+                    <input type="number" min="0" step="0.01" class="form-control" id="secondaryCopayment" name="secondaryCopayment" value="@Model.client.secondaryCopayment">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="secondaryRelatioshipToPatient">Secondary Relatioship To Patient</label>
-                    <input type="text" class="form-control" id="secondaryRelatioshipToPatient" name="secondaryRelatioshipToPatient">
+                    <input type="text" class="form-control" id="secondaryRelatioshipToPatient" name="secondaryRelatioshipToPatient" value="@Model.client.secondaryRelatioshipToPatient">
                 </div>
                 <div class="col">
                     <label for="secondaryFirstName">Secondary First Name</label>
-                    <input type="text" class="form-control" id="secondaryFirstName" name="secondaryFirstName">
+                    <input type="text" class="form-control" id="secondaryFirstName" name="secondaryFirstName"  value="@Model.client.secondaryFirstName">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="secondaryMiddleName">Secondary Middle Name</label>
-                    <input type="text" class="form-control" id="secondaryMiddleName" name="secondaryMiddleName">
+                    <input type="text" class="form-control" id="secondaryMiddleName" name="secondaryMiddleName" value="@Model.client.secondaryMiddleName">
                 </div>
                 <div class="col">
                     <label for="secondayLastName">Seconday Last Name</label>
-                    <input type="text" class="form-control" id="secondayLastName" name="secondayLastName">
+                    <input type="text" class="form-control" id="secondayLastName" name="secondayLastName" value="@Model.client.secondayLastName">
                 </div>
             </div>
             <div class="row">
@@ -272,26 +272,26 @@
                     <select class="form-select" id="secondaryInsuredGender" name="secondaryInsuredGender">
                         @foreach (var tt in Model.genderTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.secondaryInsuredGender == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
                 <div class="col">
                     <label for="secondaryInsuredAddress1">Secondary Insured Address1</label>
-                    <input type="text" class="form-control" id="secondaryInsuredAddress1" name="secondaryInsuredAddress1">
+                    <input type="text" class="form-control" id="secondaryInsuredAddress1" name="secondaryInsuredAddress1"  value="@Model.client.secondaryInsuredAddress1">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <label for="secondaryInsuredAddress2">Secondary Insured Address2</label>
-                    <input type="text" class="form-control" id="secondaryInsuredAddress2" name="secondaryInsuredAddress2">
+                    <label for="secondaryInsuredAddress2">Secondary Insured Address2</label> 
+                    <input type="text" class="form-control" id="secondaryInsuredAddress2" name="secondaryInsuredAddress2" value="@Model.client.secondaryInsuredAddress2">
                 </div>
                 <div class="col">
                     <label for="secondaryInsuredCityId">Secondary Insured City</label>
                     <select class="form-select" id="secondaryInsuredCityId" name="secondaryInsuredCityId">
                         @foreach (var tt in Model.cityTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.secondaryInsuredCityId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
@@ -302,23 +302,23 @@
                     <select class="form-select" id="secondaryInsuredStateId" name="secondaryInsuredStateId">
                         @foreach (var tt in Model.stateTypes)
                         {
-                            <option value="@tt.Key">@tt.Value</option>
+                            <option value="@tt.Key" @(Model.client.secondaryInsuredStateId == tt.Key ? "selected" : "")>@tt.Value</option>
                         }
                     </select>
                 </div>
                 <div class="col">
                     <label for="secondaryInsuredZip">Secondary Insured Zip</label>
-                    <input type="text" class="form-control" id="secondaryInsuredZip" name="secondaryInsuredZip">
+                    <input type="text" class="form-control" id="secondaryInsuredZip" name="secondaryInsuredZip" value="@Model.client.secondaryInsuredZip">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="secondaryInsuredBirthdate">Secondary Insured Birthdate</label>
-                    <input type="date" class="form-control" id="secondaryInsuredBirthdate" name="secondaryInsuredBirthdate">
+                    <input type="date" class="form-control" id="secondaryInsuredBirthdate" name="secondaryInsuredBirthdate" value="@Model.client.secondaryInsuredBirthdate">
                 </div>
                 <div class="col">
                     <label for="secondaryInsuredPhone">Secondary Insured Phone</label>
-                    <input type="text" class="form-control" id="secondaryInsuredPhone" name="secondaryInsuredPhone">
+                    <input type="text" class="form-control" id="secondaryInsuredPhone" name="secondaryInsuredPhone" value="@Model.client.secondaryInsuredPhone">
                 </div>
             </div>
         </div>
@@ -326,51 +326,51 @@
         <div class="row">
             <div class="col">
                 <label for="clientDiagnosedCodes">Client Diagnosed Codes</label>
-                <input type="text" class="form-control" id="clientDiagnosedCodes" name="clientDiagnosedCodes">
+                <input type="text" class="form-control" id="clientDiagnosedCodes" name="clientDiagnosedCodes" value="@Model.client.clientDiagnosedCodes">
             </div>
             <div class="col">
                 <label for="referringPhysicianNPI">Referring Physician NPI</label>
-                <input type="text" class="form-control" id="referringPhysicianNPI" name="referringPhysicianNPI">
+                <input type="text" class="form-control" id="referringPhysicianNPI" name="referringPhysicianNPI" value="@Model.client.referringPhysicianNPI">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="referringProviderMedicaid">Referring Provider Medicaid</label>
-                <input type="text" class="form-control" id="referringProviderMedicaid" name="referringProviderMedicaid">
+                <input type="text" class="form-control" id="referringProviderMedicaid" name="referringProviderMedicaid" value="@Model.client.referringProviderMedicaid">
             </div>
             <div class="col">
                 <label for="referringPhysicianFirstName">Referring Physician First Name</label>
-                <input type="text" class="form-control" id="referringPhysicianFirstName" name="referringPhysicianFirstName">
+                <input type="text" class="form-control" id="referringPhysicianFirstName" name="referringPhysicianFirstName" value="@Model.client.referringPhysicianFirstName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="referringPhysicianMiddleName">Referring Physician Middle Name</label>
-                <input type="text" class="form-control" id="referringPhysicianMiddleName" name="referringPhysicianMiddleName">
+                <input type="text" class="form-control" id="referringPhysicianMiddleName" name="referringPhysicianMiddleName" value="@Model.client.referringPhysicianMiddleName">
             </div>
             <div class="col">
                 <label for="referringPhysicianLastName">Referring Physician Last Name</label>
-                <input type="text" class="form-control" id="referringPhysicianLastName" name="referringPhysicianLastName">
+                <input type="text" class="form-control" id="referringPhysicianLastName" name="referringPhysicianLastName" value="@Model.client.referringPhysicianLastName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="referringPhysicianPhone">Referring Physician Phone</label>
-                <input type="text" class="form-control" id="referringPhysicianPhone" name="referringPhysicianPhone">
+                <input type="text" class="form-control" id="referringPhysicianPhone" name="referringPhysicianPhone" value="@Model.client.referringPhysicianPhone">
             </div>
             <div class="col">
                 <label for="referringPhysicianEmail">Referring Physician Email</label>
-                <input type="email" class="form-control" id="referringPhysicianEmail" name="referringPhysicianEmail">
+                <input type="email" class="form-control" id="referringPhysicianEmail" name="referringPhysicianEmail" value="@Model.client.referringPhysicianEmail">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="referalExpirationDate">Referal Expiration Date</label>
-                <input type="date" class="form-control" id="referalExpirationDate" name="referalExpirationDate">
+                <input type="date" class="form-control" id="referalExpirationDate" name="referalExpirationDate" value="@Model.client.referalExpirationDate">
             </div>
             <div class="col">
                 <label for="mdLicenseNumber">MD License Number</label>
-                <input type="text" class="form-control" id="mdLicenseNumber" name="mdLicenseNumber">
+                <input type="text" class="form-control" id="mdLicenseNumber" name="mdLicenseNumber" value="@Model.client.mdLicenseNumber">
             </div>
         </div>
         </div>
@@ -381,59 +381,59 @@
                 <select class="form-select" id="serviceLocationId" name="serviceLocationId">
                     @foreach (var tt in Model.serviceLocationTypes)
                     {
-                        <option value="@tt.Key">@tt.Value</option>
+                        <option value="@tt.Key" @(Model.client.serviceLocationId == tt.Key ? "selected" : "")>@tt.Value</option>
                     }
                 </select>
             </div>
             <div class="col">
                 <label for="startOfServiceDate">Start Of Service Date</label>
-                <input type="date" class="form-control" id="startOfServiceDate" name="startOfServiceDate">
+                <input type="date" class="form-control" id="startOfServiceDate" name="startOfServiceDate" value="@Model.client.referringPhysicianLastName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="initialAssesmentDate">Initial Assesment Date</label>
-                <input type="date" class="form-control" id="initialAssesmentDate" name="initialAssesmentDate">
+                <input type="date" class="form-control" id="initialAssesmentDate" name="initialAssesmentDate" value="@Model.client.referringPhysicianLastName">
             </div>
             <div class="col">
                 <label for="initialBASPDate">Initial B A S P Date</label>
-                <input type="date" class="form-control" id="initialBASPDate" name="initialBASPDate">
+                <input type="date" class="form-control" id="initialBASPDate" name="initialBASPDate" value="@Model.client.referringPhysicianLastName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="coordinatorApprovalDate">Coordinator Approval Date</label>
-                <input type="date" class="form-control" id="coordinatorApprovalDate" name="coordinatorApprovalDate">
+                <input type="date" class="form-control" id="coordinatorApprovalDate" name="coordinatorApprovalDate" value="@Model.client.referringPhysicianLastName">
             </div>
             <div class="col">
                 <label for="cordinatorEmail">Cordinator Email</label>
-                <input type="email" class="form-control" id="cordinatorEmail" name="cordinatorEmail">
+                <input type="email" class="form-control" id="cordinatorEmail" name="cordinatorEmail" value="@Model.client.referringPhysicianLastName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="coordinatorPhone">Coordinator Phone</label>
-                <input type="text" class="form-control" id="coordinatorPhone" name="coordinatorPhone">
+                <input type="text" class="form-control" id="coordinatorPhone" name="coordinatorPhone" value="@Model.client.referringPhysicianLastName">
             </div>
             <div class="col">
                 <label for="supportPlanDate">Support Plan Date</label>
-                <input type="date" class="form-control" id="supportPlanDate" name="supportPlanDate">
+                <input type="date" class="form-control" id="supportPlanDate" name="supportPlanDate" value="@Model.client.referringPhysicianLastName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="weeklyAnalystHours">Weekly Analyst Hours</label>
-                <input type="number" min="0" step="0.01" class="form-control" id="weeklyAnalystHours" name="weeklyAnalystHours">
+                <input type="number" min="0" step="0.01" class="form-control" id="weeklyAnalystHours" name="weeklyAnalystHours" value="@Model.client.referringPhysicianLastName">
             </div>
             <div class="col">
                 <label for="weeklyTechnicianHours">Weekly Technician Hours</label>
-                <input type="number" min="0" step="0.01" class="form-control" id="weeklyTechnicianHours" name="weeklyTechnicianHours">
+                <input type="number" min="0" step="0.01" class="form-control" id="weeklyTechnicianHours" name="weeklyTechnicianHours" value="@Model.client.referringPhysicianLastName">
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <label for="terminationDate">Termination Date</label>
-                <input type="date" class="form-control" id="terminationDate" name="terminationDate">
+                <input type="date" class="form-control" id="terminationDate" name="terminationDate" value="@Model.client.referringPhysicianLastName">
             </div>
             <div class="col">
             </div>

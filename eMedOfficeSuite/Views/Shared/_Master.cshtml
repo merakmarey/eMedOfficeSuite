@@ -110,6 +110,11 @@
             });
             updateSelect("/api/pass/cities/" + $("#stateId").val(), '#cityId');
 
+            $("#insuredStateId").change(function () {
+                updateSelect("/api/pass/cities/" + this.value, '#insuredCityId');
+            });
+            updateSelect("/api/pass/cities/" + $("#stateId").val(), '#cityId');
+
             $("#secondaryInsuredStateId").change(function () {
                 updateSelect("/api/pass/cities/" + this.value, '#secondaryInsuredCityId');
             });

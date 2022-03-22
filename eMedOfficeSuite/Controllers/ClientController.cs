@@ -14,6 +14,7 @@ using System.Web.Mvc;
 namespace eMedOfficeSuite.Controllers
 {
     [Authorize(Roles = (DataEntities.Users.UserRolesNames.Super))]
+    [OutputCacheAttribute(VaryByParam = "*", Duration = 0, NoStore = true)]
     public class ClientController : Controller
     {
         // GET: Client
@@ -118,19 +119,89 @@ namespace eMedOfficeSuite.Controllers
 
             return Redirect("/client");
         }
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            var fb = new FormBuilder();
-            var c = new client();
+            try
+            {
+                dynamic model = new ExpandoObject();
 
-            fb.exceptions.Add("clientId");
+                var _apiClient = new ApiClient<Dictionary<int, string>>(UnauthorizedAction);
 
-            fb.build(c);
+                var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
-            ViewBag.GeneratedForm = fb.html;
+                var taxTypes = _apiClient.Get(_apiClient.TaxTypestUrl, token);
 
+                var directorTypes = _apiClient.Get(_apiClient.DirectorsUrl, token);
 
-            return View();
+                var genderTypes = _apiClient.Get(_apiClient.GenderTypesUrl, token);
+
+                var stateTypes = _apiClient.Get(_apiClient.StatestUrl, token);
+
+                var relationshipTypes = _apiClient.Get(_apiClient.PatientRelationshipsTypesUrl, token);
+
+                var serviceLocationTypes = _apiClient.Get(_apiClient.ServiceLocationsTypesUrl, token);
+
+                var payerTypes = _apiClient.Get(_apiClient.PayerTypesUrl, token);
+
+                model.relationshipToPatientTypes = relationshipTypes;
+                model.taxTypes = taxTypes;
+                model.directorTypes = directorTypes;
+                model.serviceLocationTypes = serviceLocationTypes;
+                model.genderTypes = genderTypes;
+                model.stateTypes = stateTypes;
+                model.payerTypes = payerTypes;
+
+                model.cityTypes = new Dictionary<int, string>() { { 0, "Select State" } };
+
+                var __apiClient = new ApiClient<Client>(UnauthorizedAction);
+
+                var client = __apiClient.Get(__apiClient.ClientGetUrl + "/" + id.ToString(), token);
+
+                model.client = client;
+
+                return View(model);
+
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return View("/client");
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id,FormCollection model)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var _client = new DataEntities.Client.Client();
+
+                    var success = TryUpdateModel<client>(_client, model);
+
+                    _client.primaryPayerId = model["primaryPayerId"];
+                    _client.secondaryPayerId = model["secondaryPayerId"];
+
+                    _client.clientId = id;
+
+                    var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
+
+                    _apiClient.addBody(_client);
+
+                    var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                    var result = _apiClient.Post(_apiClient.ClientUpdateUrl, token);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return Redirect("/client");
         }
     }
 }

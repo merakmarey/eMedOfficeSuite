@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using DataEntities.UserEntity;
-using DataEntities.Users;
-using DataLog;
-using eMedOfficeSuite.ApiClient;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -47,13 +38,15 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string TherapistListUrl =           "/api/therapist/gettherapistlist";
         public readonly string TherapistGetUrl =            "/api/therapist/gettherapist";
         public readonly string TherapistGetSupervisorsUrl = "/api/therapist/getsupervisors";
-        public readonly string TherapistUpdateUrl         = "/api/therapist/updateTherapist";
+        public readonly string TherapistUpdateUrl         = "/api/therapist/updatetherapist";
 
 
         /* CLIENTS */
 
+        public readonly string ClientGetUrl = "/api/client/getclient";
         public readonly string ClientAddUrl = "/api/client/addclient";
         public readonly string ClientListUrl = "/api/client/getclientlist";
+        public readonly string ClientUpdateUrl = "/api/client/updateclient";
 
 
         public RestClient client;

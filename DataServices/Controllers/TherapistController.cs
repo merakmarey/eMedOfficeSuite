@@ -4,10 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Mvc;
+using AuthorizeAttribute = System.Web.Mvc.AuthorizeAttribute;
 
 namespace DataServices.Controllers
 {
     [Authorize(Roles=(DataEntities.Users.UserRolesNames.Super))]
+    [OutputCacheAttribute(VaryByParam = "*", Duration =0, NoStore = true)]
     public class TherapistController : ApiController
     {
         public DataEntities.TherapistEntity.Therapist GetTherapist(int id)
