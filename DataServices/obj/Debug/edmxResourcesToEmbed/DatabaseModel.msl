@@ -238,5 +238,47 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="rateTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.rateType">
+        <MappingFragment StoreEntitySet="rateTypes">
+          <ScalarProperty Name="allowMultiple" ColumnName="allowMultiple" />
+          <ScalarProperty Name="rateName" ColumnName="rateName" />
+          <ScalarProperty Name="rateTypeId" ColumnName="rateTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_rates">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
+        <MappingFragment StoreEntitySet="therapist_rates">
+          <ScalarProperty Name="documentId" ColumnName="documentId" />
+          <ScalarProperty Name="rateType" ColumnName="rateType" />
+          <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
+          <ScalarProperty Name="rateValue" ColumnName="rateValue" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="rateId" ColumnName="rateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="assignments">
+      <EntityTypeMapping TypeName="DatabaseModel.assignment">
+        <MappingFragment StoreEntitySet="assignments">
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="therapistAssignmentId" ColumnName="therapistAssignmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documentTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.documentType">
+        <MappingFragment StoreEntitySet="documentType">
+          <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
+          <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

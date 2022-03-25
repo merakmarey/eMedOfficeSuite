@@ -41,5 +41,9 @@ namespace DataServices
         public virtual DbSet<relationshipType> relationshipTypes { get; set; }
         public virtual DbSet<service_locationTypes> service_locationTypes { get; set; }
         public virtual DbSet<director> directors { get; set; }
+        public virtual DbSet<rateType> rateTypes { get; set; }
+        public virtual DbSet<therapist_rates> therapist_rates { get; set; }
+        public virtual DbSet<assignment> assignments { get; set; }
+        public virtual DbSet<documentType> documentTypes { get; set; }
     }
 }

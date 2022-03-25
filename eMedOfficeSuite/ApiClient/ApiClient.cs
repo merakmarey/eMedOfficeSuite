@@ -30,7 +30,9 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string PatientRelationshipsTypesUrl = "/api/types/getpatientrelationshipstypes";
         public readonly string ServiceLocationsTypesUrl =   "/api/types/getservicelocationtypes";
         public readonly string PayerTypesUrl =              "/api/types/getpayertypes";
-        
+        public readonly string RateTypesUrl =               "/api/types/getratetypes";
+        public readonly string DocumentTypesUrl =           "/api/types/getdocumenttypes";
+
 
 
         /* THERAPISTS */
@@ -48,6 +50,8 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string ClientListUrl = "/api/client/getclientlist";
         public readonly string ClientUpdateUrl = "/api/client/updateclient";
 
+        /* RATES */
+        public readonly string GetActiveRatesUrl = "/api/rates/getactiverates";
 
         public RestClient client;
         public ApiClient(Action UnauthorizedAction)

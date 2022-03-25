@@ -34,6 +34,10 @@
     <EntitySet Name="relationshipTypes" EntityType="DatabaseModel.relationshipType" />
     <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
     <EntitySet Name="directors" EntityType="DatabaseModel.director" />
+    <EntitySet Name="rateTypes" EntityType="DatabaseModel.rateType" />
+    <EntitySet Name="therapist_rates" EntityType="DatabaseModel.therapist_rates" />
+    <EntitySet Name="assignments" EntityType="DatabaseModel.assignment" />
+    <EntitySet Name="documentTypes" EntityType="DatabaseModel.documentType" />
   </EntityContainer>
   <EntityType Name="gender">
     <Key>
@@ -238,5 +242,46 @@
     <Property Name="directorFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="directorMiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="directorLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="rateType">
+    <Key>
+      <PropertyRef Name="rateTypeId" />
+    </Key>
+    <Property Name="rateTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="allowMultiple" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="therapist_rates">
+    <Key>
+      <PropertyRef Name="rateId" />
+    </Key>
+    <Property Name="rateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="therapistId" Type="Int32" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="rateValue" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="setByUserId" Type="Int32" Nullable="false" />
+    <Property Name="rateType" Type="Int32" Nullable="false" />
+    <Property Name="documentId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="assignment">
+    <Key>
+      <PropertyRef Name="therapistAssignmentId" />
+      <PropertyRef Name="therapistId" />
+      <PropertyRef Name="clientId" />
+      <PropertyRef Name="startDate" />
+    </Key>
+    <Property Name="therapistAssignmentId" Type="Int32" Nullable="false" />
+    <Property Name="therapistId" Type="Int32" Nullable="false" />
+    <Property Name="clientId" Type="Int32" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="documentType">
+    <Key>
+      <PropertyRef Name="documentTypeId" />
+    </Key>
+    <Property Name="documentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="documentTypeName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

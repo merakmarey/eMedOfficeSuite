@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="assignments">
+          <Key>
+            <PropertyRef Name="therapistAssignmentId" />
+            <PropertyRef Name="therapistId" />
+            <PropertyRef Name="clientId" />
+            <PropertyRef Name="startDate" />
+          </Key>
+          <Property Name="therapistAssignmentId" Type="int" Nullable="false" />
+          <Property Name="therapistId" Type="int" Nullable="false" />
+          <Property Name="clientId" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="date" Nullable="false" />
+          <Property Name="endDate" Type="date" />
+        </EntityType>
         <EntityType Name="cities">
           <Key>
             <PropertyRef Name="cityId" />
@@ -94,6 +109,13 @@
           <Property Name="directorMiddleName" Type="nvarchar" MaxLength="20" />
           <Property Name="directorLastName" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="documentType">
+          <Key>
+            <PropertyRef Name="documentTypeId" />
+          </Key>
+          <Property Name="documentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="documentTypeName" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="gender">
           <Key>
             <PropertyRef Name="genderId" />
@@ -107,6 +129,14 @@
           </Key>
           <Property Name="payerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="payerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rateTypes">
+          <Key>
+            <PropertyRef Name="rateTypeId" />
+          </Key>
+          <Property Name="rateTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="allowMultiple" Type="bit" />
         </EntityType>
         <EntityType Name="relationshipType">
           <Key>
@@ -173,6 +203,19 @@
           <Property Name="license" Type="nvarchar" MaxLength="50" />
           <Property Name="provider" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="therapist_rates">
+          <Key>
+            <PropertyRef Name="rateId" />
+          </Key>
+          <Property Name="rateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="therapistId" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="date" Nullable="false" />
+          <Property Name="endDate" Type="nchar" MaxLength="10" />
+          <Property Name="rateValue" Type="numeric" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="setByUserId" Type="int" Nullable="false" />
+          <Property Name="rateType" Type="int" Nullable="false" />
+          <Property Name="documentId" Type="int" />
+        </EntityType>
         <EntityType Name="therapist_requirements">
           <Key>
             <PropertyRef Name="therapistRequirementId" />
@@ -230,19 +273,31 @@
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="director" EntityType="Self.director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="documentType" EntityType="Self.documentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payerTypes" EntityType="Self.payerTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rateTypes" EntityType="Self.rateTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="relationshipType" EntityType="Self.relationshipType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="service_locationTypes" EntityType="Self.service_locationTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="therapist_rates" EntityType="Self.therapist_rates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_requirements" EntityType="Self.therapist_requirements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_requirements_types" EntityType="Self.therapist_requirements_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_status" EntityType="Self.therapist_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="assignments" EntityType="Self.assignments" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [assignments].[therapistAssignmentId] AS [therapistAssignmentId], 
+    [assignments].[therapistId] AS [therapistId], 
+    [assignments].[clientId] AS [clientId], 
+    [assignments].[startDate] AS [startDate], 
+    [assignments].[endDate] AS [endDate]
+    FROM [dbo].[assignments] AS [assignments]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -282,6 +337,10 @@
           <EntitySet Name="relationshipTypes" EntityType="DatabaseModel.relationshipType" />
           <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
           <EntitySet Name="directors" EntityType="DatabaseModel.director" />
+          <EntitySet Name="rateTypes" EntityType="DatabaseModel.rateType" />
+          <EntitySet Name="therapist_rates" EntityType="DatabaseModel.therapist_rates" />
+          <EntitySet Name="assignments" EntityType="DatabaseModel.assignment" />
+          <EntitySet Name="documentTypes" EntityType="DatabaseModel.documentType" />
         </EntityContainer>
         <EntityType Name="gender">
           <Key>
@@ -486,6 +545,47 @@
           <Property Name="directorFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="directorMiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="directorLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="rateType">
+          <Key>
+            <PropertyRef Name="rateTypeId" />
+          </Key>
+          <Property Name="rateTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="allowMultiple" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="therapist_rates">
+          <Key>
+            <PropertyRef Name="rateId" />
+          </Key>
+          <Property Name="rateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="therapistId" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="rateValue" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="setByUserId" Type="Int32" Nullable="false" />
+          <Property Name="rateType" Type="Int32" Nullable="false" />
+          <Property Name="documentId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="assignment">
+          <Key>
+            <PropertyRef Name="therapistAssignmentId" />
+            <PropertyRef Name="therapistId" />
+            <PropertyRef Name="clientId" />
+            <PropertyRef Name="startDate" />
+          </Key>
+          <Property Name="therapistAssignmentId" Type="Int32" Nullable="false" />
+          <Property Name="therapistId" Type="Int32" Nullable="false" />
+          <Property Name="clientId" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="documentType">
+          <Key>
+            <PropertyRef Name="documentTypeId" />
+          </Key>
+          <Property Name="documentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentTypeName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -727,6 +827,48 @@
                 <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
                 <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
                 <ScalarProperty Name="directorId" ColumnName="directorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rateTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.rateType">
+              <MappingFragment StoreEntitySet="rateTypes">
+                <ScalarProperty Name="allowMultiple" ColumnName="allowMultiple" />
+                <ScalarProperty Name="rateName" ColumnName="rateName" />
+                <ScalarProperty Name="rateTypeId" ColumnName="rateTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_rates">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
+              <MappingFragment StoreEntitySet="therapist_rates">
+                <ScalarProperty Name="documentId" ColumnName="documentId" />
+                <ScalarProperty Name="rateType" ColumnName="rateType" />
+                <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
+                <ScalarProperty Name="rateValue" ColumnName="rateValue" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="rateId" ColumnName="rateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="assignments">
+            <EntityTypeMapping TypeName="DatabaseModel.assignment">
+              <MappingFragment StoreEntitySet="assignments">
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="therapistAssignmentId" ColumnName="therapistAssignmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.documentType">
+              <MappingFragment StoreEntitySet="documentType">
+                <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
+                <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

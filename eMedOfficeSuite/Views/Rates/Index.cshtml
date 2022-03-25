@@ -1,0 +1,92 @@
+﻿<script>
+    $(function () {
+        $('#therapists').on('change', function () {
+            document.location.href = '/rates/?id=' + this.value;
+        });
+    });
+</script>
+
+@model dynamic
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (Model != null)
+    {
+        <div class="row">
+            <select id="therapists" class="form-select">
+                @foreach (var t in Model.therapists)
+                {
+                    <option value="@t.therapistId" @(ViewBag.SelectedId==t.therapistId?"selected":"")>@t.firstName @t.middleName @t.lastName</option>
+                }
+            </select>
+        </div>
+        foreach (var rateType in Model.rateTypes)
+        {
+                <div class="row pt-5">
+                    <h4>@rateType.rateName</h4>
+                </div>
+                <hr />
+                var _rates = Model.rates[rateType.rateTypeId];
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Start Date</td>
+                                <td>Rate</td>
+
+                                @if (rateType.allowMultiple)
+                                {
+                                    <td>Document</td>
+                                }
+                                <td>Adjust</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ((_rates != null) && (_rates.Count > 0))
+                            {
+                                foreach (var rate in _rates)
+                                {
+                                    <tr>
+                                        <td>@rate.startDate</td>
+                                        <td>@rate.rateValue</td>
+                                        @if (rateType.allowMultiple)
+                                        {
+                                        <td>
+                                            @Model.documentTypes[rate.documentId]
+                                        </td>
+                                        }
+                                        <td><input type="number" class="form-control" step="0.01" name="@rate.rateId" /></td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    @if (rateType.allowMultiple)
+                                    {
+                                        <td>
+                                            <select name="s-@rateType.rateTypeId">
+                                                @foreach (var dt in @Model.documentTypes)
+                                                {
+                                                    <option value="@dt.Key">@dt.Value</option>
+                                                }
+                                            </select>
+                                        </td>
+                                    }
+                                    <td><input type="number" step="0.01" name="i-@rateType.rateTypeId" /></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                }
+        } else
+        {
+        <h6>No therapists defined yet.</h6>
+    }
+    <div class="row">
+        <input type="submit" class="btn btn-success form-control" value="Save Rates"/>
+    </div>
+}

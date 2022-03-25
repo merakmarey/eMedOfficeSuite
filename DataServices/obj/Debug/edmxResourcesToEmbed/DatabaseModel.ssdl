@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="assignments">
+    <Key>
+      <PropertyRef Name="therapistAssignmentId" />
+      <PropertyRef Name="therapistId" />
+      <PropertyRef Name="clientId" />
+      <PropertyRef Name="startDate" />
+    </Key>
+    <Property Name="therapistAssignmentId" Type="int" Nullable="false" />
+    <Property Name="therapistId" Type="int" Nullable="false" />
+    <Property Name="clientId" Type="int" Nullable="false" />
+    <Property Name="startDate" Type="date" Nullable="false" />
+    <Property Name="endDate" Type="date" />
+  </EntityType>
   <EntityType Name="cities">
     <Key>
       <PropertyRef Name="cityId" />
@@ -89,6 +104,13 @@
     <Property Name="directorMiddleName" Type="nvarchar" MaxLength="20" />
     <Property Name="directorLastName" Type="nvarchar" MaxLength="20" />
   </EntityType>
+  <EntityType Name="documentType">
+    <Key>
+      <PropertyRef Name="documentTypeId" />
+    </Key>
+    <Property Name="documentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="documentTypeName" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
   <EntityType Name="gender">
     <Key>
       <PropertyRef Name="genderId" />
@@ -102,6 +124,14 @@
     </Key>
     <Property Name="payerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="payerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rateTypes">
+    <Key>
+      <PropertyRef Name="rateTypeId" />
+    </Key>
+    <Property Name="rateTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="allowMultiple" Type="bit" />
   </EntityType>
   <EntityType Name="relationshipType">
     <Key>
@@ -168,6 +198,19 @@
     <Property Name="license" Type="nvarchar" MaxLength="50" />
     <Property Name="provider" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="therapist_rates">
+    <Key>
+      <PropertyRef Name="rateId" />
+    </Key>
+    <Property Name="rateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="therapistId" Type="int" Nullable="false" />
+    <Property Name="startDate" Type="date" Nullable="false" />
+    <Property Name="endDate" Type="nchar" MaxLength="10" />
+    <Property Name="rateValue" Type="numeric" Precision="3" Scale="2" Nullable="false" />
+    <Property Name="setByUserId" Type="int" Nullable="false" />
+    <Property Name="rateType" Type="int" Nullable="false" />
+    <Property Name="documentId" Type="int" />
+  </EntityType>
   <EntityType Name="therapist_requirements">
     <Key>
       <PropertyRef Name="therapistRequirementId" />
@@ -225,18 +268,30 @@
     <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="director" EntityType="Self.director" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="documentType" EntityType="Self.documentType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="payerTypes" EntityType="Self.payerTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rateTypes" EntityType="Self.rateTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="relationshipType" EntityType="Self.relationshipType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="service_locationTypes" EntityType="Self.service_locationTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="states" EntityType="Self.states" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tax_types" EntityType="Self.tax_types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist" EntityType="Self.therapist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="therapist_rates" EntityType="Self.therapist_rates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist_requirements" EntityType="Self.therapist_requirements" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist_requirements_types" EntityType="Self.therapist_requirements_types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist_status" EntityType="Self.therapist_status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="assignments" EntityType="Self.assignments" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [assignments].[therapistAssignmentId] AS [therapistAssignmentId], 
+    [assignments].[therapistId] AS [therapistId], 
+    [assignments].[clientId] AS [clientId], 
+    [assignments].[startDate] AS [startDate], 
+    [assignments].[endDate] AS [endDate]
+    FROM [dbo].[assignments] AS [assignments]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
 </Schema>

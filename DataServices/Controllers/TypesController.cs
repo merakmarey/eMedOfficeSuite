@@ -169,5 +169,37 @@ namespace DataServices.Controllers
             }
             return null;
         }
+        public List<rateType> GetRateTypes()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var query = db.rateTypes.Select(t => t).ToList();
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                DataLog.Log.AddEntry(ex);
+            }
+            return null;
+        }
+        public Dictionary<int, string> GetDocumentTypes()
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var query = db.documentTypes.Select(t => new { t.documentTypeId, t.documentTypeName }).ToDictionary(t => t.documentTypeId, t => t.documentTypeName.Trim());
+                    return query;
+                }
+            }
+            catch (Exception ex)
+            {
+                DataLog.Log.AddEntry(ex);
+            }
+            return null;
+        }
     }
 }

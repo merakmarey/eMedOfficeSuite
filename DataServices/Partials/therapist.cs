@@ -18,7 +18,6 @@ namespace DataServices
             therapistTaxType = Int32.Parse(model["taxtype"]);
             therapistLevel = model["therapistlevel"];
             therapistType = Int32.Parse(model["therapistType"]);
-
             address1 = model["address1"];
             address2 = model["address2"];
             city = Int32.Parse(model["city"]);
@@ -44,8 +43,6 @@ namespace DataServices
             status = Int32.Parse(model["status"]);
             supervisorId = Int32.Parse(model["supervisor"]);
             terminationdate = model["terminationdate"].MutedDateTime();
-
-
         }
     }
 }
