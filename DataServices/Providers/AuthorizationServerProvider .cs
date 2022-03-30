@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using DataEntities.Users;
+using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -25,7 +27,11 @@ namespace DataServices
 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim(ClaimTypes.Role, DataEntities.Users.UserRolesNames.RoleName(user.roleId)));
-                identity.AddClaim(new Claim(ClaimTypes.UserData, user.roleId.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(new UserIdentity() {
+                    roleId = user.roleId,
+                    userId = user.userId,
+                    username = user.username
+                })));
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.username));
                 context.Validated(identity);
             }

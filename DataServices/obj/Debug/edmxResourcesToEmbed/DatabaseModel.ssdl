@@ -205,7 +205,7 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
     <Property Name="rateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="therapistId" Type="int" Nullable="false" />
     <Property Name="startDate" Type="date" Nullable="false" />
-    <Property Name="endDate" Type="nchar" MaxLength="10" />
+    <Property Name="endDate" Type="date" />
     <Property Name="rateValue" Type="numeric" Precision="3" Scale="2" Nullable="false" />
     <Property Name="setByUserId" Type="int" Nullable="false" />
     <Property Name="rateType" Type="int" Nullable="false" />

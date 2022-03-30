@@ -66,5 +66,49 @@ namespace DataServices.Controllers
             }
             return null;
         }
+
+        public bool UpdateRate(therapist_rates rate)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+
+                    var t = db.therapist_rates.Find(rate.rateId);
+
+                    if (t != null)
+                    {
+                        t.endDate = DateTime.Now;
+                        t.setByUserId = rate.setByUserId;
+                        db.Entry(t).CurrentValues.SetValues(t);
+                        var r = new therapist_rates()
+                        {
+                            startDate = DateTime.Now,
+                            therapistId = t.therapistId,
+                            documentId = t.documentId,
+                            rateType = t.rateType,
+                            rateValue = rate.rateValue,
+                            setByUserId = rate.setByUserId,
+                        };
+                        
+                        db.therapist_rates.Add(r);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    var rows = db.SaveChanges();
+
+                    return (rows > 0 ? true : false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return false;
+        }
     }
 }

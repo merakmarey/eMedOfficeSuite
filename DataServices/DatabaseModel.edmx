@@ -210,7 +210,7 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <Property Name="rateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="therapistId" Type="int" Nullable="false" />
           <Property Name="startDate" Type="date" Nullable="false" />
-          <Property Name="endDate" Type="nchar" MaxLength="10" />
+          <Property Name="endDate" Type="date" />
           <Property Name="rateValue" Type="numeric" Precision="3" Scale="2" Nullable="false" />
           <Property Name="setByUserId" Type="int" Nullable="false" />
           <Property Name="rateType" Type="int" Nullable="false" />
@@ -338,9 +338,9 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
           <EntitySet Name="directors" EntityType="DatabaseModel.director" />
           <EntitySet Name="rateTypes" EntityType="DatabaseModel.rateType" />
-          <EntitySet Name="therapist_rates" EntityType="DatabaseModel.therapist_rates" />
           <EntitySet Name="assignments" EntityType="DatabaseModel.assignment" />
           <EntitySet Name="documentTypes" EntityType="DatabaseModel.documentType" />
+          <EntitySet Name="therapist_rates" EntityType="DatabaseModel.therapist_rates" />
         </EntityContainer>
         <EntityType Name="gender">
           <Key>
@@ -554,19 +554,6 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <Property Name="rateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="allowMultiple" Type="Boolean" />
         </EntityType>
-        <EntityType Name="therapist_rates">
-          <Key>
-            <PropertyRef Name="rateId" />
-          </Key>
-          <Property Name="rateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="therapistId" Type="Int32" Nullable="false" />
-          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="endDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="rateValue" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
-          <Property Name="setByUserId" Type="Int32" Nullable="false" />
-          <Property Name="rateType" Type="Int32" Nullable="false" />
-          <Property Name="documentId" Type="Int32" />
-        </EntityType>
         <EntityType Name="assignment">
           <Key>
             <PropertyRef Name="therapistAssignmentId" />
@@ -586,6 +573,19 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           </Key>
           <Property Name="documentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="documentTypeName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="therapist_rates">
+          <Key>
+            <PropertyRef Name="rateId" />
+          </Key>
+          <Property Name="rateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="therapistId" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="rateValue" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="setByUserId" Type="Int32" Nullable="false" />
+          <Property Name="rateType" Type="Int32" Nullable="false" />
+          <Property Name="documentId" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -839,20 +839,6 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="therapist_rates">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
-              <MappingFragment StoreEntitySet="therapist_rates">
-                <ScalarProperty Name="documentId" ColumnName="documentId" />
-                <ScalarProperty Name="rateType" ColumnName="rateType" />
-                <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
-                <ScalarProperty Name="rateValue" ColumnName="rateValue" />
-                <ScalarProperty Name="endDate" ColumnName="endDate" />
-                <ScalarProperty Name="startDate" ColumnName="startDate" />
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-                <ScalarProperty Name="rateId" ColumnName="rateId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="assignments">
             <EntityTypeMapping TypeName="DatabaseModel.assignment">
               <MappingFragment StoreEntitySet="assignments">
@@ -869,6 +855,20 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
               <MappingFragment StoreEntitySet="documentType">
                 <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
                 <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_rates">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
+              <MappingFragment StoreEntitySet="therapist_rates">
+                <ScalarProperty Name="documentId" ColumnName="documentId" />
+                <ScalarProperty Name="rateType" ColumnName="rateType" />
+                <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
+                <ScalarProperty Name="rateValue" ColumnName="rateValue" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="rateId" ColumnName="rateId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -247,20 +247,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="therapist_rates">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
-        <MappingFragment StoreEntitySet="therapist_rates">
-          <ScalarProperty Name="documentId" ColumnName="documentId" />
-          <ScalarProperty Name="rateType" ColumnName="rateType" />
-          <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
-          <ScalarProperty Name="rateValue" ColumnName="rateValue" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-          <ScalarProperty Name="rateId" ColumnName="rateId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="assignments">
       <EntityTypeMapping TypeName="DatabaseModel.assignment">
         <MappingFragment StoreEntitySet="assignments">
@@ -277,6 +263,20 @@
         <MappingFragment StoreEntitySet="documentType">
           <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
           <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_rates">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
+        <MappingFragment StoreEntitySet="therapist_rates">
+          <ScalarProperty Name="documentId" ColumnName="documentId" />
+          <ScalarProperty Name="rateType" ColumnName="rateType" />
+          <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
+          <ScalarProperty Name="rateValue" ColumnName="rateValue" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="rateId" ColumnName="rateId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

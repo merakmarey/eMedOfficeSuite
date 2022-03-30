@@ -17,7 +17,7 @@ namespace DataServices
         public int rateId { get; set; }
         public int therapistId { get; set; }
         public System.DateTime startDate { get; set; }
-        public string endDate { get; set; }
+        public Nullable<System.DateTime> endDate { get; set; }
         public decimal rateValue { get; set; }
         public int setByUserId { get; set; }
         public int rateType { get; set; }
