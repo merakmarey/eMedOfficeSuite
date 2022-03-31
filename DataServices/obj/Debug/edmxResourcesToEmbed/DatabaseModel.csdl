@@ -38,6 +38,7 @@
     <EntitySet Name="assignments" EntityType="DatabaseModel.assignment" />
     <EntitySet Name="documentTypes" EntityType="DatabaseModel.documentType" />
     <EntitySet Name="therapist_rates" EntityType="DatabaseModel.therapist_rates" />
+    <EntitySet Name="client_assigments" EntityType="DatabaseModel.client_assigments" />
   </EntityContainer>
   <EntityType Name="gender">
     <Key>
@@ -283,5 +284,17 @@
     <Property Name="setByUserId" Type="Int32" Nullable="false" />
     <Property Name="rateType" Type="Int32" Nullable="false" />
     <Property Name="documentId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="client_assigments">
+    <Key>
+      <PropertyRef Name="assignmentId" />
+    </Key>
+    <Property Name="assignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clientId" Type="Int32" />
+    <Property Name="therapistTypeId" Type="Int32" />
+    <Property Name="therapistId" Type="Int32" />
+    <Property Name="supervisorId" Type="Int32" />
+    <Property Name="startDate" Type="DateTime" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Precision="0" />
   </EntityType>
 </Schema>

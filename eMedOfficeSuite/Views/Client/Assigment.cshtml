@@ -1,0 +1,33 @@
+﻿<script>
+    $(function () {
+        $('#clients').on('change', function () {
+            document.location.href = '/client/assigment/?id=' + this.value;
+        });
+    });
+</script>
+
+@model dynamic
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    if (Model != null)
+    {
+        <div class="row">
+            <select id="clients" class="form-select">
+                @foreach (var t in Model.clients)
+                {
+                    <option value="@t.clientId" @(ViewBag.SelectedId == t.clientId ? "selected" : "")>@t.clientFirstname @t.clientMiddleName @t.clientLastName</option>
+                }
+            </select>
+        </div>
+        
+    }
+    else
+    {
+        <h6>No therapists defined yet.</h6>
+    }
+    <div class="row">
+        <input type="submit" class="btn btn-success form-control" value="Save Assigments" />
+    </div>
+}
+

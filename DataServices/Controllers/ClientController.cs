@@ -110,5 +110,29 @@ namespace DataServices.Controllers
 
             return false;
         }
+
+        public List<client_assigments> GetClientAssigments(int id)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    var query = db.client_assigments.Where(c => c.endDate==null).Select(t=> new client_assigments() { 
+                         assignmentId = t.assignmentId,
+                         clientId = t.clientId,
+                         therapistId = t.therapistId,
+                         startDate = t.startDate,
+                         supervisorId = t.supervisorId,
+                         therapistTypeId = t.therapistTypeId
+                        });
+                    return query.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return null;
+        }
     }
 }

@@ -54,6 +54,7 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string GetActiveRatesUrl = "/api/rates/getactiverates";
         public readonly string AddRateUrl        = "/api/rates/addrate";
         public readonly string UpdateRateUrl     = "/api/rates/updaterate";
+        public readonly string GetClientAssigmentsUrl = "/api/rates/getclientassigments";
 
         public RestClient client;
         public ApiClient(Action UnauthorizedAction)

@@ -238,6 +238,7 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Rates\Index.cshtml" />
+    <Content Include="Views\Client\Assigment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

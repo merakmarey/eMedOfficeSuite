@@ -280,5 +280,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="client_assigments">
+      <EntityTypeMapping TypeName="DatabaseModel.client_assigments">
+        <MappingFragment StoreEntitySet="client_assigments">
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="therapistTypeId" ColumnName="therapistTypeId" />
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -95,6 +95,18 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
     <Property Name="weeklyTechnicianHours" Type="numeric" Precision="2" Scale="2" />
     <Property Name="terminationDate" Type="date" />
   </EntityType>
+  <EntityType Name="client_assigments">
+    <Key>
+      <PropertyRef Name="assignmentId" />
+    </Key>
+    <Property Name="assignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clientId" Type="int" />
+    <Property Name="therapistTypeId" Type="int" />
+    <Property Name="therapistId" Type="int" />
+    <Property Name="supervisorId" Type="int" />
+    <Property Name="startDate" Type="date" />
+    <Property Name="endDate" Type="date" />
+  </EntityType>
   <EntityType Name="director">
     <Key>
       <PropertyRef Name="directorId" />
@@ -267,6 +279,7 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="client_assigments" EntityType="Self.client_assigments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="director" EntityType="Self.director" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="documentType" EntityType="Self.documentType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gender" EntityType="Self.gender" Schema="dbo" store:Type="Tables" />

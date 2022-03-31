@@ -26,7 +26,6 @@ namespace eMedOfficeSuite.Controllers
         {
             try
             {
-                dynamic model = new ExpandoObject();
 
                 var _apiClient = new ApiClient<List<ClientListItem>>(UnauthorizedAction);
 
@@ -88,37 +87,6 @@ namespace eMedOfficeSuite.Controllers
             }
             return View("/client");
         }
-
-
-        [HttpPost]
-        public ActionResult Add(FormCollection model)
-        {
-
-            try
-            {
-                if (ModelState.IsValid)
-                {
-
-                    var _client = new DataEntities.Client.Client();
-
-                    var success = TryUpdateModel<client>(_client,model);
-
-                    var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
-
-                    _apiClient.addBody(_client);
-
-                    var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
-
-                    var result = _apiClient.Post(_apiClient.ClientAddUrl, token);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.AddEntry(ex);
-            }
-
-            return Redirect("/client");
-        }
         public ActionResult Edit(int id)
         {
             try
@@ -167,6 +135,62 @@ namespace eMedOfficeSuite.Controllers
                 Log.AddEntry(ex);
             }
             return View("/client");
+        }
+        public ActionResult Assigment(int? id)
+        {
+            try
+            {
+                dynamic model = new ExpandoObject();
+
+                var _apiClient = new ApiClient<List<ClientListItem>>(UnauthorizedAction);
+
+                var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                var clientList = _apiClient.Get(_apiClient.ClientListUrl, token);
+
+                model.clients = clientList;
+
+                ViewBag.SelectedId = (id==null?clientList.FirstOrDefault().clientId:id);
+
+                return View(model);
+
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Add(FormCollection model)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var _client = new DataEntities.Client.Client();
+
+                    var success = TryUpdateModel<client>(_client,model);
+
+                    var _apiClient = new ApiClient<Boolean>(UnauthorizedAction);
+
+                    _apiClient.addBody(_client);
+
+                    var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                    var result = _apiClient.Post(_apiClient.ClientAddUrl, token);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return Redirect("/client");
         }
 
         [HttpPost]

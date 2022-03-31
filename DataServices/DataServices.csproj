@@ -187,6 +187,9 @@
     <Compile Include="client.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="client_assigments.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\RatesController.cs" />
     <Compile Include="Controllers\TherapistController.cs" />

@@ -45,5 +45,6 @@ namespace DataServices
         public virtual DbSet<assignment> assignments { get; set; }
         public virtual DbSet<documentType> documentTypes { get; set; }
         public virtual DbSet<therapist_rates> therapist_rates { get; set; }
+        public virtual DbSet<client_assigments> client_assigments { get; set; }
     }
 }
