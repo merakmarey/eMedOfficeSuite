@@ -13,6 +13,7 @@
     if (Model != null)
     {
         <div class="row">
+            <span>Select Client</span>
             <select id="clients" class="form-select">
                 @foreach (var t in Model.clients)
                 {
@@ -20,14 +21,211 @@
                 }
             </select>
         </div>
-        
+        <div class="row mt-5">
+            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="rbt-tab" data-bs-toggle="tab" data-bs-target="#rbt" type="button" role="tab" aria-controls="rbt" aria-selected="true">RBT (Assistant)</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bcba-tab" data-bs-toggle="tab" data-bs-target="#bcba" type="button" role="tab" aria-controls="bcba" aria-selected="false">BCBA</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bcaba-tab" data-bs-toggle="tab" data-bs-target="#bcaba" type="button" role="tab" aria-controls="bcba" aria-selected="false">BCaBA</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="analyst-tab" data-bs-toggle="tab" data-bs-target="#analyst" type="button" role="tab" aria-controls="analyst" aria-selected="false">Analyst/LMHC</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="itds-tab" data-bs-toggle="tab" data-bs-target="#itds" type="button" role="tab" aria-controls="itds" aria-selected="false">ITDS</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane show active" id="rbt" role="tabpanel" aria-labelledby="rbt">
+                    <table class="table">
+                        <tr>
+                            <td>Choose a new RBT Assistant</td>
+                            <td>
+                                <select class="form-select" id="_rbt_rbt" name="_rbt_rbt">
+                                    <option value="0">None selected</option>
+                                    @if (Model.rbt != null)
+                                    {
+                                        foreach (var item in Model.rbt)
+                                        {
+                                <option value="item.therapistId" @(Model.rbtSelected != null && Model.rbtSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Choose a new Supervisor</td>
+                            <td>
+                                <select class="form-select" id="_rbt_sup" name="_rbt_sup">
+                                    <option value="0">None selected</option>
+                                    @if (Model.itds != null)
+                                    {
+                                        foreach (var item in Model.itds)
+                                        {
+                                <option value="item.therapistId" @(Model.rbtSupSelected != null && Model.rbtSupSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                    </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="bcba" role="tabpanel" aria-labelledby="bcba">
+                    <table class="table">
+                        <tr>
+                            <td>Choose a new BCBA</td>
+                            <td>
+                                <select class="form-select" id="_bcba_bcba" name="_bcba_bcba">
+                                    <option value="0">None selected</option>
+                                    @if (Model.bcba != null)
+                                    {
+                                        foreach (var item in Model.bcba)
+                                        {
+                                <option value="item.therapistId" @(Model.bcbaSelected != null && Model.bcbaSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                    </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Choose a new Supervisor</td>
+                            <td>
+                                <select class="form-select" id="_bcba_sup" name="_bcba_sup">
+                                    <option value="0">None selected</option>
+                                    @if (Model.itds != null)
+                                    {
+                                        foreach (var item in Model.itds)
+                                        {
+                                <option value="item.therapistId" @(Model.bcbaSupSelected != null && Model.bcbaSupSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="bcaba" role="tabpanel" aria-labelledby="bcaba">
+                    <table class="table">
+                        <tr>
+                            <td>Choose a new BCaBA</td>
+                            <td>
+                                <select class="form-select" id="_bcaba_bcaba" name="_bcaba_bcaba">
+                                    <option value="0">None selected</option>
+                                    @if (Model.bcaba != null)
+                                    {
+                                        foreach (var item in Model.bcaba)
+                                        {
+                                <option value="item.therapistId" @(Model.bcabaSelected != null && Model.bcabaSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Choose a new Supervisor</td>
+                            <td>
+                                <select class="form-select" id="_bcaba_sup" name="_bcaba_sup">
+                                    <option value="0">None selected</option>
+                                    @if (Model.itds != null)
+                                    {
+                                        foreach (var item in Model.itds)
+                                        {
+                                <option value="item.therapistId" @(Model.bcabaSupSelected != null && Model.bcabaSupSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="analyst" role="tabpanel" aria-labelledby="analyst">
+                    <table class="table">
+                        <tr>
+                            <td>Choose a new Analyst/LMHC</td>
+                            <td>
+                                <select class="form-select" id="_analyst_analyst" name="_analyst_analyst">
+                                    <option value="0">None selected</option>
+                                    @if (Model.analyst != null)
+                                    {
+                                        foreach (var item in Model.analyst)
+                                        {
+                                            <option value="item.therapistId" @(Model.analystSelected != null && Model.analystSelected == item.therapistId ? "selected" : "")>@String.Join(" ",new string[3]{item.firstName,item.middleName, item.lastName})</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Choose a new Supervisor</td>
+                            <td>
+                                <select class="form-select" id="_analyst_sup" name="_analyst_sup">
+                                    <option value="0">None selected</option>
+                                    @if (Model.itds != null)
+                                    {
+                                        foreach (var item in Model.itds)
+                                        {
+                                <option value="item.therapistId" @(Model.analystSupSelected != null && Model.analystSupSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tab-pane" id="itds" role="tabpanel" aria-labelledby="itds">
+                    <table class="table">
+                        <tr>
+                            <td>Choose a new ITDS</td>
+                            <td>
+                                <select class="form-select" id="_itds_itds" name="_itds_itds">
+                                    <option value="0">None selected</option>
+                                    @if (Model.itds != null)
+                                    {
+                                        foreach (var item in Model.itds)
+                                        {
+                                <option value="item.therapistId" @(Model.itdsSelected != null && Model.itdsSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                    </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Choose a new Supervisor</td>
+                            <td>
+                                <select class="form-select" id="_itds_sup" name="_itds_sup">
+                                    <option value="0">None selected</option>
+                                    @if (Model.itds != null)
+                                    {
+                                        foreach (var item in Model.itds)
+                                        {
+                                <option value="item.therapistId" @(Model.itdsSupSelected != null && Model.itdsSupSelected == item.therapistId ? "selected" : "")>@String.Join(" ", new string[3] { item.firstName, item.middleName, item.lastName })</option>
+                                        }
+                                    }
+                                    </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     }
     else
     {
-        <h6>No therapists defined yet.</h6>
+        <h6>No clients defined yet.</h6>
     }
     <div class="row">
         <input type="submit" class="btn btn-success form-control" value="Save Assigments" />
     </div>
 }
+
 

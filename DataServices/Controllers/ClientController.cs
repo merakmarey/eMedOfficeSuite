@@ -77,7 +77,7 @@ namespace DataServices.Controllers
             {
                 Log.AddEntry(ex);
             }
-            return null;
+            return new List<ClientListItem>();
         }
 
         public bool UpdateClient(Client Client)
@@ -132,7 +132,7 @@ namespace DataServices.Controllers
             {
                 Log.AddEntry(ex);
             }
-            return null;
+            return new List<client_assigments>();
         }
     }
 }
