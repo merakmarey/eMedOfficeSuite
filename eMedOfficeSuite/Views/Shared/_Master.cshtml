@@ -161,7 +161,7 @@
                 <a href="/rates">
                     <i class="bi bi-coin"></i>
                     Rates
-                 </a>
+                </a>
             </li>
             <li>
                 <a href="/client">
@@ -169,6 +169,12 @@
                     <span class="nav-text">
                         Clients
                     </span>
+                </a>
+            </li>
+            <li class="sub">
+                <a href="/client/assigment">
+                    <i class="bi bi-coin"></i>
+                    Assigments
                 </a>
             </li>
 
@@ -189,6 +195,12 @@
     <div id="content">
         <div class="container">
             <h1 style="text-transform:capitalize">@Html.Raw(this.Request.Url.LocalPath.Split('/')[1])</h1>
+            @if ((TempData!=null)&&(TempData["_lastError"]!=null))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Html.Raw(TempData["_lastError"].ToString());
+                </div>
+            }
             @RenderBody()
         </div>
     </div>

@@ -3,6 +3,7 @@ using DataEntities.TherapistEntity;
 using DataLog;
 using DataServices;
 using eMedOfficeSuite.ApiClient;
+using ExtensionMethods;
 using Helpers;
 using Microsoft.Owin.Security;
 using System;
@@ -205,6 +206,142 @@ namespace eMedOfficeSuite.Controllers
                 Log.AddEntry(ex);
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Assigment(FormCollection model, int? id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
+
+                    var _apiClient = new ApiClient<List<ClientListItem>>(UnauthorizedAction);
+                    var clientList = _apiClient.Get(_apiClient.ClientListUrl, token);
+                    var clientId = (id == null ? clientList.FirstOrDefault().clientId : id);
+
+                    var _apiClient_CurrentAssigments = new ApiClient<List<client_assigments>>(UnauthorizedAction);
+                    var currentAssigments = _apiClient_CurrentAssigments.Get(_apiClient_CurrentAssigments.ClientAssignments + "/" + clientId, token);
+
+                    var newAssignments = new List<client_assigments>();
+
+
+                    var _apiClient_TherapistTypes = new ApiClient<Dictionary<int, string>>(UnauthorizedAction);
+
+                    var therapistTypes = _apiClient_TherapistTypes.Get(_apiClient_TherapistTypes.TherapistTypesUrl, token);
+
+                    var rbtType = therapistTypes.Where(tt => tt.Value.ToLower().StartsWith("rbt")).FirstOrDefault().Key;
+                    var itdsType = therapistTypes.Where(tt => tt.Value.ToLower().StartsWith("itds")).FirstOrDefault().Key;
+                    var bcbaType = therapistTypes.Where(tt => tt.Value.ToLower().StartsWith("bcba")).FirstOrDefault().Key;
+                    var bcabaType = therapistTypes.Where(tt => tt.Value.ToLower().StartsWith("bcabc")).FirstOrDefault().Key;
+                    var analystType = therapistTypes.Where(tt => tt.Value.ToLower().StartsWith("analyst")).FirstOrDefault().Key;
+
+                    
+
+                    if ((model["_rbt_rbt"]!="0") && (model["_rbt_sup"] != "0")) {
+                        var thisAssigment = currentAssigments.Where(t => t.therapistTypeId == rbtType).Select(a => a).FirstOrDefault();
+                        if ((thisAssigment == null) || ((thisAssigment.therapistId != model["_rbt_rbt"].MutedToInt()) || (thisAssigment.supervisorId != model["_rbt_sup"].MutedToInt())))
+                        {
+                            newAssignments.Add(new client_assigments()
+                            {
+                                clientId = clientId,
+                                startDate = DateTime.Now,
+                                therapistTypeId = rbtType,
+                                therapistId = model["_rbt_rbt"].MutedToInt(),
+                                supervisorId = model["_rbt_sup"].MutedToInt()
+                            });
+                        }
+                    }
+
+                    if ((model["_bcba_bcba"] != "0") && (model["_bcba_sup"] != "0"))
+                    {
+                        var thisAssigment = currentAssigments.Where(t => t.therapistTypeId == bcbaType).Select(a => a).FirstOrDefault();
+                        if ((thisAssigment == null) || ((thisAssigment.therapistId != model["_bcba_bcba"].MutedToInt()) || (thisAssigment.supervisorId != model["_bcba_sup"].MutedToInt())))
+                        {
+                            newAssignments.Add(new client_assigments()
+                            {
+                                clientId = clientId,
+                                startDate = DateTime.Now,
+                                therapistTypeId = bcbaType,
+                                therapistId = model["_bcba_bcba"].MutedToInt(),
+                                supervisorId = model["_bcba_sup"].MutedToInt()
+                            });
+                        }
+                    }
+
+                    if ((model["_bcaba_bcaba"] != "0") && (model["_bcaba_sup"] != "0"))
+                    {
+                        var thisAssigment = currentAssigments.Where(t => t.therapistTypeId == bcabaType).Select(a => a).FirstOrDefault();
+                        if ((thisAssigment == null) || ((thisAssigment.therapistId != model["_bcaba_bcaba"].MutedToInt()) || (thisAssigment.supervisorId != model["_bcaba_sup"].MutedToInt())))
+                        {
+                            newAssignments.Add(new client_assigments()
+                            {
+                                clientId = clientId,
+                                startDate = DateTime.Now,
+                                therapistTypeId = rbtType,
+                                therapistId = model["_bcaba_bcaba"].MutedToInt(),
+                                supervisorId = model["_bcaba_sup"].MutedToInt()
+                            });
+                        }
+                    }
+
+                    if ((model["_analyst_analyst"] != "0") && (model["_analyst_sup"] != "0"))
+                    {
+                        var thisAssigment = currentAssigments.Where(t => t.therapistTypeId == analystType).Select(a => a).FirstOrDefault();
+                        if ((thisAssigment == null) || ((thisAssigment.therapistId != model["_analyst_analyst"].MutedToInt()) || (thisAssigment.supervisorId != model["_analyst_sup"].MutedToInt())))
+                        {
+                            newAssignments.Add(new client_assigments()
+                            {
+                                clientId = clientId,
+                                startDate = DateTime.Now,
+                                therapistTypeId = bcbaType,
+                                therapistId = model["_analyst_analyst"].MutedToInt(),
+                                supervisorId = model["_analyst_sup"].MutedToInt()
+                            });
+                        }
+                    }
+
+                    if ((model["_itds_itds"] != "0") && (model["_itds_sup"] != "0"))
+                    {
+                        var thisAssigment = currentAssigments.Where(t => t.therapistTypeId == itdsType).Select(a => a).FirstOrDefault();
+                        if ((thisAssigment == null) || ((thisAssigment.therapistId != model["_itds_itds"].MutedToInt()) || (thisAssigment.supervisorId != model["_itds_sup"].MutedToInt())))
+                        {
+                            newAssignments.Add(new client_assigments()
+                            {
+                                clientId = clientId,
+                                startDate = DateTime.Now,
+                                therapistTypeId = bcbaType,
+                                therapistId = model["_itds_itds"].MutedToInt(),
+                                supervisorId = model["_itds_sup"].MutedToInt()
+                            });
+                        }
+                    }
+
+                    
+
+                    if (newAssignments.Count>0)
+                    {
+                        var _apiClient_Assigments = new ApiClient<bool>(UnauthorizedAction);
+
+                        _apiClient_Assigments.addBody(newAssignments);
+
+                        var result = _apiClient_Assigments.Post(_apiClient_Assigments.ClientSaveAssignments, token);
+
+                    } else
+                    {
+                        TempData["_lastError"] = "Nothing to add.";
+                    }
+                    
+                    return Redirect("/client/assigment");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+            }
+
+            return Redirect("/client/assigments");
         }
 
 

@@ -22,14 +22,6 @@ namespace DataServices.Controllers
                 {
                     var identity = user.Identities.First();
                     var usr = JsonConvert.DeserializeObject<UserIdentity>(identity.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.UserData).ToList().First().Value);
-
-                    /* 
-                    var usr = new UserIdentity()
-                    {
-                        roleId = Int32.Parse(identity.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.UserData).ToList().First().Value),
-                        username = identity.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Name).ToList().First().Value,
-                    };
-                    */    
                     return JsonConvert.SerializeObject(usr);
                 }
             }

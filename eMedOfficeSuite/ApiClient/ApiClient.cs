@@ -51,6 +51,7 @@ namespace eMedOfficeSuite.ApiClient
         public readonly string ClientListUrl = "/api/client/getclientlist";
         public readonly string ClientUpdateUrl = "/api/client/updateclient";
         public readonly string ClientAssignments = "/api/client/getclientassigments";
+        public readonly string ClientSaveAssignments = "/api/client/saveclientassigments"; 
 
         /* RATES */
         public readonly string GetActiveRatesUrl = "/api/rates/getactiverates";

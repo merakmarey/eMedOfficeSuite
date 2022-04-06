@@ -21,6 +21,18 @@ namespace ExtensionMethods
             }
         }
 
+        public static int MutedToInt(this string valueString)
+        {
+            try
+            {
+                return Int32.Parse(valueString);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
         public static string MutedOnlyDate(this string dateTimeString) 
         {
             try

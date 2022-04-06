@@ -117,14 +117,7 @@ namespace DataServices.Controllers
             {
                 using (var db = new DatabaseEntities())
                 {
-                    var query = db.client_assigments.Where(c => c.endDate==null).Select(t=> new client_assigments() { 
-                         assignmentId = t.assignmentId,
-                         clientId = t.clientId,
-                         therapistId = t.therapistId,
-                         startDate = t.startDate,
-                         supervisorId = t.supervisorId,
-                         therapistTypeId = t.therapistTypeId
-                        });
+                    var query = db.client_assigments.Where(c => c.endDate==null).Select(t=> t);
                     return query.ToList();
                 }
             }
@@ -133,6 +126,33 @@ namespace DataServices.Controllers
                 Log.AddEntry(ex);
             }
             return new List<client_assigments>();
+        }
+
+        public bool SaveClientAssigments(List<client_assigments> assigments)
+        {
+            try
+            {
+                using (var db = new DatabaseEntities())
+                {
+                    foreach (var item in assigments) 
+                    {
+                        var query = db.client_assigments.Where(c => c.endDate == null && item.clientId==c.clientId && c.therapistTypeId==c.therapistTypeId)
+                            .Select(t=>t);
+                        foreach (var _assg in query)
+                        {
+                            _assg.endDate = DateTime.Now; 
+                        }
+                        db.client_assigments.Add(item);
+                        var row = db.SaveChanges();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.AddEntry(ex);
+                return false;
+            }
         }
     }
 }
