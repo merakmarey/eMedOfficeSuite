@@ -365,6 +365,11 @@ namespace eMedOfficeSuite.Controllers
                     var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
                     var result = _apiClient.Post(_apiClient.ClientAddUrl, token);
+
+                    if (!result)
+                    {
+                        TempData["_lastError"] = "There was an error, no Client was added.";
+                    }
                 }
             }
             catch (Exception ex)
@@ -400,6 +405,10 @@ namespace eMedOfficeSuite.Controllers
                     var token = Authentication.User.Claims.Where(x => x.Type == System.Security.Claims.ClaimTypes.Authentication).ToList().First().Value;
 
                     var result = _apiClient.Post(_apiClient.ClientUpdateUrl, token);
+                    if (!result)
+                    {
+                        TempData["_lastError"] = "There was an error, no Client was updated.";
+                    }
                 }
             }
             catch (Exception ex)

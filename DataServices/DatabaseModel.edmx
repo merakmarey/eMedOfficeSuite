@@ -4,22 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="assignments">
-          <Key>
-            <PropertyRef Name="therapistAssignmentId" />
-            <PropertyRef Name="therapistId" />
-            <PropertyRef Name="clientId" />
-            <PropertyRef Name="startDate" />
-          </Key>
-          <Property Name="therapistAssignmentId" Type="int" Nullable="false" />
-          <Property Name="therapistId" Type="int" Nullable="false" />
-          <Property Name="clientId" Type="int" Nullable="false" />
-          <Property Name="startDate" Type="date" Nullable="false" />
-          <Property Name="endDate" Type="date" />
-        </EntityType>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cities">
           <Key>
             <PropertyRef Name="cityId" />
@@ -249,6 +234,7 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <Property Name="requirementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="requirementName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="requirementValidPeriodMonths" Type="int" Nullable="false" />
+          <Property Name="requirementAppliesTo" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="therapist_status">
           <Key>
@@ -302,162 +288,20 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <EntitySet Name="therapist_types" EntityType="Self.therapist_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_roles" EntityType="Self.user_roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="assignments" EntityType="Self.assignments" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [assignments].[therapistAssignmentId] AS [therapistAssignmentId], 
-    [assignments].[therapistId] AS [therapistId], 
-    [assignments].[clientId] AS [clientId], 
-    [assignments].[startDate] AS [startDate], 
-    [assignments].[endDate] AS [endDate]
-    FROM [dbo].[assignments] AS [assignments]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="user_roles">
-          <Key>
-            <PropertyRef Name="user_role_id" />
-          </Key>
-          <Property Name="user_role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_role_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="role" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="user_roles" EntityType="Self.user_roles" />
-          <EntitySet Name="users" EntityType="Self.user" />
-          <EntitySet Name="genders" EntityType="DatabaseModel.gender" />
-          <EntitySet Name="tax_types" EntityType="DatabaseModel.tax_types" />
-          <EntitySet Name="therapist_types" EntityType="DatabaseModel.therapist_types" />
-          <EntitySet Name="states" EntityType="DatabaseModel.state" />
-          <EntitySet Name="therapist_status" EntityType="DatabaseModel.therapist_status" />
-          <EntitySet Name="therapists" EntityType="DatabaseModel.therapist" />
-          <EntitySet Name="cities" EntityType="DatabaseModel.city" />
-          <EntitySet Name="therapist_requirements" EntityType="DatabaseModel.therapist_requirements" />
-          <EntitySet Name="therapist_requirements_types" EntityType="DatabaseModel.therapist_requirements_types" />
-          <EntitySet Name="clients" EntityType="DatabaseModel.client" />
-          <EntitySet Name="payerTypes" EntityType="DatabaseModel.payerType" />
-          <EntitySet Name="relationshipTypes" EntityType="DatabaseModel.relationshipType" />
-          <EntitySet Name="service_locationTypes" EntityType="DatabaseModel.service_locationTypes" />
-          <EntitySet Name="directors" EntityType="DatabaseModel.director" />
-          <EntitySet Name="rateTypes" EntityType="DatabaseModel.rateType" />
-          <EntitySet Name="assignments" EntityType="DatabaseModel.assignment" />
-          <EntitySet Name="documentTypes" EntityType="DatabaseModel.documentType" />
-          <EntitySet Name="therapist_rates" EntityType="DatabaseModel.therapist_rates" />
-          <EntitySet Name="client_assigments" EntityType="DatabaseModel.client_assigments" />
-        </EntityContainer>
-        <EntityType Name="gender">
-          <Key>
-            <PropertyRef Name="genderId" />
-          </Key>
-          <Property Name="genderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tax_types">
-          <Key>
-            <PropertyRef Name="taxtypeid" />
-          </Key>
-          <Property Name="taxtypeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="taxtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="therapist_types">
-          <Key>
-            <PropertyRef Name="therapisttypeId" />
-          </Key>
-          <Property Name="therapisttypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="therapisttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="state">
-          <Key>
-            <PropertyRef Name="geostateid" />
-          </Key>
-          <Property Name="geostateid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="statenameshort" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="statenamelong" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="countryid" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="therapist_status">
-          <Key>
-            <PropertyRef Name="therapist_statusId" />
-          </Key>
-          <Property Name="therapist_statusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="therapiststatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="therapist">
-          <Key>
-            <PropertyRef Name="therapistId" />
-          </Key>
-          <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="therapistTaxType" Type="Int32" />
-          <Property Name="therapistType" Type="Int32" />
-          <Property Name="birthdate" Type="DateTime" Precision="0" />
-          <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="gender" Type="Int32" />
-          <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="city" Type="Int32" />
-          <Property Name="state" Type="Int32" />
-          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="country" Type="Int32" />
-          <Property Name="hiredate" Type="DateTime" Precision="0" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="supervisorId" Type="Int32" />
-          <Property Name="terminationdate" Type="DateTime" Precision="0" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="npi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="city">
           <Key>
             <PropertyRef Name="cityId" />
           </Key>
           <Property Name="cityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="countryId" Type="Int32" />
           <Property Name="stateId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="therapist_requirements">
-          <Key>
-            <PropertyRef Name="therapistRequirementId" />
-          </Key>
-          <Property Name="therapistRequirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="exempt" Type="Boolean" />
-          <Property Name="received" Type="Boolean" />
-          <Property Name="dateUpdated" Type="DateTime" Precision="3" />
-          <Property Name="datafile" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="fileformat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="expiresOn" Type="DateTime" Precision="3" />
-          <Property Name="requirementTypeId" Type="Int32" Nullable="false" />
-          <Property Name="therapistId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="therapist_requirements_types">
-          <Key>
-            <PropertyRef Name="requirementId" />
-          </Key>
-          <Property Name="requirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="requirementName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="requirementValidPeriodMonths" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="client">
           <Key>
@@ -530,12 +374,55 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <Property Name="weeklyTechnicianHours" Type="Decimal" Precision="2" Scale="2" />
           <Property Name="terminationDate" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="client_assigments">
+          <Key>
+            <PropertyRef Name="assignmentId" />
+          </Key>
+          <Property Name="assignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clientId" Type="Int32" />
+          <Property Name="therapistTypeId" Type="Int32" />
+          <Property Name="therapistId" Type="Int32" />
+          <Property Name="supervisorId" Type="Int32" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="director">
+          <Key>
+            <PropertyRef Name="directorId" />
+          </Key>
+          <Property Name="directorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="directorFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="directorMiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="directorLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="documentType">
+          <Key>
+            <PropertyRef Name="documentTypeId" />
+          </Key>
+          <Property Name="documentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentTypeName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gender">
+          <Key>
+            <PropertyRef Name="genderId" />
+          </Key>
+          <Property Name="genderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="payerType">
           <Key>
             <PropertyRef Name="payerId" />
           </Key>
           <Property Name="payerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="payerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rateType">
+          <Key>
+            <PropertyRef Name="rateTypeId" />
+          </Key>
+          <Property Name="rateTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="allowMultiple" Type="Boolean" />
         </EntityType>
         <EntityType Name="relationshipType">
           <Key>
@@ -551,42 +438,56 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <Property Name="serviceLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="serviceLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="director">
+        <EntityType Name="state">
           <Key>
-            <PropertyRef Name="directorId" />
+            <PropertyRef Name="geostateid" />
           </Key>
-          <Property Name="directorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="directorFirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="directorMiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="directorLastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="geostateid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statenameshort" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="statenamelong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="rateType">
+        <EntityType Name="tax_types">
           <Key>
-            <PropertyRef Name="rateTypeId" />
+            <PropertyRef Name="taxtypeid" />
           </Key>
-          <Property Name="rateTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="allowMultiple" Type="Boolean" />
+          <Property Name="taxtypeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taxtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="assignment">
+        <EntityType Name="therapist">
           <Key>
-            <PropertyRef Name="therapistAssignmentId" />
             <PropertyRef Name="therapistId" />
-            <PropertyRef Name="clientId" />
-            <PropertyRef Name="startDate" />
           </Key>
-          <Property Name="therapistAssignmentId" Type="Int32" Nullable="false" />
-          <Property Name="therapistId" Type="Int32" Nullable="false" />
-          <Property Name="clientId" Type="Int32" Nullable="false" />
-          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="endDate" Type="DateTime" Precision="0" />
-        </EntityType>
-        <EntityType Name="documentType">
-          <Key>
-            <PropertyRef Name="documentTypeId" />
-          </Key>
-          <Property Name="documentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="documentTypeName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="therapistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="companyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="therapistLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="therapistTaxType" Type="Int32" />
+          <Property Name="therapistType" Type="Int32" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="ssn" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="languages" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="Int32" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="hiredate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="supervisorId" Type="Int32" />
+          <Property Name="terminationdate" Type="DateTime" Precision="0" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fein" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="npi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="license" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="provider" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="therapist_rates">
           <Key>
@@ -596,29 +497,356 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
           <Property Name="therapistId" Type="Int32" Nullable="false" />
           <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="endDate" Type="DateTime" Precision="0" />
-          <Property Name="rateValue" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="rateValue" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
           <Property Name="setByUserId" Type="Int32" Nullable="false" />
           <Property Name="rateType" Type="Int32" Nullable="false" />
           <Property Name="documentId" Type="Int32" />
         </EntityType>
-        <EntityType Name="client_assigments">
+        <EntityType Name="therapist_requirements">
           <Key>
-            <PropertyRef Name="assignmentId" />
+            <PropertyRef Name="therapistRequirementId" />
           </Key>
-          <Property Name="assignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="clientId" Type="Int32" />
-          <Property Name="therapistTypeId" Type="Int32" />
-          <Property Name="therapistId" Type="Int32" />
-          <Property Name="supervisorId" Type="Int32" />
-          <Property Name="startDate" Type="DateTime" Precision="0" />
-          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="therapistRequirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="exempt" Type="Boolean" />
+          <Property Name="received" Type="Boolean" />
+          <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+          <Property Name="datafile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fileformat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="expiresOn" Type="DateTime" Precision="3" />
+          <Property Name="requirementTypeId" Type="Int32" Nullable="false" />
+          <Property Name="therapistId" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="therapist_requirements_types">
+          <Key>
+            <PropertyRef Name="requirementId" />
+          </Key>
+          <Property Name="requirementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="requirementName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="requirementValidPeriodMonths" Type="Int32" Nullable="false" />
+          <Property Name="requirementAppliesTo" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="therapist_status">
+          <Key>
+            <PropertyRef Name="therapist_statusId" />
+          </Key>
+          <Property Name="therapist_statusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="therapiststatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="therapist_types">
+          <Key>
+            <PropertyRef Name="therapisttypeId" />
+          </Key>
+          <Property Name="therapisttypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="therapisttype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user_roles">
+          <Key>
+            <PropertyRef Name="user_role_id" />
+          </Key>
+          <Property Name="user_role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_role_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.city" />
+          <EntitySet Name="clients" EntityType="Self.client" />
+          <EntitySet Name="client_assigments" EntityType="Self.client_assigments" />
+          <EntitySet Name="directors" EntityType="Self.director" />
+          <EntitySet Name="documentTypes" EntityType="Self.documentType" />
+          <EntitySet Name="genders" EntityType="Self.gender" />
+          <EntitySet Name="payerTypes" EntityType="Self.payerType" />
+          <EntitySet Name="rateTypes" EntityType="Self.rateType" />
+          <EntitySet Name="relationshipTypes" EntityType="Self.relationshipType" />
+          <EntitySet Name="service_locationTypes" EntityType="Self.service_locationTypes" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="tax_types" EntityType="Self.tax_types" />
+          <EntitySet Name="therapists" EntityType="Self.therapist" />
+          <EntitySet Name="therapist_rates" EntityType="Self.therapist_rates" />
+          <EntitySet Name="therapist_requirements" EntityType="Self.therapist_requirements" />
+          <EntitySet Name="therapist_requirements_types" EntityType="Self.therapist_requirements_types" />
+          <EntitySet Name="therapist_status" EntityType="Self.therapist_status" />
+          <EntitySet Name="therapist_types" EntityType="Self.therapist_types" />
+          <EntitySet Name="user_roles" EntityType="Self.user_roles" />
+          <EntitySet Name="users" EntityType="Self.user" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="DatabaseModel.city">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="DatabaseModel.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="directorId" ColumnName="directorId" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="primaryPayerId" ColumnName="primaryPayerId" />
+                <ScalarProperty Name="InsuraceCopayment" ColumnName="InsuraceCopayment" />
+                <ScalarProperty Name="relationshipToPatientId" ColumnName="relationshipToPatientId" />
+                <ScalarProperty Name="insuranceId" ColumnName="insuranceId" />
+                <ScalarProperty Name="insuredFirstName" ColumnName="insuredFirstName" />
+                <ScalarProperty Name="insuredMiddleName" ColumnName="insuredMiddleName" />
+                <ScalarProperty Name="insuredLastName" ColumnName="insuredLastName" />
+                <ScalarProperty Name="primaryInsuredGender" ColumnName="primaryInsuredGender" />
+                <ScalarProperty Name="insuredAddress1" ColumnName="insuredAddress1" />
+                <ScalarProperty Name="insuredAddress2" ColumnName="insuredAddress2" />
+                <ScalarProperty Name="insuredCityId" ColumnName="insuredCityId" />
+                <ScalarProperty Name="insuredStateId" ColumnName="insuredStateId" />
+                <ScalarProperty Name="insuredZip" ColumnName="insuredZip" />
+                <ScalarProperty Name="primaryInsuredBirthdate" ColumnName="primaryInsuredBirthdate" />
+                <ScalarProperty Name="insuredPhone" ColumnName="insuredPhone" />
+                <ScalarProperty Name="secondaryPayerId" ColumnName="secondaryPayerId" />
+                <ScalarProperty Name="secondaryInsuranceId" ColumnName="secondaryInsuranceId" />
+                <ScalarProperty Name="secondaryCopayment" ColumnName="secondaryCopayment" />
+                <ScalarProperty Name="secondaryRelatioshipToPatient" ColumnName="secondaryRelatioshipToPatient" />
+                <ScalarProperty Name="secondaryFirstName" ColumnName="secondaryFirstName" />
+                <ScalarProperty Name="secondaryMiddleName" ColumnName="secondaryMiddleName" />
+                <ScalarProperty Name="secondayLastName" ColumnName="secondayLastName" />
+                <ScalarProperty Name="secondaryInsuredGender" ColumnName="secondaryInsuredGender" />
+                <ScalarProperty Name="secondaryInsuredAddress1" ColumnName="secondaryInsuredAddress1" />
+                <ScalarProperty Name="secondaryInsuredAddress2" ColumnName="secondaryInsuredAddress2" />
+                <ScalarProperty Name="secondaryInsuredCityId" ColumnName="secondaryInsuredCityId" />
+                <ScalarProperty Name="secondaryInsuredStateId" ColumnName="secondaryInsuredStateId" />
+                <ScalarProperty Name="secondaryInsuredZip" ColumnName="secondaryInsuredZip" />
+                <ScalarProperty Name="secondaryInsuredBirthdate" ColumnName="secondaryInsuredBirthdate" />
+                <ScalarProperty Name="secondaryInsuredPhone" ColumnName="secondaryInsuredPhone" />
+                <ScalarProperty Name="clientDiagnosedCodes" ColumnName="clientDiagnosedCodes" />
+                <ScalarProperty Name="referringPhysicianNPI" ColumnName="referringPhysicianNPI" />
+                <ScalarProperty Name="referringProviderMedicaid" ColumnName="referringProviderMedicaid" />
+                <ScalarProperty Name="referringPhysicianFirstName" ColumnName="referringPhysicianFirstName" />
+                <ScalarProperty Name="referringPhysicianMiddleName" ColumnName="referringPhysicianMiddleName" />
+                <ScalarProperty Name="referringPhysicianLastName" ColumnName="referringPhysicianLastName" />
+                <ScalarProperty Name="referringPhysicianPhone" ColumnName="referringPhysicianPhone" />
+                <ScalarProperty Name="referringPhysicianEmail" ColumnName="referringPhysicianEmail" />
+                <ScalarProperty Name="referalExpirationDate" ColumnName="referalExpirationDate" />
+                <ScalarProperty Name="mdLicenseNumber" ColumnName="mdLicenseNumber" />
+                <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+                <ScalarProperty Name="startOfServiceDate" ColumnName="startOfServiceDate" />
+                <ScalarProperty Name="initialAssesmentDate" ColumnName="initialAssesmentDate" />
+                <ScalarProperty Name="initialBASPDate" ColumnName="initialBASPDate" />
+                <ScalarProperty Name="coordinatorApprovalDate" ColumnName="coordinatorApprovalDate" />
+                <ScalarProperty Name="cordinatorEmail" ColumnName="cordinatorEmail" />
+                <ScalarProperty Name="coordinatorPhone" ColumnName="coordinatorPhone" />
+                <ScalarProperty Name="supportPlanDate" ColumnName="supportPlanDate" />
+                <ScalarProperty Name="weeklyAnalystHours" ColumnName="weeklyAnalystHours" />
+                <ScalarProperty Name="weeklyTechnicianHours" ColumnName="weeklyTechnicianHours" />
+                <ScalarProperty Name="terminationDate" ColumnName="terminationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client_assigments">
+            <EntityTypeMapping TypeName="DatabaseModel.client_assigments">
+              <MappingFragment StoreEntitySet="client_assigments">
+                <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="therapistTypeId" ColumnName="therapistTypeId" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="directors">
+            <EntityTypeMapping TypeName="DatabaseModel.director">
+              <MappingFragment StoreEntitySet="director">
+                <ScalarProperty Name="directorId" ColumnName="directorId" />
+                <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
+                <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
+                <ScalarProperty Name="directorLastName" ColumnName="directorLastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.documentType">
+              <MappingFragment StoreEntitySet="documentType">
+                <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
+                <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genders">
+            <EntityTypeMapping TypeName="DatabaseModel.gender">
+              <MappingFragment StoreEntitySet="gender">
+                <ScalarProperty Name="genderId" ColumnName="genderId" />
+                <ScalarProperty Name="gender1" ColumnName="gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payerTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.payerType">
+              <MappingFragment StoreEntitySet="payerTypes">
+                <ScalarProperty Name="payerId" ColumnName="payerId" />
+                <ScalarProperty Name="payerName" ColumnName="payerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rateTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.rateType">
+              <MappingFragment StoreEntitySet="rateTypes">
+                <ScalarProperty Name="rateTypeId" ColumnName="rateTypeId" />
+                <ScalarProperty Name="rateName" ColumnName="rateName" />
+                <ScalarProperty Name="allowMultiple" ColumnName="allowMultiple" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relationshipTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.relationshipType">
+              <MappingFragment StoreEntitySet="relationshipType">
+                <ScalarProperty Name="relationshipId" ColumnName="relationshipId" />
+                <ScalarProperty Name="relationship" ColumnName="relationship" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service_locationTypes">
+            <EntityTypeMapping TypeName="DatabaseModel.service_locationTypes">
+              <MappingFragment StoreEntitySet="service_locationTypes">
+                <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+                <ScalarProperty Name="serviceLocation" ColumnName="serviceLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="DatabaseModel.state">
+              <MappingFragment StoreEntitySet="states">
+                <ScalarProperty Name="geostateid" ColumnName="geostateid" />
+                <ScalarProperty Name="statenameshort" ColumnName="statenameshort" />
+                <ScalarProperty Name="statenamelong" ColumnName="statenamelong" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tax_types">
+            <EntityTypeMapping TypeName="DatabaseModel.tax_types">
+              <MappingFragment StoreEntitySet="tax_types">
+                <ScalarProperty Name="taxtypeid" ColumnName="taxtypeid" />
+                <ScalarProperty Name="taxtype" ColumnName="taxtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapists">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist">
+              <MappingFragment StoreEntitySet="therapist">
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
+                <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
+                <ScalarProperty Name="therapistType" ColumnName="therapistType" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="ssn" ColumnName="ssn" />
+                <ScalarProperty Name="languages" ColumnName="languages" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+                <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="fein" ColumnName="fein" />
+                <ScalarProperty Name="npi" ColumnName="npi" />
+                <ScalarProperty Name="license" ColumnName="license" />
+                <ScalarProperty Name="provider" ColumnName="provider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_rates">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
+              <MappingFragment StoreEntitySet="therapist_rates">
+                <ScalarProperty Name="rateId" ColumnName="rateId" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="rateValue" ColumnName="rateValue" />
+                <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
+                <ScalarProperty Name="rateType" ColumnName="rateType" />
+                <ScalarProperty Name="documentId" ColumnName="documentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_requirements">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements">
+              <MappingFragment StoreEntitySet="therapist_requirements">
+                <ScalarProperty Name="therapistRequirementId" ColumnName="therapistRequirementId" />
+                <ScalarProperty Name="exempt" ColumnName="exempt" />
+                <ScalarProperty Name="received" ColumnName="received" />
+                <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+                <ScalarProperty Name="datafile" ColumnName="datafile" />
+                <ScalarProperty Name="fileformat" ColumnName="fileformat" />
+                <ScalarProperty Name="expiresOn" ColumnName="expiresOn" />
+                <ScalarProperty Name="requirementTypeId" ColumnName="requirementTypeId" />
+                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_requirements_types">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements_types">
+              <MappingFragment StoreEntitySet="therapist_requirements_types">
+                <ScalarProperty Name="requirementId" ColumnName="requirementId" />
+                <ScalarProperty Name="requirementName" ColumnName="requirementName" />
+                <ScalarProperty Name="requirementValidPeriodMonths" ColumnName="requirementValidPeriodMonths" />
+                <ScalarProperty Name="requirementAppliesTo" ColumnName="requirementAppliesTo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_status">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_status">
+              <MappingFragment StoreEntitySet="therapist_status">
+                <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
+                <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="therapist_types">
+            <EntityTypeMapping TypeName="DatabaseModel.therapist_types">
+              <MappingFragment StoreEntitySet="therapist_types">
+                <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
+                <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="user_roles">
             <EntityTypeMapping TypeName="DatabaseModel.user_roles">
               <MappingFragment StoreEntitySet="user_roles">
@@ -635,279 +863,6 @@ warning 6002: The table/view 'abbothealth.dbo.assignments' does not have a prima
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="active" ColumnName="active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="genders">
-            <EntityTypeMapping TypeName="DatabaseModel.gender">
-              <MappingFragment StoreEntitySet="gender">
-                <ScalarProperty Name="gender1" ColumnName="gender" />
-                <ScalarProperty Name="genderId" ColumnName="genderId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tax_types">
-            <EntityTypeMapping TypeName="DatabaseModel.tax_types">
-              <MappingFragment StoreEntitySet="tax_types">
-                <ScalarProperty Name="taxtype" ColumnName="taxtype" />
-                <ScalarProperty Name="taxtypeid" ColumnName="taxtypeid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapist_types">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist_types">
-              <MappingFragment StoreEntitySet="therapist_types">
-                <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
-                <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="states">
-            <EntityTypeMapping TypeName="DatabaseModel.state">
-              <MappingFragment StoreEntitySet="states">
-                <ScalarProperty Name="countryid" ColumnName="countryid" />
-                <ScalarProperty Name="statenamelong" ColumnName="statenamelong" />
-                <ScalarProperty Name="statenameshort" ColumnName="statenameshort" />
-                <ScalarProperty Name="geostateid" ColumnName="geostateid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapist_status">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist_status">
-              <MappingFragment StoreEntitySet="therapist_status">
-                <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
-                <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapists">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist">
-              <MappingFragment StoreEntitySet="therapist">
-                <ScalarProperty Name="provider" ColumnName="provider" />
-                <ScalarProperty Name="license" ColumnName="license" />
-                <ScalarProperty Name="npi" ColumnName="npi" />
-                <ScalarProperty Name="fein" ColumnName="fein" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
-                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="hiredate" ColumnName="hiredate" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="zip" ColumnName="zip" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="address1" ColumnName="address1" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="languages" ColumnName="languages" />
-                <ScalarProperty Name="ssn" ColumnName="ssn" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="education" ColumnName="education" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="therapistType" ColumnName="therapistType" />
-                <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
-                <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
-                <ScalarProperty Name="companyName" ColumnName="companyName" />
-                <ScalarProperty Name="middleName" ColumnName="middleName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="cities">
-            <EntityTypeMapping TypeName="DatabaseModel.city">
-              <MappingFragment StoreEntitySet="cities">
-                <ScalarProperty Name="stateId" ColumnName="stateId" />
-                <ScalarProperty Name="countryId" ColumnName="countryId" />
-                <ScalarProperty Name="cityName" ColumnName="cityName" />
-                <ScalarProperty Name="cityId" ColumnName="cityId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapist_requirements">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements">
-              <MappingFragment StoreEntitySet="therapist_requirements">
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-                <ScalarProperty Name="requirementTypeId" ColumnName="requirementTypeId" />
-                <ScalarProperty Name="expiresOn" ColumnName="expiresOn" />
-                <ScalarProperty Name="fileformat" ColumnName="fileformat" />
-                <ScalarProperty Name="datafile" ColumnName="datafile" />
-                <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
-                <ScalarProperty Name="received" ColumnName="received" />
-                <ScalarProperty Name="exempt" ColumnName="exempt" />
-                <ScalarProperty Name="therapistRequirementId" ColumnName="therapistRequirementId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapist_requirements_types">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements_types">
-              <MappingFragment StoreEntitySet="therapist_requirements_types">
-                <ScalarProperty Name="requirementValidPeriodMonths" ColumnName="requirementValidPeriodMonths" />
-                <ScalarProperty Name="requirementName" ColumnName="requirementName" />
-                <ScalarProperty Name="requirementId" ColumnName="requirementId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clients">
-            <EntityTypeMapping TypeName="DatabaseModel.client">
-              <MappingFragment StoreEntitySet="client">
-                <ScalarProperty Name="terminationDate" ColumnName="terminationDate" />
-                <ScalarProperty Name="weeklyTechnicianHours" ColumnName="weeklyTechnicianHours" />
-                <ScalarProperty Name="weeklyAnalystHours" ColumnName="weeklyAnalystHours" />
-                <ScalarProperty Name="supportPlanDate" ColumnName="supportPlanDate" />
-                <ScalarProperty Name="coordinatorPhone" ColumnName="coordinatorPhone" />
-                <ScalarProperty Name="cordinatorEmail" ColumnName="cordinatorEmail" />
-                <ScalarProperty Name="coordinatorApprovalDate" ColumnName="coordinatorApprovalDate" />
-                <ScalarProperty Name="initialBASPDate" ColumnName="initialBASPDate" />
-                <ScalarProperty Name="initialAssesmentDate" ColumnName="initialAssesmentDate" />
-                <ScalarProperty Name="startOfServiceDate" ColumnName="startOfServiceDate" />
-                <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
-                <ScalarProperty Name="mdLicenseNumber" ColumnName="mdLicenseNumber" />
-                <ScalarProperty Name="referalExpirationDate" ColumnName="referalExpirationDate" />
-                <ScalarProperty Name="referringPhysicianEmail" ColumnName="referringPhysicianEmail" />
-                <ScalarProperty Name="referringPhysicianPhone" ColumnName="referringPhysicianPhone" />
-                <ScalarProperty Name="referringPhysicianLastName" ColumnName="referringPhysicianLastName" />
-                <ScalarProperty Name="referringPhysicianMiddleName" ColumnName="referringPhysicianMiddleName" />
-                <ScalarProperty Name="referringPhysicianFirstName" ColumnName="referringPhysicianFirstName" />
-                <ScalarProperty Name="referringProviderMedicaid" ColumnName="referringProviderMedicaid" />
-                <ScalarProperty Name="referringPhysicianNPI" ColumnName="referringPhysicianNPI" />
-                <ScalarProperty Name="clientDiagnosedCodes" ColumnName="clientDiagnosedCodes" />
-                <ScalarProperty Name="secondaryInsuredPhone" ColumnName="secondaryInsuredPhone" />
-                <ScalarProperty Name="secondaryInsuredBirthdate" ColumnName="secondaryInsuredBirthdate" />
-                <ScalarProperty Name="secondaryInsuredZip" ColumnName="secondaryInsuredZip" />
-                <ScalarProperty Name="secondaryInsuredStateId" ColumnName="secondaryInsuredStateId" />
-                <ScalarProperty Name="secondaryInsuredCityId" ColumnName="secondaryInsuredCityId" />
-                <ScalarProperty Name="secondaryInsuredAddress2" ColumnName="secondaryInsuredAddress2" />
-                <ScalarProperty Name="secondaryInsuredAddress1" ColumnName="secondaryInsuredAddress1" />
-                <ScalarProperty Name="secondaryInsuredGender" ColumnName="secondaryInsuredGender" />
-                <ScalarProperty Name="secondayLastName" ColumnName="secondayLastName" />
-                <ScalarProperty Name="secondaryMiddleName" ColumnName="secondaryMiddleName" />
-                <ScalarProperty Name="secondaryFirstName" ColumnName="secondaryFirstName" />
-                <ScalarProperty Name="secondaryRelatioshipToPatient" ColumnName="secondaryRelatioshipToPatient" />
-                <ScalarProperty Name="secondaryCopayment" ColumnName="secondaryCopayment" />
-                <ScalarProperty Name="secondaryInsuranceId" ColumnName="secondaryInsuranceId" />
-                <ScalarProperty Name="secondaryPayerId" ColumnName="secondaryPayerId" />
-                <ScalarProperty Name="insuredPhone" ColumnName="insuredPhone" />
-                <ScalarProperty Name="primaryInsuredBirthdate" ColumnName="primaryInsuredBirthdate" />
-                <ScalarProperty Name="insuredZip" ColumnName="insuredZip" />
-                <ScalarProperty Name="insuredStateId" ColumnName="insuredStateId" />
-                <ScalarProperty Name="insuredCityId" ColumnName="insuredCityId" />
-                <ScalarProperty Name="insuredAddress2" ColumnName="insuredAddress2" />
-                <ScalarProperty Name="insuredAddress1" ColumnName="insuredAddress1" />
-                <ScalarProperty Name="primaryInsuredGender" ColumnName="primaryInsuredGender" />
-                <ScalarProperty Name="insuredLastName" ColumnName="insuredLastName" />
-                <ScalarProperty Name="insuredMiddleName" ColumnName="insuredMiddleName" />
-                <ScalarProperty Name="insuredFirstName" ColumnName="insuredFirstName" />
-                <ScalarProperty Name="insuranceId" ColumnName="insuranceId" />
-                <ScalarProperty Name="relationshipToPatientId" ColumnName="relationshipToPatientId" />
-                <ScalarProperty Name="InsuraceCopayment" ColumnName="InsuraceCopayment" />
-                <ScalarProperty Name="primaryPayerId" ColumnName="primaryPayerId" />
-                <ScalarProperty Name="zip" ColumnName="zip" />
-                <ScalarProperty Name="stateId" ColumnName="stateId" />
-                <ScalarProperty Name="cityId" ColumnName="cityId" />
-                <ScalarProperty Name="address2" ColumnName="address2" />
-                <ScalarProperty Name="address1" ColumnName="address1" />
-                <ScalarProperty Name="ssn" ColumnName="ssn" />
-                <ScalarProperty Name="genderId" ColumnName="genderId" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="middleName" ColumnName="middleName" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="directorId" ColumnName="directorId" />
-                <ScalarProperty Name="clientId" ColumnName="clientId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="payerTypes">
-            <EntityTypeMapping TypeName="DatabaseModel.payerType">
-              <MappingFragment StoreEntitySet="payerTypes">
-                <ScalarProperty Name="payerName" ColumnName="payerName" />
-                <ScalarProperty Name="payerId" ColumnName="payerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="relationshipTypes">
-            <EntityTypeMapping TypeName="DatabaseModel.relationshipType">
-              <MappingFragment StoreEntitySet="relationshipType">
-                <ScalarProperty Name="relationship" ColumnName="relationship" />
-                <ScalarProperty Name="relationshipId" ColumnName="relationshipId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="service_locationTypes">
-            <EntityTypeMapping TypeName="DatabaseModel.service_locationTypes">
-              <MappingFragment StoreEntitySet="service_locationTypes">
-                <ScalarProperty Name="serviceLocation" ColumnName="serviceLocation" />
-                <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="directors">
-            <EntityTypeMapping TypeName="DatabaseModel.director">
-              <MappingFragment StoreEntitySet="director">
-                <ScalarProperty Name="directorLastName" ColumnName="directorLastName" />
-                <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
-                <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
-                <ScalarProperty Name="directorId" ColumnName="directorId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="rateTypes">
-            <EntityTypeMapping TypeName="DatabaseModel.rateType">
-              <MappingFragment StoreEntitySet="rateTypes">
-                <ScalarProperty Name="allowMultiple" ColumnName="allowMultiple" />
-                <ScalarProperty Name="rateName" ColumnName="rateName" />
-                <ScalarProperty Name="rateTypeId" ColumnName="rateTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="assignments">
-            <EntityTypeMapping TypeName="DatabaseModel.assignment">
-              <MappingFragment StoreEntitySet="assignments">
-                <ScalarProperty Name="endDate" ColumnName="endDate" />
-                <ScalarProperty Name="startDate" ColumnName="startDate" />
-                <ScalarProperty Name="clientId" ColumnName="clientId" />
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-                <ScalarProperty Name="therapistAssignmentId" ColumnName="therapistAssignmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="documentTypes">
-            <EntityTypeMapping TypeName="DatabaseModel.documentType">
-              <MappingFragment StoreEntitySet="documentType">
-                <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
-                <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="therapist_rates">
-            <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
-              <MappingFragment StoreEntitySet="therapist_rates">
-                <ScalarProperty Name="documentId" ColumnName="documentId" />
-                <ScalarProperty Name="rateType" ColumnName="rateType" />
-                <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
-                <ScalarProperty Name="rateValue" ColumnName="rateValue" />
-                <ScalarProperty Name="endDate" ColumnName="endDate" />
-                <ScalarProperty Name="startDate" ColumnName="startDate" />
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-                <ScalarProperty Name="rateId" ColumnName="rateId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="client_assigments">
-            <EntityTypeMapping TypeName="DatabaseModel.client_assigments">
-              <MappingFragment StoreEntitySet="client_assigments">
-                <ScalarProperty Name="endDate" ColumnName="endDate" />
-                <ScalarProperty Name="startDate" ColumnName="startDate" />
-                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
-                <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-                <ScalarProperty Name="therapistTypeId" ColumnName="therapistTypeId" />
-                <ScalarProperty Name="clientId" ColumnName="clientId" />
-                <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

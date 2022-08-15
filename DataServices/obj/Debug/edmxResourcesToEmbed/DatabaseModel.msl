@@ -1,6 +1,269 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="DatabaseModel.city">
+        <MappingFragment StoreEntitySet="cities">
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+          <ScalarProperty Name="countryId" ColumnName="countryId" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="DatabaseModel.client">
+        <MappingFragment StoreEntitySet="client">
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="directorId" ColumnName="directorId" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="ssn" ColumnName="ssn" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="primaryPayerId" ColumnName="primaryPayerId" />
+          <ScalarProperty Name="InsuraceCopayment" ColumnName="InsuraceCopayment" />
+          <ScalarProperty Name="relationshipToPatientId" ColumnName="relationshipToPatientId" />
+          <ScalarProperty Name="insuranceId" ColumnName="insuranceId" />
+          <ScalarProperty Name="insuredFirstName" ColumnName="insuredFirstName" />
+          <ScalarProperty Name="insuredMiddleName" ColumnName="insuredMiddleName" />
+          <ScalarProperty Name="insuredLastName" ColumnName="insuredLastName" />
+          <ScalarProperty Name="primaryInsuredGender" ColumnName="primaryInsuredGender" />
+          <ScalarProperty Name="insuredAddress1" ColumnName="insuredAddress1" />
+          <ScalarProperty Name="insuredAddress2" ColumnName="insuredAddress2" />
+          <ScalarProperty Name="insuredCityId" ColumnName="insuredCityId" />
+          <ScalarProperty Name="insuredStateId" ColumnName="insuredStateId" />
+          <ScalarProperty Name="insuredZip" ColumnName="insuredZip" />
+          <ScalarProperty Name="primaryInsuredBirthdate" ColumnName="primaryInsuredBirthdate" />
+          <ScalarProperty Name="insuredPhone" ColumnName="insuredPhone" />
+          <ScalarProperty Name="secondaryPayerId" ColumnName="secondaryPayerId" />
+          <ScalarProperty Name="secondaryInsuranceId" ColumnName="secondaryInsuranceId" />
+          <ScalarProperty Name="secondaryCopayment" ColumnName="secondaryCopayment" />
+          <ScalarProperty Name="secondaryRelatioshipToPatient" ColumnName="secondaryRelatioshipToPatient" />
+          <ScalarProperty Name="secondaryFirstName" ColumnName="secondaryFirstName" />
+          <ScalarProperty Name="secondaryMiddleName" ColumnName="secondaryMiddleName" />
+          <ScalarProperty Name="secondayLastName" ColumnName="secondayLastName" />
+          <ScalarProperty Name="secondaryInsuredGender" ColumnName="secondaryInsuredGender" />
+          <ScalarProperty Name="secondaryInsuredAddress1" ColumnName="secondaryInsuredAddress1" />
+          <ScalarProperty Name="secondaryInsuredAddress2" ColumnName="secondaryInsuredAddress2" />
+          <ScalarProperty Name="secondaryInsuredCityId" ColumnName="secondaryInsuredCityId" />
+          <ScalarProperty Name="secondaryInsuredStateId" ColumnName="secondaryInsuredStateId" />
+          <ScalarProperty Name="secondaryInsuredZip" ColumnName="secondaryInsuredZip" />
+          <ScalarProperty Name="secondaryInsuredBirthdate" ColumnName="secondaryInsuredBirthdate" />
+          <ScalarProperty Name="secondaryInsuredPhone" ColumnName="secondaryInsuredPhone" />
+          <ScalarProperty Name="clientDiagnosedCodes" ColumnName="clientDiagnosedCodes" />
+          <ScalarProperty Name="referringPhysicianNPI" ColumnName="referringPhysicianNPI" />
+          <ScalarProperty Name="referringProviderMedicaid" ColumnName="referringProviderMedicaid" />
+          <ScalarProperty Name="referringPhysicianFirstName" ColumnName="referringPhysicianFirstName" />
+          <ScalarProperty Name="referringPhysicianMiddleName" ColumnName="referringPhysicianMiddleName" />
+          <ScalarProperty Name="referringPhysicianLastName" ColumnName="referringPhysicianLastName" />
+          <ScalarProperty Name="referringPhysicianPhone" ColumnName="referringPhysicianPhone" />
+          <ScalarProperty Name="referringPhysicianEmail" ColumnName="referringPhysicianEmail" />
+          <ScalarProperty Name="referalExpirationDate" ColumnName="referalExpirationDate" />
+          <ScalarProperty Name="mdLicenseNumber" ColumnName="mdLicenseNumber" />
+          <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+          <ScalarProperty Name="startOfServiceDate" ColumnName="startOfServiceDate" />
+          <ScalarProperty Name="initialAssesmentDate" ColumnName="initialAssesmentDate" />
+          <ScalarProperty Name="initialBASPDate" ColumnName="initialBASPDate" />
+          <ScalarProperty Name="coordinatorApprovalDate" ColumnName="coordinatorApprovalDate" />
+          <ScalarProperty Name="cordinatorEmail" ColumnName="cordinatorEmail" />
+          <ScalarProperty Name="coordinatorPhone" ColumnName="coordinatorPhone" />
+          <ScalarProperty Name="supportPlanDate" ColumnName="supportPlanDate" />
+          <ScalarProperty Name="weeklyAnalystHours" ColumnName="weeklyAnalystHours" />
+          <ScalarProperty Name="weeklyTechnicianHours" ColumnName="weeklyTechnicianHours" />
+          <ScalarProperty Name="terminationDate" ColumnName="terminationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="client_assigments">
+      <EntityTypeMapping TypeName="DatabaseModel.client_assigments">
+        <MappingFragment StoreEntitySet="client_assigments">
+          <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
+          <ScalarProperty Name="clientId" ColumnName="clientId" />
+          <ScalarProperty Name="therapistTypeId" ColumnName="therapistTypeId" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="directors">
+      <EntityTypeMapping TypeName="DatabaseModel.director">
+        <MappingFragment StoreEntitySet="director">
+          <ScalarProperty Name="directorId" ColumnName="directorId" />
+          <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
+          <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
+          <ScalarProperty Name="directorLastName" ColumnName="directorLastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="documentTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.documentType">
+        <MappingFragment StoreEntitySet="documentType">
+          <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
+          <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genders">
+      <EntityTypeMapping TypeName="DatabaseModel.gender">
+        <MappingFragment StoreEntitySet="gender">
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="gender1" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payerTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.payerType">
+        <MappingFragment StoreEntitySet="payerTypes">
+          <ScalarProperty Name="payerId" ColumnName="payerId" />
+          <ScalarProperty Name="payerName" ColumnName="payerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rateTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.rateType">
+        <MappingFragment StoreEntitySet="rateTypes">
+          <ScalarProperty Name="rateTypeId" ColumnName="rateTypeId" />
+          <ScalarProperty Name="rateName" ColumnName="rateName" />
+          <ScalarProperty Name="allowMultiple" ColumnName="allowMultiple" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relationshipTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.relationshipType">
+        <MappingFragment StoreEntitySet="relationshipType">
+          <ScalarProperty Name="relationshipId" ColumnName="relationshipId" />
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="service_locationTypes">
+      <EntityTypeMapping TypeName="DatabaseModel.service_locationTypes">
+        <MappingFragment StoreEntitySet="service_locationTypes">
+          <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
+          <ScalarProperty Name="serviceLocation" ColumnName="serviceLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="DatabaseModel.state">
+        <MappingFragment StoreEntitySet="states">
+          <ScalarProperty Name="geostateid" ColumnName="geostateid" />
+          <ScalarProperty Name="statenameshort" ColumnName="statenameshort" />
+          <ScalarProperty Name="statenamelong" ColumnName="statenamelong" />
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tax_types">
+      <EntityTypeMapping TypeName="DatabaseModel.tax_types">
+        <MappingFragment StoreEntitySet="tax_types">
+          <ScalarProperty Name="taxtypeid" ColumnName="taxtypeid" />
+          <ScalarProperty Name="taxtype" ColumnName="taxtype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapists">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist">
+        <MappingFragment StoreEntitySet="therapist">
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="middleName" ColumnName="middleName" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
+          <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
+          <ScalarProperty Name="therapistType" ColumnName="therapistType" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="education" ColumnName="education" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="ssn" ColumnName="ssn" />
+          <ScalarProperty Name="languages" ColumnName="languages" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+          <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="fein" ColumnName="fein" />
+          <ScalarProperty Name="npi" ColumnName="npi" />
+          <ScalarProperty Name="license" ColumnName="license" />
+          <ScalarProperty Name="provider" ColumnName="provider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_rates">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
+        <MappingFragment StoreEntitySet="therapist_rates">
+          <ScalarProperty Name="rateId" ColumnName="rateId" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="rateValue" ColumnName="rateValue" />
+          <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
+          <ScalarProperty Name="rateType" ColumnName="rateType" />
+          <ScalarProperty Name="documentId" ColumnName="documentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_requirements">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements">
+        <MappingFragment StoreEntitySet="therapist_requirements">
+          <ScalarProperty Name="therapistRequirementId" ColumnName="therapistRequirementId" />
+          <ScalarProperty Name="exempt" ColumnName="exempt" />
+          <ScalarProperty Name="received" ColumnName="received" />
+          <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+          <ScalarProperty Name="datafile" ColumnName="datafile" />
+          <ScalarProperty Name="fileformat" ColumnName="fileformat" />
+          <ScalarProperty Name="expiresOn" ColumnName="expiresOn" />
+          <ScalarProperty Name="requirementTypeId" ColumnName="requirementTypeId" />
+          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_requirements_types">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements_types">
+        <MappingFragment StoreEntitySet="therapist_requirements_types">
+          <ScalarProperty Name="requirementId" ColumnName="requirementId" />
+          <ScalarProperty Name="requirementName" ColumnName="requirementName" />
+          <ScalarProperty Name="requirementValidPeriodMonths" ColumnName="requirementValidPeriodMonths" />
+          <ScalarProperty Name="requirementAppliesTo" ColumnName="requirementAppliesTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_status">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_status">
+        <MappingFragment StoreEntitySet="therapist_status">
+          <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
+          <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="therapist_types">
+      <EntityTypeMapping TypeName="DatabaseModel.therapist_types">
+        <MappingFragment StoreEntitySet="therapist_types">
+          <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
+          <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="user_roles">
       <EntityTypeMapping TypeName="DatabaseModel.user_roles">
         <MappingFragment StoreEntitySet="user_roles">
@@ -17,279 +280,6 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="active" ColumnName="active" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="genders">
-      <EntityTypeMapping TypeName="DatabaseModel.gender">
-        <MappingFragment StoreEntitySet="gender">
-          <ScalarProperty Name="gender1" ColumnName="gender" />
-          <ScalarProperty Name="genderId" ColumnName="genderId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tax_types">
-      <EntityTypeMapping TypeName="DatabaseModel.tax_types">
-        <MappingFragment StoreEntitySet="tax_types">
-          <ScalarProperty Name="taxtype" ColumnName="taxtype" />
-          <ScalarProperty Name="taxtypeid" ColumnName="taxtypeid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="therapist_types">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist_types">
-        <MappingFragment StoreEntitySet="therapist_types">
-          <ScalarProperty Name="therapisttype" ColumnName="therapisttype" />
-          <ScalarProperty Name="therapisttypeId" ColumnName="therapisttypeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="states">
-      <EntityTypeMapping TypeName="DatabaseModel.state">
-        <MappingFragment StoreEntitySet="states">
-          <ScalarProperty Name="countryid" ColumnName="countryid" />
-          <ScalarProperty Name="statenamelong" ColumnName="statenamelong" />
-          <ScalarProperty Name="statenameshort" ColumnName="statenameshort" />
-          <ScalarProperty Name="geostateid" ColumnName="geostateid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="therapist_status">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist_status">
-        <MappingFragment StoreEntitySet="therapist_status">
-          <ScalarProperty Name="therapiststatus" ColumnName="therapiststatus" />
-          <ScalarProperty Name="therapist_statusId" ColumnName="therapist_statusId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="therapists">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist">
-        <MappingFragment StoreEntitySet="therapist">
-          <ScalarProperty Name="provider" ColumnName="provider" />
-          <ScalarProperty Name="license" ColumnName="license" />
-          <ScalarProperty Name="npi" ColumnName="npi" />
-          <ScalarProperty Name="fein" ColumnName="fein" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="terminationdate" ColumnName="terminationdate" />
-          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="hiredate" ColumnName="hiredate" />
-          <ScalarProperty Name="country" ColumnName="country" />
-          <ScalarProperty Name="zip" ColumnName="zip" />
-          <ScalarProperty Name="state" ColumnName="state" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="address2" ColumnName="address2" />
-          <ScalarProperty Name="address1" ColumnName="address1" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="languages" ColumnName="languages" />
-          <ScalarProperty Name="ssn" ColumnName="ssn" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="education" ColumnName="education" />
-          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-          <ScalarProperty Name="therapistType" ColumnName="therapistType" />
-          <ScalarProperty Name="therapistTaxType" ColumnName="therapistTaxType" />
-          <ScalarProperty Name="therapistLevel" ColumnName="therapistLevel" />
-          <ScalarProperty Name="companyName" ColumnName="companyName" />
-          <ScalarProperty Name="middleName" ColumnName="middleName" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="cities">
-      <EntityTypeMapping TypeName="DatabaseModel.city">
-        <MappingFragment StoreEntitySet="cities">
-          <ScalarProperty Name="stateId" ColumnName="stateId" />
-          <ScalarProperty Name="countryId" ColumnName="countryId" />
-          <ScalarProperty Name="cityName" ColumnName="cityName" />
-          <ScalarProperty Name="cityId" ColumnName="cityId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="therapist_requirements">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements">
-        <MappingFragment StoreEntitySet="therapist_requirements">
-          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-          <ScalarProperty Name="requirementTypeId" ColumnName="requirementTypeId" />
-          <ScalarProperty Name="expiresOn" ColumnName="expiresOn" />
-          <ScalarProperty Name="fileformat" ColumnName="fileformat" />
-          <ScalarProperty Name="datafile" ColumnName="datafile" />
-          <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
-          <ScalarProperty Name="received" ColumnName="received" />
-          <ScalarProperty Name="exempt" ColumnName="exempt" />
-          <ScalarProperty Name="therapistRequirementId" ColumnName="therapistRequirementId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="therapist_requirements_types">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist_requirements_types">
-        <MappingFragment StoreEntitySet="therapist_requirements_types">
-          <ScalarProperty Name="requirementValidPeriodMonths" ColumnName="requirementValidPeriodMonths" />
-          <ScalarProperty Name="requirementName" ColumnName="requirementName" />
-          <ScalarProperty Name="requirementId" ColumnName="requirementId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="clients">
-      <EntityTypeMapping TypeName="DatabaseModel.client">
-        <MappingFragment StoreEntitySet="client">
-          <ScalarProperty Name="terminationDate" ColumnName="terminationDate" />
-          <ScalarProperty Name="weeklyTechnicianHours" ColumnName="weeklyTechnicianHours" />
-          <ScalarProperty Name="weeklyAnalystHours" ColumnName="weeklyAnalystHours" />
-          <ScalarProperty Name="supportPlanDate" ColumnName="supportPlanDate" />
-          <ScalarProperty Name="coordinatorPhone" ColumnName="coordinatorPhone" />
-          <ScalarProperty Name="cordinatorEmail" ColumnName="cordinatorEmail" />
-          <ScalarProperty Name="coordinatorApprovalDate" ColumnName="coordinatorApprovalDate" />
-          <ScalarProperty Name="initialBASPDate" ColumnName="initialBASPDate" />
-          <ScalarProperty Name="initialAssesmentDate" ColumnName="initialAssesmentDate" />
-          <ScalarProperty Name="startOfServiceDate" ColumnName="startOfServiceDate" />
-          <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
-          <ScalarProperty Name="mdLicenseNumber" ColumnName="mdLicenseNumber" />
-          <ScalarProperty Name="referalExpirationDate" ColumnName="referalExpirationDate" />
-          <ScalarProperty Name="referringPhysicianEmail" ColumnName="referringPhysicianEmail" />
-          <ScalarProperty Name="referringPhysicianPhone" ColumnName="referringPhysicianPhone" />
-          <ScalarProperty Name="referringPhysicianLastName" ColumnName="referringPhysicianLastName" />
-          <ScalarProperty Name="referringPhysicianMiddleName" ColumnName="referringPhysicianMiddleName" />
-          <ScalarProperty Name="referringPhysicianFirstName" ColumnName="referringPhysicianFirstName" />
-          <ScalarProperty Name="referringProviderMedicaid" ColumnName="referringProviderMedicaid" />
-          <ScalarProperty Name="referringPhysicianNPI" ColumnName="referringPhysicianNPI" />
-          <ScalarProperty Name="clientDiagnosedCodes" ColumnName="clientDiagnosedCodes" />
-          <ScalarProperty Name="secondaryInsuredPhone" ColumnName="secondaryInsuredPhone" />
-          <ScalarProperty Name="secondaryInsuredBirthdate" ColumnName="secondaryInsuredBirthdate" />
-          <ScalarProperty Name="secondaryInsuredZip" ColumnName="secondaryInsuredZip" />
-          <ScalarProperty Name="secondaryInsuredStateId" ColumnName="secondaryInsuredStateId" />
-          <ScalarProperty Name="secondaryInsuredCityId" ColumnName="secondaryInsuredCityId" />
-          <ScalarProperty Name="secondaryInsuredAddress2" ColumnName="secondaryInsuredAddress2" />
-          <ScalarProperty Name="secondaryInsuredAddress1" ColumnName="secondaryInsuredAddress1" />
-          <ScalarProperty Name="secondaryInsuredGender" ColumnName="secondaryInsuredGender" />
-          <ScalarProperty Name="secondayLastName" ColumnName="secondayLastName" />
-          <ScalarProperty Name="secondaryMiddleName" ColumnName="secondaryMiddleName" />
-          <ScalarProperty Name="secondaryFirstName" ColumnName="secondaryFirstName" />
-          <ScalarProperty Name="secondaryRelatioshipToPatient" ColumnName="secondaryRelatioshipToPatient" />
-          <ScalarProperty Name="secondaryCopayment" ColumnName="secondaryCopayment" />
-          <ScalarProperty Name="secondaryInsuranceId" ColumnName="secondaryInsuranceId" />
-          <ScalarProperty Name="secondaryPayerId" ColumnName="secondaryPayerId" />
-          <ScalarProperty Name="insuredPhone" ColumnName="insuredPhone" />
-          <ScalarProperty Name="primaryInsuredBirthdate" ColumnName="primaryInsuredBirthdate" />
-          <ScalarProperty Name="insuredZip" ColumnName="insuredZip" />
-          <ScalarProperty Name="insuredStateId" ColumnName="insuredStateId" />
-          <ScalarProperty Name="insuredCityId" ColumnName="insuredCityId" />
-          <ScalarProperty Name="insuredAddress2" ColumnName="insuredAddress2" />
-          <ScalarProperty Name="insuredAddress1" ColumnName="insuredAddress1" />
-          <ScalarProperty Name="primaryInsuredGender" ColumnName="primaryInsuredGender" />
-          <ScalarProperty Name="insuredLastName" ColumnName="insuredLastName" />
-          <ScalarProperty Name="insuredMiddleName" ColumnName="insuredMiddleName" />
-          <ScalarProperty Name="insuredFirstName" ColumnName="insuredFirstName" />
-          <ScalarProperty Name="insuranceId" ColumnName="insuranceId" />
-          <ScalarProperty Name="relationshipToPatientId" ColumnName="relationshipToPatientId" />
-          <ScalarProperty Name="InsuraceCopayment" ColumnName="InsuraceCopayment" />
-          <ScalarProperty Name="primaryPayerId" ColumnName="primaryPayerId" />
-          <ScalarProperty Name="zip" ColumnName="zip" />
-          <ScalarProperty Name="stateId" ColumnName="stateId" />
-          <ScalarProperty Name="cityId" ColumnName="cityId" />
-          <ScalarProperty Name="address2" ColumnName="address2" />
-          <ScalarProperty Name="address1" ColumnName="address1" />
-          <ScalarProperty Name="ssn" ColumnName="ssn" />
-          <ScalarProperty Name="genderId" ColumnName="genderId" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="middleName" ColumnName="middleName" />
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="directorId" ColumnName="directorId" />
-          <ScalarProperty Name="clientId" ColumnName="clientId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="payerTypes">
-      <EntityTypeMapping TypeName="DatabaseModel.payerType">
-        <MappingFragment StoreEntitySet="payerTypes">
-          <ScalarProperty Name="payerName" ColumnName="payerName" />
-          <ScalarProperty Name="payerId" ColumnName="payerId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="relationshipTypes">
-      <EntityTypeMapping TypeName="DatabaseModel.relationshipType">
-        <MappingFragment StoreEntitySet="relationshipType">
-          <ScalarProperty Name="relationship" ColumnName="relationship" />
-          <ScalarProperty Name="relationshipId" ColumnName="relationshipId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="service_locationTypes">
-      <EntityTypeMapping TypeName="DatabaseModel.service_locationTypes">
-        <MappingFragment StoreEntitySet="service_locationTypes">
-          <ScalarProperty Name="serviceLocation" ColumnName="serviceLocation" />
-          <ScalarProperty Name="serviceLocationId" ColumnName="serviceLocationId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="directors">
-      <EntityTypeMapping TypeName="DatabaseModel.director">
-        <MappingFragment StoreEntitySet="director">
-          <ScalarProperty Name="directorLastName" ColumnName="directorLastName" />
-          <ScalarProperty Name="directorMiddleName" ColumnName="directorMiddleName" />
-          <ScalarProperty Name="directorFirstName" ColumnName="directorFirstName" />
-          <ScalarProperty Name="directorId" ColumnName="directorId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="rateTypes">
-      <EntityTypeMapping TypeName="DatabaseModel.rateType">
-        <MappingFragment StoreEntitySet="rateTypes">
-          <ScalarProperty Name="allowMultiple" ColumnName="allowMultiple" />
-          <ScalarProperty Name="rateName" ColumnName="rateName" />
-          <ScalarProperty Name="rateTypeId" ColumnName="rateTypeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="assignments">
-      <EntityTypeMapping TypeName="DatabaseModel.assignment">
-        <MappingFragment StoreEntitySet="assignments">
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="clientId" ColumnName="clientId" />
-          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-          <ScalarProperty Name="therapistAssignmentId" ColumnName="therapistAssignmentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="documentTypes">
-      <EntityTypeMapping TypeName="DatabaseModel.documentType">
-        <MappingFragment StoreEntitySet="documentType">
-          <ScalarProperty Name="documentTypeName" ColumnName="documentTypeName" />
-          <ScalarProperty Name="documentTypeId" ColumnName="documentTypeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="therapist_rates">
-      <EntityTypeMapping TypeName="DatabaseModel.therapist_rates">
-        <MappingFragment StoreEntitySet="therapist_rates">
-          <ScalarProperty Name="documentId" ColumnName="documentId" />
-          <ScalarProperty Name="rateType" ColumnName="rateType" />
-          <ScalarProperty Name="setByUserId" ColumnName="setByUserId" />
-          <ScalarProperty Name="rateValue" ColumnName="rateValue" />
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-          <ScalarProperty Name="rateId" ColumnName="rateId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="client_assigments">
-      <EntityTypeMapping TypeName="DatabaseModel.client_assigments">
-        <MappingFragment StoreEntitySet="client_assigments">
-          <ScalarProperty Name="endDate" ColumnName="endDate" />
-          <ScalarProperty Name="startDate" ColumnName="startDate" />
-          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
-          <ScalarProperty Name="therapistId" ColumnName="therapistId" />
-          <ScalarProperty Name="therapistTypeId" ColumnName="therapistTypeId" />
-          <ScalarProperty Name="clientId" ColumnName="clientId" />
-          <ScalarProperty Name="assignmentId" ColumnName="assignmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -17,5 +17,6 @@ namespace DataServices
         public int requirementId { get; set; }
         public string requirementName { get; set; }
         public int requirementValidPeriodMonths { get; set; }
+        public string requirementAppliesTo { get; set; }
     }
 }

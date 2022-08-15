@@ -4,28 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1519e472c88a4164b5f6bf68b6408bcc" Name="Diagram1" ZoomLevel="49">
-        <EntityTypeShape EntityType="DatabaseModel.user_roles" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.user" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.gender" Width="1.5" PointX="6.375" PointY="2.25" />
-        <EntityTypeShape EntityType="DatabaseModel.tax_types" Width="1.5" PointX="6.375" PointY="3.75" />
-        <EntityTypeShape EntityType="DatabaseModel.therapist_types" Width="1.5" PointX="6.375" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.state" Width="1.5" PointX="8.125" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.therapist_status" Width="1.5" PointX="8.125" PointY="2.75" />
-        <EntityTypeShape EntityType="DatabaseModel.therapist" Width="1.5" PointX="4.625" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.city" Width="1.5" PointX="10" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.therapist_requirements" Width="1.5" PointX="6.375" PointY="5.5" />
-        <EntityTypeShape EntityType="DatabaseModel.therapist_requirements_types" Width="1.5" PointX="4.625" PointY="7.75" />
-        <EntityTypeShape EntityType="DatabaseModel.client" Width="1.5" PointX="11.875" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.payerType" Width="1.5" PointX="13.625" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.relationshipType" Width="1.5" PointX="13.625" PointY="2.375" />
-        <EntityTypeShape EntityType="DatabaseModel.service_locationTypes" Width="1.5" PointX="10" PointY="2.75" />
-        <EntityTypeShape EntityType="DatabaseModel.director" Width="1.5" PointX="13.625" PointY="4" />
-        <EntityTypeShape EntityType="DatabaseModel.rateType" Width="1.5" PointX="15.5" PointY="3" />
-        <EntityTypeShape EntityType="DatabaseModel.assignment" Width="1.5" PointX="15.5" PointY="0.75" />
-        <EntityTypeShape EntityType="DatabaseModel.documentType" Width="1.5" PointX="15.5" PointY="7.625" />
-        <EntityTypeShape EntityType="DatabaseModel.therapist_rates" Width="1.5" PointX="15.5" PointY="4.75" />
-        <EntityTypeShape EntityType="DatabaseModel.client_assigments" Width="1.5" PointX="13.625" PointY="6" />
+      <Diagram DiagramId="dbd83e0a2d53409e95bac27902cfdf8f" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.city" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.client" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.client_assigments" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.director" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.documentType" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.gender" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.payerType" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.rateType" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.relationshipType" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.service_locationTypes" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.state" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.tax_types" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_rates" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_requirements" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_requirements_types" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_status" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.therapist_types" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.user_roles" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.user" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

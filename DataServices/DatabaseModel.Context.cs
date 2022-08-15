@@ -25,26 +25,25 @@ namespace DataServices
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<user_roles> user_roles { get; set; }
-        public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<gender> genders { get; set; }
-        public virtual DbSet<tax_types> tax_types { get; set; }
-        public virtual DbSet<therapist_types> therapist_types { get; set; }
-        public virtual DbSet<state> states { get; set; }
-        public virtual DbSet<therapist_status> therapist_status { get; set; }
-        public virtual DbSet<therapist> therapists { get; set; }
         public virtual DbSet<city> cities { get; set; }
-        public virtual DbSet<therapist_requirements> therapist_requirements { get; set; }
-        public virtual DbSet<therapist_requirements_types> therapist_requirements_types { get; set; }
         public virtual DbSet<client> clients { get; set; }
+        public virtual DbSet<client_assigments> client_assigments { get; set; }
+        public virtual DbSet<director> directors { get; set; }
+        public virtual DbSet<documentType> documentTypes { get; set; }
+        public virtual DbSet<gender> genders { get; set; }
         public virtual DbSet<payerType> payerTypes { get; set; }
+        public virtual DbSet<rateType> rateTypes { get; set; }
         public virtual DbSet<relationshipType> relationshipTypes { get; set; }
         public virtual DbSet<service_locationTypes> service_locationTypes { get; set; }
-        public virtual DbSet<director> directors { get; set; }
-        public virtual DbSet<rateType> rateTypes { get; set; }
-        public virtual DbSet<assignment> assignments { get; set; }
-        public virtual DbSet<documentType> documentTypes { get; set; }
+        public virtual DbSet<state> states { get; set; }
+        public virtual DbSet<tax_types> tax_types { get; set; }
+        public virtual DbSet<therapist> therapists { get; set; }
         public virtual DbSet<therapist_rates> therapist_rates { get; set; }
-        public virtual DbSet<client_assigments> client_assigments { get; set; }
+        public virtual DbSet<therapist_requirements> therapist_requirements { get; set; }
+        public virtual DbSet<therapist_requirements_types> therapist_requirements_types { get; set; }
+        public virtual DbSet<therapist_status> therapist_status { get; set; }
+        public virtual DbSet<therapist_types> therapist_types { get; set; }
+        public virtual DbSet<user_roles> user_roles { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }
